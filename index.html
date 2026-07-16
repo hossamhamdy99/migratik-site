@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PressPack — Migrate any WordPress site with its SEO, media & data intact</title>
+<meta name="description" content="PressPack packs up any WordPress site — every article, image, SEO signal, and custom field — into one clean file to migrate anywhere. Builder-agnostic and read-only.">
+<link rel="icon" type="image/png" href="icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PressPack">
+<meta property="og:title" content="PressPack — Migrate any WordPress site with its SEO, media &amp; data intact">
+<meta property="og:description" content="Builder-agnostic, read-only WordPress exporter. Free JSON export; Pro adds Markdown/MDX, WXR, CSV, and one-click media bundling.">
+<meta property="og:url" content="https://hossamhamdy99.github.io/presspack-site/">
+<meta property="og:image" content="https://hossamhamdy99.github.io/presspack-site/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PressPack — Migrate any WordPress site, intact">
+<meta name="twitter:description" content="Builder-agnostic, read-only WordPress exporter. Free JSON export; Pro adds Markdown/MDX, WXR, CSV &amp; media bundling.">
+<meta name="twitter:image" content="https://hossamhamdy99.github.io/presspack-site/og-image.png">
+<style>
+  :root{
+    --ink:#0f1222; --ink-2:#2a2f45; --muted:#5b6178; --line:#e7e9f2;
+    --bg:#ffffff; --bg-2:#f7f8fc; --brand:#5b4bff; --brand-2:#8b5cff;
+    --brand-ink:#3b2fd6; --accent:#12c9a6; --warn:#ff9f43;
+    --radius:16px; --shadow:0 12px 40px rgba(24,20,80,.10);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.15;letter-spacing:-.02em;margin:0}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-ink)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;padding:14px 24px;
+    border-radius:999px;border:1px solid transparent;cursor:pointer;transition:.18s;white-space:nowrap}
+  .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 8px 24px rgba(91,75,255,.35)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(91,75,255,.45)}
+  .btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--brand);color:var(--brand-ink)}
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .logo .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    display:grid;place-items:center;color:#fff;font-size:16px}
+  .nav-links{display:flex;gap:28px;align-items:center;font-size:15px;color:var(--muted);font-weight:600}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  /* Hero */
+  .hero{position:relative;padding:84px 0 72px;background:
+     radial-gradient(1200px 500px at 80% -10%,rgba(139,92,255,.16),transparent 60%),
+     radial-gradient(900px 480px at 0% 10%,rgba(18,201,166,.12),transparent 55%),var(--bg)}
+  .hero h1{font-size:clamp(34px,5vw,58px);font-weight:850;max-width:16ch}
+  .hero p.sub{font-size:clamp(17px,2.2vw,21px);color:var(--ink-2);max-width:56ch;margin:22px 0 30px}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .hero .note{font-size:14px;color:var(--muted);margin-top:16px}
+  .builders{display:flex;gap:10px;flex-wrap:wrap;margin-top:40px}
+  .chip{font-size:13px;font-weight:700;color:var(--ink-2);background:#fff;border:1px solid var(--line);
+    padding:7px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(20,16,60,.04)}
+
+  section{padding:76px 0}
+  .section-head{max-width:60ch;margin-bottom:44px}
+  .section-head h2{font-size:clamp(26px,3.4vw,38px);font-weight:820;margin-top:12px}
+  .section-head p{font-size:18px;color:var(--muted);margin-top:14px}
+
+  .grid{display:grid;gap:22px}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  .cols-2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:860px){.cols-3,.cols-2{grid-template-columns:1fr}}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .card .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;
+    background:linear-gradient(135deg,rgba(91,75,255,.12),rgba(139,92,255,.12));margin-bottom:16px}
+  .card h3{font-size:19px;font-weight:750}
+  .card p{color:var(--muted);margin:10px 0 0;font-size:15.5px}
+
+  .band{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+  /* Free vs Pro */
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:860px){.cmp{grid-template-columns:1fr}}
+  .plan-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .plan-box.pro{border-color:transparent;background:
+     linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--brand),var(--brand-2)) border-box;
+     border:1.5px solid transparent;box-shadow:var(--shadow)}
+  .plan-box h3{font-size:22px;font-weight:800}
+  .plan-box .tag{font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-ink)}
+  ul.ticks{list-style:none;padding:0;margin:18px 0 0}
+  ul.ticks li{padding:9px 0 9px 30px;position:relative;color:var(--ink-2);font-size:15.5px;border-top:1px solid var(--line)}
+  ul.ticks li:first-child{border-top:0}
+  ul.ticks li::before{content:"✓";position:absolute;left:0;top:8px;width:20px;height:20px;border-radius:50%;
+    background:rgba(18,201,166,.14);color:#0a9c80;font-size:12px;font-weight:800;display:grid;place-items:center}
+
+  /* Formats */
+  .fmt{display:flex;gap:16px;align-items:flex-start}
+  .fmt .badge{flex:0 0 auto;font-weight:800;font-size:13px;color:#fff;padding:6px 12px;border-radius:8px}
+  .b-md{background:#5b4bff}.b-wxr{background:#0a9c80}.b-csv{background:#ff9f43}
+
+  /* Proof */
+  .proof{background:linear-gradient(135deg,#141433,#241a4d);color:#fff;border-radius:24px;padding:46px;box-shadow:var(--shadow)}
+  .proof h2{color:#fff;font-size:clamp(24px,3vw,34px);font-weight:820}
+  .proof p.lead{color:#c9c6f0;max-width:60ch;margin:14px 0 30px;font-size:17px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat .n{font-size:38px;font-weight:850;letter-spacing:-.02em;background:linear-gradient(135deg,#a68bff,#12c9a6);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat .l{color:#b7b3e0;font-size:14px;margin-top:4px}
+
+  /* Pricing */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+  @media(max-width:860px){.price-grid{grid-template-columns:1fr}}
+  .price{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column}
+  .price.popular{border:1.5px solid transparent;background:
+     linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--brand),var(--brand-2)) border-box;
+     box-shadow:var(--shadow);position:relative}
+  .price.popular .ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-size:12px;font-weight:800;
+    letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+  .price h3{font-size:20px;font-weight:800}
+  .price .amt{font-size:44px;font-weight:850;letter-spacing:-.03em;margin:10px 0 2px}
+  .price .amt span{font-size:16px;font-weight:600;color:var(--muted)}
+  .price .sites{color:var(--brand-ink);font-weight:700;font-size:15px;margin-bottom:16px}
+  .price ul{list-style:none;padding:0;margin:0 0 24px;flex:1}
+  .price ul li{padding:8px 0 8px 26px;position:relative;color:var(--ink-2);font-size:15px}
+  .price ul li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:800}
+
+  /* FAQ */
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:0 22px;margin-bottom:12px}
+  details summary{cursor:pointer;font-weight:700;font-size:16.5px;padding:18px 0;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";font-size:22px;color:var(--brand);font-weight:400}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--muted);margin:0 0 20px;font-size:15.5px}
+
+  /* Final CTA + footer */
+  .final{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;text-align:center;border-radius:24px;padding:60px 30px}
+  .final h2{color:#fff;font-size:clamp(26px,3.4vw,40px);font-weight:850}
+  .final p{color:#e9e6ff;max-width:52ch;margin:14px auto 28px;font-size:18px}
+  .final .btn-primary{background:#fff;color:var(--brand-ink);box-shadow:0 10px 30px rgba(0,0,0,.2)}
+  footer{padding:40px 0;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:76px}
+  .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="logo"><span class="mark">◲</span> PressPack</div>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#formats">Formats</a>
+      <a href="#proof">Proof</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <a href="#pricing" class="btn btn-primary" style="padding:10px 20px;font-size:15px">Get PressPack Pro</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">WordPress migration, done right</div>
+    <h1>Move any WordPress site — with its SEO, media &amp; data intact.</h1>
+    <p class="sub">PressPack packs up your entire site — every article, page, custom post type, image, and SEO signal — and exports it to whatever your new stack needs. Headless, another WordPress, or a spreadsheet. No developer required.</p>
+    <div class="cta-row">
+      <a href="#pricing" class="btn btn-primary">Get PressPack Pro →</a>
+      <a href="#how" class="btn btn-ghost">See how it works</a>
+    </div>
+    <p class="note">Free core plugin — coming soon to WordPress.org · Pro unlocks every format &amp; one-click media bundling · Read-only &amp; safe</p>
+    <div class="builders">
+      <span class="chip">Elementor</span><span class="chip">WPBakery</span><span class="chip">Divi</span>
+      <span class="chip">Beaver Builder</span><span class="chip">Gutenberg</span><span class="chip">Classic</span>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Why migrations go wrong</div>
+      <h2>Most migrations quietly lose the things that matter.</h2>
+      <p>Copy-pasting content means broken images, lost SEO rankings, and custom-field data that never makes it across. Then you spend days rebuilding by hand.</p>
+    </div>
+    <div class="grid cols-3">
+      <div class="card"><div class="ic">🔗</div><h3>SEO evaporates</h3><p>Titles, meta descriptions, and old URLs vanish — so your rankings and redirects break on day one.</p></div>
+      <div class="card"><div class="ic">🖼️</div><h3>Images break</h3><p>Media stays on the old host. Responsive <code>srcset</code> variants and gallery images get left behind.</p></div>
+      <div class="card"><div class="ic">🗂️</div><h3>Custom data disappears</h3><p>ACF, JetEngine, and Pods fields — where custom post types keep their real content — are the first thing lost.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW / FREE vs PRO -->
+<section id="how" class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How it works</div>
+      <h2>Capture everything for free. Convert it with Pro.</h2>
+      <p>The free plugin reads 100% of your site into one clean file. Pro turns that into the exact format your destination needs — and brings the media with it.</p>
+    </div>
+    <div class="cmp">
+      <div class="plan-box">
+        <span class="tag">Free · Coming to WordPress.org</span>
+        <h3 style="margin-top:8px">Full data capture</h3>
+        <ul class="ticks">
+          <li>Every post, page &amp; custom post type — builder-agnostic</li>
+          <li>SEO meta (Yoast, Rank Math, AIOSEO) + old URLs for redirects</li>
+          <li>Custom fields (ACF / JetEngine / Pods), resolved image fields</li>
+          <li>Comments, navigation menus, taxonomies, internal links</li>
+          <li>One clean JSON file · read-only · safe to delete after</li>
+        </ul>
+      </div>
+      <div class="plan-box pro">
+        <span class="tag">Pro</span>
+        <h3 style="margin-top:8px">Any format + the media</h3>
+        <ul class="ticks">
+          <li>Export to Markdown / MDX, WXR, or CSV — one click</li>
+          <li>Bundle every image &amp; file, URLs rewritten to the copies</li>
+          <li>Catches responsive <code>srcset</code> &amp; lazy-loaded images</li>
+          <li>Large libraries split into parts automatically</li>
+          <li>No command line — it’s all in your WordPress admin</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section id="formats">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Export formats</div>
+      <h2>One capture. Every destination.</h2>
+    </div>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="fmt"><span class="badge b-md">MD / MDX</span></div>
+        <h3 style="margin-top:16px">Headless &amp; static sites</h3>
+        <p>Markdown or MDX with YAML front-matter — drop straight into Next.js, Astro, Hugo, or 11ty. SEO, redirects, and custom fields come along in the front-matter.</p>
+      </div>
+      <div class="card">
+        <div class="fmt"><span class="badge b-wxr">WXR</span></div>
+        <h3 style="margin-top:16px">WordPress → WordPress</h3>
+        <p>A standard WXR file the native WordPress importer reads — posts, custom post types, taxonomies, dates, and custom fields recreated on the new install.</p>
+      </div>
+      <div class="card">
+        <div class="fmt"><span class="badge b-csv">CSV</span></div>
+        <h3 style="margin-top:16px">Spreadsheets &amp; any CMS</h3>
+        <p>One clean table per content type — perfect for structured records (directories, staff, listings) into Sheets, Airtable, or a generic importer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section id="proof">
+  <div class="wrap">
+    <div class="proof">
+      <div class="eyebrow" style="color:#a68bff">Proven on a real migration</div>
+      <h2>A live clinic site → Next.js, nothing lost.</h2>
+      <p class="lead">PressPack was built migrating a real WPBakery + JetEngine clinic site to a headless stack. Every doctor profile, article, and image came across — including Arabic slugs and filenames.</p>
+      <div class="stats">
+        <div class="stat"><div class="n">100%</div><div class="l">of data captured</div></div>
+        <div class="stat"><div class="n">41</div><div class="l">media files bundled, self-contained</div></div>
+        <div class="stat"><div class="n">0</div><div class="l">broken links after export</div></div>
+        <div class="stat"><div class="n">6+</div><div class="l">page builders supported</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="band">
+  <div class="wrap">
+    <div class="section-head" style="margin-inline:auto;text-align:center">
+      <div class="eyebrow">Pricing</div>
+      <h2>Simple, one-time-friendly pricing.</h2>
+      <p style="margin-inline:auto">Migration is often a one-time job — so PressPack Pro is priced to pay for itself on a single migration. One year of updates &amp; support; renew only if you want to.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price">
+        <h3>Personal</h3>
+        <div class="amt">$49<span> / year</span></div>
+        <div class="sites">1 site</div>
+        <ul>
+          <li>All export formats (MD/MDX, WXR, CSV)</li>
+          <li>One-click media bundling</li>
+          <li>1 year of updates &amp; support</li>
+        </ul>
+        <a href="#pricing" class="btn btn-ghost" style="justify-content:center;opacity:.55;pointer-events:none">Coming soon</a>
+      </div>
+      <div class="price popular">
+        <span class="ribbon">Most popular</span>
+        <h3>Freelancer</h3>
+        <div class="amt">$99<span> / year</span></div>
+        <div class="sites">5 sites</div>
+        <ul>
+          <li>Everything in Personal</li>
+          <li>Migrate up to 5 client sites</li>
+          <li>Priority email support</li>
+        </ul>
+        <a href="#pricing" class="btn btn-primary" style="justify-content:center;opacity:.7;pointer-events:none">Coming soon</a>
+      </div>
+      <div class="price">
+        <h3>Agency</h3>
+        <div class="amt">$199<span> / year</span></div>
+        <div class="sites">25 sites</div>
+        <ul>
+          <li>Everything in Freelancer</li>
+          <li>Migrate up to 25 sites</li>
+          <li>Best value for agencies &amp; studios</li>
+        </ul>
+        <a href="#pricing" class="btn btn-ghost" style="justify-content:center;opacity:.55;pointer-events:none">Coming soon</a>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--muted);margin-top:24px;font-size:14.5px">When Pro launches: 14-day money-back guarantee · Secure checkout by Freemius · VAT handled for you</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap" style="max-width:760px">
+    <div class="section-head" style="text-align:center;margin-inline:auto">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions, answered.</h2>
+    </div>
+    <details open><summary>Is it safe to run on a live site?</summary><p>Yes. PressPack is read-only — it only reads your content and hands you a file. It never changes your posts, database, or settings, and leaves nothing behind when deleted.</p></details>
+    <details><summary>Which page builders are supported?</summary><p>Elementor, WPBakery, Divi, Beaver Builder, Gutenberg, and the Classic editor. Each item is rendered with the right method and tagged so nothing renders empty.</p></details>
+    <details><summary>Do I need to be a developer?</summary><p>No. Everything happens with a dropdown and a button inside your WordPress admin — pick a format, click download. No command line, no code.</p></details>
+    <details><summary>What happens to my images?</summary><p>With Pro, one click bundles every image and file alongside the export and rewrites the URLs to the packaged copies — including responsive <code>srcset</code> sizes. The result is fully self-contained.</p></details>
+    <details><summary>Is this a subscription I’m stuck with?</summary><p>Your license includes a year of updates and support. Since migration is usually one-time, you can cancel renewal after your migration and keep using the version you have.</p></details>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="wrap">
+    <div class="final">
+      <h2>Migrate once. Lose nothing.</h2>
+      <p>The free core lands on WordPress.org soon — then unlock every format and one-click media bundling when you’re ready to move.</p>
+      <a href="#pricing" class="btn btn-primary">Get PressPack Pro →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div class="logo" style="font-size:16px"><span class="mark" style="width:24px;height:24px;font-size:13px">◲</span> PressPack</div>
+    <div>© 2026 PressPack · Built by Hossam Hamdy · A builder-agnostic WordPress migration exporter.</div>
+  </div>
+</footer>
+
+</body>
+</html>
