@@ -52,7 +52,7 @@
   @media(max-width:720px){.nav-links{display:none}}
 
   /* Hero */
-  .hero{position:relative;padding:84px 0 72px;background:
+  .hero{position:relative;padding:84px 0 40px;background:
      radial-gradient(1200px 500px at 80% -10%,rgba(139,92,255,.16),transparent 60%),
      radial-gradient(900px 480px at 0% 10%,rgba(18,201,166,.12),transparent 55%),var(--bg)}
   .hero h1{font-size:clamp(34px,5vw,58px);font-weight:850;max-width:16ch}
@@ -64,6 +64,7 @@
     padding:7px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(20,16,60,.04)}
 
   section{padding:76px 0}
+  .hero+section{padding-top:40px}
   .section-head{max-width:60ch;margin-bottom:44px}
   .section-head h2{font-size:clamp(26px,3.4vw,38px);font-weight:820;margin-top:12px}
   .section-head p{font-size:18px;color:var(--muted);margin-top:14px}
@@ -174,7 +175,8 @@
     <p class="note">Free core plugin — coming soon to WordPress.org · Pro unlocks every format &amp; one-click media bundling · Read-only &amp; safe</p>
     <div class="builders">
       <span class="chip">Elementor</span><span class="chip">WPBakery</span><span class="chip">Divi</span>
-      <span class="chip">Beaver Builder</span><span class="chip">Gutenberg</span><span class="chip">Classic</span>
+      <span class="chip">Beaver Builder</span><span class="chip">Bricks</span><span class="chip">Oxygen</span>
+      <span class="chip">Gutenberg</span><span class="chip">Classic</span>
     </div>
   </div>
 </header>
@@ -330,7 +332,7 @@
       <h2>Questions, answered.</h2>
     </div>
     <details open><summary>Is it safe to run on a live site?</summary><p>Yes. PressPack is read-only — it only reads your content and hands you a file. It never changes your posts, database, or settings, and leaves nothing behind when deleted.</p></details>
-    <details><summary>Which page builders are supported?</summary><p>Elementor, WPBakery, Divi, Beaver Builder, Gutenberg, and the Classic editor. Each item is rendered with the right method and tagged so nothing renders empty.</p></details>
+    <details><summary>Which page builders are supported?</summary><p>Elementor, WPBakery, Divi, Beaver Builder, Bricks, Oxygen, Gutenberg, and the Classic editor. Each item is rendered with the right method and tagged so nothing renders empty.</p></details>
     <details><summary>Do I need to be a developer?</summary><p>No. Everything happens with a dropdown and a button inside your WordPress admin — pick a format, click download. No command line, no code.</p></details>
     <details><summary>What happens to my images?</summary><p>With Pro, one click bundles every image and file alongside the export and rewrites the URLs to the packaged copies — including responsive <code>srcset</code> sizes. The result is fully self-contained.</p></details>
     <details><summary>Is this a subscription I’m stuck with?</summary><p>Your license includes a year of updates and support. Since migration is usually one-time, you can cancel renewal after your migration and keep using the version you have.</p></details>
