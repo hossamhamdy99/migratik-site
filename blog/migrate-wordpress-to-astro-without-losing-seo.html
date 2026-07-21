@@ -37,6 +37,18 @@
   "dateModified": "2026-07-21"
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I migrate WordPress to Astro?", "acceptedAnswer": { "@type": "Answer", "text": "Export your WordPress content to Markdown, drop it into src/content, define a content collection with the glob loader, and generate pages with getStaticPaths(). Then preserve SEO by keeping your URLs, adding 301 redirects, carrying over metadata, and generating a sitemap." } },
+    { "@type": "Question", "name": "Does moving from WordPress to Astro affect SEO?", "acceptedAnswer": { "@type": "Answer", "text": "It only hurts SEO if you change what Google indexed. Keep the same URLs, 301-redirect anything that moves, port your titles and descriptions verbatim, set canonicals, and submit a fresh sitemap. Done right, Astro's speed can improve rankings." } },
+    { "@type": "Question", "name": "How do I import WordPress content into Astro content collections?", "acceptedAnswer": { "@type": "Answer", "text": "Export the content as Markdown with front matter, place the files under src/content, and define a collection in src/content.config.ts using the glob loader from astro/loaders with a Zod schema that matches your front matter. Query it with getCollection()." } },
+    { "@type": "Question", "name": "Can I keep my WordPress URLs in Astro?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use a dynamic route like src/pages/blog/[...slug].astro and map each entry's existing slug in getStaticPaths(), and set trailingSlash in astro.config.mjs to match WordPress. Keeping URLs identical preserves most of your ranking signal." } }
+  ]
+}
+</script>
 <style>
   :root{
     --ink:#0f1222; --ink-2:#2a2f45; --muted:#5b6178; --line:#e7e9f2;
@@ -290,6 +302,16 @@ Sitemap: https://yoursite.com/sitemap-index.xml</code></pre>
 
 <p>That&rsquo;s the whole path: clean export, typed collections, and disciplined preservation of URLs, redirects, metadata, and images. The mechanical half is a joy in Astro; the SEO half is just refusing to change what already ranks. Do both and you get a site that&rsquo;s dramatically faster <em>and</em> keeps every position it earned.</p>
 <p>Moving to Next.js instead? The same principles, framework-specific, are in our <a class="inline" href="./migrate-wordpress-to-nextjs-without-losing-seo.html">WordPress&nbsp;&rarr;&nbsp;Next.js guide</a>. Want the export details? See <a class="inline" href="./export-wordpress-to-markdown.html">exporting WordPress to Markdown</a>.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<h3>How do I migrate WordPress to Astro?</h3>
+<p>Export your WordPress content to Markdown, drop it into <code>src/content</code>, define a content collection with the <code>glob</code> loader, and generate pages with <code>getStaticPaths()</code>. Then preserve SEO by keeping your URLs, adding 301 redirects, carrying over metadata, and generating a sitemap.</p>
+<h3>Does moving from WordPress to Astro affect SEO?</h3>
+<p>It only hurts SEO if you change what Google indexed. Keep the same URLs, 301-redirect anything that moves, port your titles and descriptions verbatim, set canonicals, and submit a fresh sitemap. Done right, Astro&rsquo;s speed can <em>improve</em> rankings.</p>
+<h3>How do I import WordPress content into Astro content collections?</h3>
+<p>Export the content as Markdown with front matter, place the files under <code>src/content</code>, and define a collection in <code>src/content.config.ts</code> using the <code>glob</code> loader with a Zod schema that matches your front matter. Query it with <code>getCollection()</code>.</p>
+<h3>Can I keep my WordPress URLs in Astro?</h3>
+<p>Yes. Use a dynamic route like <code>src/pages/blog/[...slug].astro</code>, map each entry&rsquo;s existing slug in <code>getStaticPaths()</code>, and set <code>trailingSlash</code> to match WordPress. Keeping URLs identical preserves most of your ranking signal.</p>
 
 <div class="end-cta">
   <h2>Export once. Rank the same.</h2>

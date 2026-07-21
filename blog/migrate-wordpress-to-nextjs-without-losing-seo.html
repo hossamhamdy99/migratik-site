@@ -37,6 +37,18 @@
   "dateModified": "2026-07-21"
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Will migrating from WordPress to Next.js hurt my SEO?", "acceptedAnswer": { "@type": "Answer", "text": "Not if you preserve what Google already trusts. Keep your URLs identical, 301-redirect anything that changes, carry over your titles, descriptions and canonicals, and rebuild your sitemap. Rankings drop when those signals are lost, not because the frontend changed." } },
+    { "@type": "Question", "name": "How do I keep my WordPress URLs in Next.js?", "acceptedAnswer": { "@type": "Answer", "text": "Mirror your permalink structure with the App Router's dynamic segments and generate one page per slug with generateStaticParams(), using your existing slugs. Match WordPress's trailing-slash convention with trailingSlash in next.config.js." } },
+    { "@type": "Question", "name": "How do I set up 301 redirects in Next.js?", "acceptedAnswer": { "@type": "Answer", "text": "Use the redirects() function in next.config.js with permanent: true for a handful of rules, or match a generated redirect map in middleware.ts (or your host's redirect layer) for large lists." } },
+    { "@type": "Question", "name": "How do I export my WordPress content for Next.js?", "acceptedAnswer": { "@type": "Answer", "text": "Export it as clean JSON or Markdown with the rendered content and SEO metadata intact. A tool like Migratik packs your whole site into one file that powers your routes, metadata and redirects." } }
+  ]
+}
+</script>
 <style>
   :root{
     --ink:#0f1222; --ink-2:#2a2f45; --muted:#5b6178; --line:#e7e9f2;
@@ -336,6 +348,16 @@
   <li><strong>Redirecting everything to the homepage</strong> instead of true equivalents.</li>
 </ul>
 <p>Notice the pattern: every one is a <em>preservation</em> failure, and every one is preventable with a complete inventory captured before you start. Get Step 1 right and the rest is mechanical.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<h3>Will migrating from WordPress to Next.js hurt my SEO?</h3>
+<p>Not if you preserve what Google already trusts. Keep your URLs identical, 301-redirect anything that changes, carry over your titles, descriptions and canonicals, and rebuild your sitemap. Rankings drop when those signals are lost &mdash; not because the frontend changed.</p>
+<h3>How do I keep my WordPress URLs in Next.js?</h3>
+<p>Mirror your permalink structure with the App Router&rsquo;s dynamic segments and generate one page per slug with <code>generateStaticParams()</code>, using your existing slugs. Match WordPress&rsquo;s trailing-slash convention with <code>trailingSlash</code> in <code>next.config.js</code>.</p>
+<h3>How do I set up 301 redirects in Next.js?</h3>
+<p>Use the <code>redirects()</code> function in <code>next.config.js</code> with <code>permanent: true</code> for a handful of rules, or match a generated redirect map in <code>middleware.ts</code> (or your host&rsquo;s redirect layer) for large lists.</p>
+<h3>How do I export my WordPress content for Next.js?</h3>
+<p>Export it as clean JSON or Markdown with the rendered content and SEO metadata intact &mdash; a tool like <a class="inline" href="../index.html">Migratik</a> packs your whole site into one file that powers your routes, metadata and redirects.</p>
 
 <div class="end-cta">
   <h2>Start with a clean inventory</h2>

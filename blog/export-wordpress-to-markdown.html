@@ -37,6 +37,18 @@
   "dateModified": "2026-07-21"
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I export a WordPress site to Markdown?", "acceptedAnswer": { "@type": "Answer", "text": "Use an exporter that renders each page first (so builder shortcodes execute), converts the HTML to Markdown, and writes one file per item with YAML front matter, metadata and images. A tool like Migratik does this for the whole site in one step." } },
+    { "@type": "Question", "name": "How do I convert WordPress to a static site?", "acceptedAnswer": { "@type": "Answer", "text": "Export your content to Markdown, then feed the files into a static site generator like Astro, Hugo, 11ty or Next.js. Keep your URLs, 301-redirect anything that changes, and carry over your SEO metadata so you don't lose rankings." } },
+    { "@type": "Question", "name": "What is the difference between Markdown and MDX export?", "acceptedAnswer": { "@type": "Answer", "text": "Plain Markdown (.md) is universal and read by every generator. MDX (.mdx) lets you embed components inside content, but it treats { and < as code, so those characters must be escaped or the build fails. Export MDX only if your framework supports it." } },
+    { "@type": "Question", "name": "Can I export WordPress images with my Markdown?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Bundle the referenced images alongside the Markdown and rewrite the URLs to local paths so nothing 404s when the old WordPress uploads folder disappears. Migratik Pro's media bundle does this in one click." } }
+  ]
+}
+</script>
 <style>
   :root{
     --ink:#0f1222; --ink-2:#2a2f45; --muted:#5b6178; --line:#e7e9f2;
@@ -145,7 +157,7 @@
       <span>11 min read</span><span class="dot"></span>
       <span>Updated July 2026</span>
     </div>
-    <p class="lede">Markdown is the most portable, future-proof format your content can live in — plain text, version-controllable, and readable by every static site generator and AI pipeline on earth. Here&rsquo;s how to get an entire WordPress site out as clean Markdown or MDX, with the front matter and metadata that make it actually usable.</p>
+    <p class="lede">Markdown is the most portable, future-proof format your content can live in — plain text, version-controllable, and readable by every static site generator and AI pipeline on earth. Here&rsquo;s how to get an entire WordPress site out as clean Markdown or MDX &mdash; the first step to convert WordPress to a static site &mdash; with the front matter and metadata that make it actually usable.</p>
   </div>
 </header>
 
@@ -269,6 +281,16 @@ to strengthen the collagen fibers in the cornea&hellip;</code></pre>
   <li><strong>Lost redirects</strong> — no permalink in the front matter means no way to map old URLs to new ones. Keep the permalink.</li>
 </ul>
 <p>Every one of these is a data-capture problem, not a conversion problem. Get a complete, rendered export with rich front matter and the rest is easy.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<h3>How do I export a WordPress site to Markdown?</h3>
+<p>Use an exporter that renders each page first (so builder shortcodes execute), converts the HTML to Markdown, and writes one file per item with YAML front matter, metadata and images. A tool like <a class="inline" href="../index.html">Migratik</a> does this for the whole site in one step.</p>
+<h3>How do I convert WordPress to a static site?</h3>
+<p>Export your content to Markdown, then feed the files into a static site generator like Astro, Hugo, 11ty or Next.js. Keep your URLs, 301-redirect anything that changes, and carry over your SEO metadata so you don&rsquo;t lose rankings.</p>
+<h3>What is the difference between Markdown and MDX export?</h3>
+<p>Plain Markdown (<code>.md</code>) is universal and read by every generator. MDX (<code>.mdx</code>) lets you embed components inside content, but it treats <code>{</code> and <code>&lt;</code> as code, so those characters must be escaped or the build fails. Export MDX only if your framework supports it.</p>
+<h3>Can I export WordPress images with my Markdown?</h3>
+<p>Yes. Bundle the referenced images alongside the Markdown and rewrite the URLs to local paths so nothing 404s when the old WordPress uploads folder disappears. Migratik Pro&rsquo;s media bundle does this in one click.</p>
 
 <div class="end-cta">
   <h2>Get your content out as clean Markdown</h2>
