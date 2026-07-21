@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How to Migrate WordPress to Next.js Without Losing Your SEO (2026 Guide)</title>
-<meta name="description" content="A practical, step-by-step guide to moving a WordPress site to Next.js while keeping every ranking — permalinks, 301 redirects, metadata, sitemaps, images, and content intact.">
+<meta name="description" content="A practical, step-by-step guide to moving a WordPress site to Next.js while keeping every ranking, permalinks, 301 redirects, metadata, sitemaps, images, and content intact.">
 <link rel="canonical" href="https://hossamhamdy99.github.io/migratik-site/blog/migrate-wordpress-to-nextjs-without-losing-seo.html">
 <link rel="icon" type="image/png" href="../icon.png">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Migratik">
 <meta property="og:title" content="How to Migrate WordPress to Next.js Without Losing Your SEO">
-<meta property="og:description" content="Keep every ranking when you go headless: permalinks, 301 redirects, metadata, sitemaps, images, and content — done in the right order.">
+<meta property="og:description" content="Keep every ranking when you go headless: permalinks, 301 redirects, metadata, sitemaps, images, and content, done in the right order.">
 <meta property="og:url" content="https://hossamhamdy99.github.io/migratik-site/blog/migrate-wordpress-to-nextjs-without-losing-seo.html">
 <meta property="og:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -24,7 +24,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "How to Migrate WordPress to Next.js Without Losing Your SEO",
-  "description": "A practical, step-by-step guide to moving a WordPress site to Next.js while keeping every ranking — permalinks, 301 redirects, metadata, sitemaps, images, and content intact.",
+  "description": "A practical, step-by-step guide to moving a WordPress site to Next.js while keeping every ranking, permalinks, 301 redirects, metadata, sitemaps, images, and content intact.",
   "image": "https://hossamhamdy99.github.io/migratik-site/og-image.png",
   "author": { "@type": "Person", "name": "Hossam Hamdy" },
   "publisher": {
@@ -206,7 +206,7 @@
       <span>13 min read</span><span class="dot"></span>
       <span>Updated July 2026</span>
     </div>
-    <p class="lede">Going headless can make your site dramatically faster — but a careless migration can wipe out years of rankings overnight. It doesn&rsquo;t have to. Here&rsquo;s the exact, order-of-operations playbook to move a WordPress site to Next.js while keeping every URL, redirect, meta tag, and image that Google already trusts.</p>
+    <p class="lede">Going headless can make your site dramatically faster, but a careless migration can wipe out years of rankings overnight. It doesn&rsquo;t have to. Here&rsquo;s the exact, order-of-operations playbook to move a WordPress site to Next.js while keeping every URL, redirect, meta tag, and image that Google already trusts.</p>
     </div>
   </div>
 </header>
@@ -216,37 +216,37 @@
   <div class="t">What&rsquo;s inside</div>
   <ol>
     <li><a href="#rule">The one rule that saves rankings</a></li>
-    <li><a href="#inventory">Step 1 — Inventory everything first</a></li>
-    <li><a href="#urls">Step 2 — Keep your URL structure</a></li>
-    <li><a href="#redirects">Step 3 — 301 anything that moves</a></li>
-    <li><a href="#metadata">Step 4 — Carry over your metadata</a></li>
-    <li><a href="#sitemap">Step 5 — Rebuild sitemap &amp; robots</a></li>
-    <li><a href="#media">Step 6 — Don&rsquo;t lose your images</a></li>
-    <li><a href="#launch">Step 7 — Launch &amp; verify</a></li>
+    <li><a href="#inventory">Step 1: Inventory everything first</a></li>
+    <li><a href="#urls">Step 2: Keep your URL structure</a></li>
+    <li><a href="#redirects">Step 3: 301 anything that moves</a></li>
+    <li><a href="#metadata">Step 4: Carry over your metadata</a></li>
+    <li><a href="#sitemap">Step 5: Rebuild sitemap &amp; robots</a></li>
+    <li><a href="#media">Step 6: Don&rsquo;t lose your images</a></li>
+    <li><a href="#launch">Step 7: Launch &amp; verify</a></li>
     <li><a href="#mistakes">Mistakes that tank rankings</a></li>
   </ol>
 </nav>
 <article class="main">
 
-<p>Most &ldquo;WordPress to Next.js&rdquo; tutorials show you how to fetch posts from the WP REST API and render them in the App Router. That&rsquo;s the easy 20%. The 80% that actually decides whether your organic traffic survives is everything <em>around</em> the content: your URLs, your redirects, your metadata, your sitemap, and your images. Get those wrong and you&rsquo;ll watch impressions fall off a cliff two weeks after launch — right when everyone assumes the migration &ldquo;went fine.&rdquo;</p>
+<p>Most &ldquo;WordPress to Next.js&rdquo; tutorials show you how to fetch posts from the WP REST API and render them in the App Router. That&rsquo;s the easy 20%. The 80% that actually decides whether your organic traffic survives is everything <em>around</em> the content: your URLs, your redirects, your metadata, your sitemap, and your images. Get those wrong and you&rsquo;ll watch impressions fall off a cliff two weeks after launch, right when everyone assumes the migration &ldquo;went fine.&rdquo;</p>
 
 <p>This guide is the checklist I wish every team ran <strong>before</strong> flipping DNS. It&rsquo;s framework-accurate for the Next.js App Router, and it works whether your new backend is headless WordPress, a headless CMS, or flat files.</p>
 
 <h2 id="rule">The one rule that saves rankings</h2>
 <p>Every decision in a migration comes back to a single principle:</p>
-<blockquote><p><strong>Nothing about how Google already sees your pages should change — except the parts you deliberately improve.</strong></p></blockquote>
-<p>Google ranks specific URLs based on their content, their metadata, and the links pointing to them. A migration is dangerous precisely because it&rsquo;s tempting to change all three at once: new URLs, a &ldquo;cleaner&rdquo; content structure, redesigned templates. Do that and you&rsquo;ve thrown away the signals every ranking is built on. The safe path is boring on purpose: same URLs, same content, same meta — just a faster, modern frontend underneath.</p>
+<blockquote><p><strong>Nothing about how Google already sees your pages should change, except the parts you deliberately improve.</strong></p></blockquote>
+<p>Google ranks specific URLs based on their content, their metadata, and the links pointing to them. A migration is dangerous precisely because it&rsquo;s tempting to change all three at once: new URLs, a &ldquo;cleaner&rdquo; content structure, redesigned templates. Do that and you&rsquo;ve thrown away the signals every ranking is built on. The safe path is boring: same URLs, same content, same meta, just a faster, modern frontend underneath.</p>
 
-<h2 id="inventory">Step 1 — Inventory everything <em>before</em> you touch anything</h2>
+<h2 id="inventory">Step 1: Inventory everything <em>before</em> you touch anything</h2>
 <p>You cannot preserve what you haven&rsquo;t captured. Before writing a line of Next.js, you need a complete, structured snapshot of the live site: every published URL, its rendered content, its SEO metadata, its images, and its internal links. This inventory becomes the source of truth for your redirect map, your <code>generateMetadata</code>, and your sitemap.</p>
-<p>This is the step most guides wave away with &ldquo;export your content from WordPress.&rdquo; In reality it&rsquo;s where migrations quietly break — because the default WordPress export (WXR) gives you raw post content, not the <em>rendered</em> HTML your page builder actually outputs, and it drops most of the SEO fields you need. If your site runs Elementor, WPBakery, Divi, Bricks, or Oxygen, a raw export is close to useless: the shortcodes never render.</p>
+<p>This is the step most guides wave away with &ldquo;export your content from WordPress.&rdquo; In reality it&rsquo;s where migrations break, because the default WordPress export (WXR) gives you raw post content, not the <em>rendered</em> HTML your page builder actually outputs, and it drops most of the SEO fields you need. If your site runs Elementor, WPBakery, Divi, Bricks, or Oxygen, a raw export is close to useless: the shortcodes never render.</p>
 
 <div class="mgk">
   <div class="row">
     <span class="mk"><svg viewBox="0 0 48 48" fill="#fff" style="width:22px;height:22px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span>
     <h3>This is exactly what Migratik was built for</h3>
   </div>
-  <p>Migratik packs an entire WordPress site into one clean JSON file — the fully <em>rendered</em> <code>content_html</code> (builder shortcodes executed), the theme-rendered <code>document_title</code>, the <code>permalink</code> of every item, SEO meta from Yoast / Rank Math / AIOSEO, featured &amp; in-content images, internal links, taxonomies, and custom fields. It&rsquo;s builder-agnostic and read-only, so it changes nothing on your live site. That single file is the inventory this entire guide runs on.</p>
+  <p>Migratik packs an entire WordPress site into one clean JSON file, the fully <em>rendered</em> <code>content_html</code> (builder shortcodes executed), the theme-rendered <code>document_title</code>, the <code>permalink</code> of every item, SEO meta from Yoast / Rank Math / AIOSEO, featured &amp; in-content images, internal links, taxonomies, and custom fields. It&rsquo;s builder-agnostic and read-only, so it changes nothing on your live site. That single file is the inventory this entire guide runs on.</p>
   <div class="btns">
     <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
     <a class="btn btn-line" href="../index.html#how">See how it works</a>
@@ -255,15 +255,15 @@
 
 <p>However you capture it, make sure your inventory contains, for every URL:</p>
 <ul>
-  <li><strong>The permalink</strong> — the live, canonical URL. This drives your redirect map.</li>
-  <li><strong>The rendered HTML</strong> — what visitors actually see, builders executed.</li>
-  <li><strong>The document title &amp; meta description</strong> — the exact <code>&lt;title&gt;</code> and description Google indexed.</li>
-  <li><strong>Canonical, Open Graph, and structured data</strong> — anything that shaped the search snippet.</li>
-  <li><strong>Every image URL</strong> — featured and in-content, with alt text.</li>
-  <li><strong>Internal links</strong> — so you can verify none 404 after launch.</li>
+  <li><strong>The permalink</strong>: the live, canonical URL. This drives your redirect map.</li>
+  <li><strong>The rendered HTML</strong>: what visitors actually see, builders executed.</li>
+  <li><strong>The document title &amp; meta description</strong>: the exact <code>&lt;title&gt;</code> and description Google indexed.</li>
+  <li><strong>Canonical, Open Graph, and structured data</strong>: anything that shaped the search snippet.</li>
+  <li><strong>Every image URL</strong>: featured and in-content, with alt text.</li>
+  <li><strong>Internal links</strong>: so you can verify none 404 after launch.</li>
 </ul>
 
-<h2 id="urls">Step 2 — Keep your URL structure</h2>
+<h2 id="urls">Step 2: Keep your URL structure</h2>
 <p>The single highest-leverage decision you&rsquo;ll make: <strong>keep your existing permalink structure</strong>. If a post lives at <code>/blog/corneal-cross-linking/</code> today, it should live at the same path on Next.js. Same slug, same trailing-slash convention, same casing. When URLs don&rsquo;t change, the vast majority of your ranking signal transfers for free.</p>
 <p>In the App Router, mirror your WordPress paths with the file-system router and dynamic segments:</p>
 <pre><code><span class="cmt">// app/blog/[slug]/page.tsx  →  /blog/corneal-cross-linking</span>
@@ -275,8 +275,8 @@
 <pre><code><span class="cmt">// next.config.js</span>
 <span class="kw">module</span>.exports = { trailingSlash: <span class="kw">true</span> };  <span class="cmt">// match WordPress's default</span></code></pre>
 
-<h2 id="redirects">Step 3 — 301 anything that moves</h2>
-<p>Some URLs will change — maybe you&rsquo;re dropping <code>/category/</code> bases or consolidating thin pages. Every one of those <strong>must</strong> return a <strong>301 (permanent) redirect</strong> to its new home. A 301 passes the old URL&rsquo;s ranking authority to the new one; a 302 (temporary) or a soft 404 throws it away.</p>
+<h2 id="redirects">Step 3: 301 anything that moves</h2>
+<p>Some URLs will change, maybe you&rsquo;re dropping <code>/category/</code> bases or consolidating thin pages. Every one of those <strong>must</strong> return a <strong>301 (permanent) redirect</strong> to its new home. A 301 passes the old URL&rsquo;s ranking authority to the new one; a 302 (temporary) or a soft 404 throws it away.</p>
 <p>Because your inventory already holds every old permalink, generating the redirect map is mechanical. For a handful of redirects, put them in <code>next.config.js</code>:</p>
 <pre><code><span class="cmt">// next.config.js</span>
 <span class="kw">module</span>.exports = {
@@ -291,14 +291,14 @@
     ];
   },
 };</code></pre>
-<p>For hundreds or thousands of one-off redirects, don&rsquo;t hand-write them — generate the list from your inventory and match them in <code>middleware.ts</code> against a lookup map, or use your host&rsquo;s redirect layer (Vercel, Netlify, Cloudflare). The key is that <code>permanent: true</code> emits an HTTP 301.</p>
+<p>For hundreds or thousands of one-off redirects, don&rsquo;t hand-write them, generate the list from your inventory and match them in <code>middleware.ts</code> against a lookup map, or use your host&rsquo;s redirect layer (Vercel, Netlify, Cloudflare). The key is that <code>permanent: true</code> emits an HTTP 301.</p>
 <div class="callout warn">
   <div class="k">Watch out</div>
   <p>Never chain redirects (old &rarr; interim &rarr; final) and never redirect everything to the homepage. A redirect to an irrelevant page is treated by Google as a soft 404 and loses the ranking entirely. Map each old URL to its <em>true</em> equivalent.</p>
 </div>
 
-<h2 id="metadata">Step 4 — Carry over your metadata, exactly</h2>
-<p>Your <code>&lt;title&gt;</code> and meta description are what earn the click in search results. Port them <strong>verbatim</strong> from the inventory — don&rsquo;t &ldquo;rewrite while you&rsquo;re at it.&rdquo; The Next.js App Router exposes the Metadata API for precisely this, and <code>generateMetadata</code> lets you populate it per-page from your captured data:</p>
+<h2 id="metadata">Step 4: Carry over your metadata, exactly</h2>
+<p>Your <code>&lt;title&gt;</code> and meta description are what earn the click in search results. Port them <strong>verbatim</strong> from the inventory, don&rsquo;t &ldquo;rewrite while you&rsquo;re at it.&rdquo; The Next.js App Router exposes the Metadata API for precisely this, and <code>generateMetadata</code> lets you populate it per-page from your captured data:</p>
 <pre><code><span class="cmt">// app/blog/[slug]/page.tsx</span>
 <span class="kw">import type</span> { Metadata } <span class="kw">from</span> <span class="str">'next'</span>;
 
@@ -317,10 +317,10 @@
     },
   };
 }</code></pre>
-<p>Two things people forget here: set an explicit <strong>canonical</strong> for every page (with your trailing-slash convention), and carry over your <strong>structured data</strong> (JSON-LD). If your posts had Article or FAQ schema on WordPress, render the same JSON-LD in Next.js — losing it can shrink your rich results.</p>
+<p>Two things people forget here: set an explicit <strong>canonical</strong> for every page (with your trailing-slash convention), and carry over your <strong>structured data</strong> (JSON-LD). If your posts had Article or FAQ schema on WordPress, render the same JSON-LD in Next.js, losing it can shrink your rich results.</p>
 
-<h2 id="sitemap">Step 5 — Rebuild your sitemap and robots</h2>
-<p>A fresh site needs a fresh XML sitemap listing every live URL, so Search Console can re-discover your pages fast. The App Router generates one from a single file — again, straight from your inventory:</p>
+<h2 id="sitemap">Step 5: Rebuild your sitemap and robots</h2>
+<p>A fresh site needs a fresh XML sitemap listing every live URL, so Search Console can re-discover your pages fast. The App Router generates one from a single file, again, straight from your inventory:</p>
 <pre><code><span class="cmt">// app/sitemap.ts</span>
 <span class="kw">import type</span> { MetadataRoute } <span class="kw">from</span> <span class="str">'next'</span>;
 
@@ -345,16 +345,16 @@
   <p>A staging site almost always ships with <code>Disallow: /</code> or a site-wide <code>noindex</code>. If that config reaches production, Google will <em>deindex your entire site</em>. Before launch, confirm production returns <code>index,follow</code> and an <code>allow: /</code> robots rule.</p>
 </div>
 
-<h2 id="media">Step 6 — Don&rsquo;t lose your images</h2>
-<p>Images carry ranking weight through image search, alt text, and Core Web Vitals. Two traps: broken image URLs after you move hosts, and dropped alt text. Your inventory should already include every image URL and its alt attribute — bundle the actual files, rewrite the URLs to their new home, and keep the alt text attached to each image.</p>
-<p>If you&rsquo;re moving off the WordPress uploads directory entirely, <strong>Migratik Pro&rsquo;s one-click media bundle</strong> does this in a single step: it downloads every referenced image, mirrors the folder structure, and rewrites the URLs in your content to the bundled copies — so nothing 404s when the old <code>/wp-content/uploads/</code> path disappears. Then serve them through <code>next/image</code> for automatic optimization.</p>
+<h2 id="media">Step 6: Don&rsquo;t lose your images</h2>
+<p>Images carry ranking weight through image search, alt text, and Core Web Vitals. Two traps: broken image URLs after you move hosts, and dropped alt text. Your inventory should already include every image URL and its alt attribute, bundle the actual files, rewrite the URLs to their new home, and keep the alt text attached to each image.</p>
+<p>If you&rsquo;re moving off the WordPress uploads directory entirely, <strong>Migratik Pro&rsquo;s one-click media bundle</strong> does this in a single step: it downloads every referenced image, mirrors the folder structure, and rewrites the URLs in your content to the bundled copies, so nothing 404s when the old <code>/wp-content/uploads/</code> path disappears. Then serve them through <code>next/image</code> for automatic optimization.</p>
 
-<h2 id="launch">Step 7 — Launch, then verify like your traffic depends on it</h2>
+<h2 id="launch">Step 7: Launch, then verify like your traffic depends on it</h2>
 <p>It does. Ship, then work this checklist in the first 48 hours:</p>
 <ol>
   <li><strong>Submit the new sitemap</strong> in Google Search Console and request indexing for your top pages.</li>
   <li><strong>Spot-check 301s</strong>: hit a sample of old URLs and confirm each lands on the right page with a single 301 hop.</li>
-  <li><strong>Crawl the new site</strong> (Screaming Frog or similar) and diff the URL list against your inventory — anything missing is a gap.</li>
+  <li><strong>Crawl the new site</strong> (Screaming Frog or similar) and diff the URL list against your inventory, anything missing is a gap.</li>
   <li><strong>Verify metadata</strong> on live pages: titles, descriptions, canonicals, and JSON-LD all present.</li>
   <li><strong>Watch Coverage &amp; 404s</strong> in Search Console daily for two weeks. A spike in &ldquo;Not found&rdquo; means a redirect you missed.</li>
   <li><strong>Keep the old site reachable</strong> for a short window if you can, so nothing 404s while DNS and caches settle.</li>
@@ -365,9 +365,9 @@
 <h2 id="mistakes">The mistakes that actually tank rankings</h2>
 <p>Almost every post-migration traffic drop traces back to one of these:</p>
 <ul>
-  <li><strong>Changing URLs without 301s</strong> — the number-one killer. Every orphaned URL is a ranking deleted.</li>
-  <li><strong>Incomplete content migration</strong> — pages that render empty because a builder&rsquo;s shortcodes never executed in the export.</li>
-  <li><strong>Dropped metadata</strong> — new templates that forget titles, descriptions, or canonicals.</li>
+  <li><strong>Changing URLs without 301s</strong>: the number-one killer. Every orphaned URL is a ranking deleted.</li>
+  <li><strong>Incomplete content migration</strong>: pages that render empty because a builder&rsquo;s shortcodes never executed in the export.</li>
+  <li><strong>Dropped metadata</strong>: new templates that forget titles, descriptions, or canonicals.</li>
   <li><strong>Leftover <code>noindex</code> / <code>Disallow</code></strong> from staging reaching production.</li>
   <li><strong>Broken images</strong> when the old uploads path disappears.</li>
   <li><strong>Redirecting everything to the homepage</strong> instead of true equivalents.</li>
@@ -376,17 +376,17 @@
 
 <h2 id="faq">Frequently asked questions</h2>
 <h3>Will migrating from WordPress to Next.js hurt my SEO?</h3>
-<p>Not if you preserve what Google already trusts. Keep your URLs identical, 301-redirect anything that changes, carry over your titles, descriptions and canonicals, and rebuild your sitemap. Rankings drop when those signals are lost &mdash; not because the frontend changed.</p>
+<p>Not if you preserve what Google already trusts. Keep your URLs identical, 301-redirect anything that changes, carry over your titles, descriptions and canonicals, and rebuild your sitemap. Rankings drop when those signals are lost, not because the frontend changed.</p>
 <h3>How do I keep my WordPress URLs in Next.js?</h3>
 <p>Mirror your permalink structure with the App Router&rsquo;s dynamic segments and generate one page per slug with <code>generateStaticParams()</code>, using your existing slugs. Match WordPress&rsquo;s trailing-slash convention with <code>trailingSlash</code> in <code>next.config.js</code>.</p>
 <h3>How do I set up 301 redirects in Next.js?</h3>
 <p>Use the <code>redirects()</code> function in <code>next.config.js</code> with <code>permanent: true</code> for a handful of rules, or match a generated redirect map in <code>middleware.ts</code> (or your host&rsquo;s redirect layer) for large lists.</p>
 <h3>How do I export my WordPress content for Next.js?</h3>
-<p>Export it as clean JSON or Markdown with the rendered content and SEO metadata intact &mdash; a tool like <a class="inline" href="../index.html">Migratik</a> packs your whole site into one file that powers your routes, metadata and redirects.</p>
+<p>Export it as clean JSON or Markdown with the rendered content and SEO metadata intact, a tool like <a class="inline" href="../index.html">Migratik</a> packs your whole site into one file that powers your routes, metadata and redirects.</p>
 
 <div class="end-cta">
   <h2>Start with a clean inventory</h2>
-  <p>Migratik exports your whole WordPress site — rendered content, SEO metadata, permalinks, images, and links — into one file that powers your redirects, metadata, and sitemap. Free to install, read-only, and safe on a live site.</p>
+  <p>Migratik exports your whole WordPress site (rendered content, SEO metadata, permalinks, images, and links) into one file that powers your redirects, metadata, and sitemap. Free to install, read-only, and safe on a live site.</p>
   <div class="btns">
     <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
     <a class="btn btn-line" href="../index.html#pricing">See Migratik Pro</a>

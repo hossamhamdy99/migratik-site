@@ -182,7 +182,7 @@
       <span>12 min read</span><span class="dot"></span>
       <span>Updated July 2026</span>
     </div>
-    <p class="lede">Astro is one of the best homes a content site can move to — near-zero JavaScript, blazing builds, and a content model that treats your posts as typed data. But like any migration, doing it carelessly can torch your rankings. Here&rsquo;s the ranking-safe path from WordPress to Astro, end to end.</p>
+    <p class="lede">Astro is one of the best homes a content site can move to: near-zero JavaScript, blazing builds, and a content model that treats your posts as typed data. But like any migration, doing it carelessly can torch your rankings. Here&rsquo;s the ranking-safe path from WordPress to Astro, end to end.</p>
     </div>
   </div>
 </header>
@@ -191,39 +191,39 @@
 <nav class="toc side">
   <div class="t">The steps</div>
   <ol>
-    <li><a href="#export">Step 1 — Export your content</a></li>
-    <li><a href="#collections">Step 2 — Set up content collections</a></li>
-    <li><a href="#urls">Step 3 — Keep your URLs</a></li>
-    <li><a href="#redirects">Step 4 — 301 anything that moves</a></li>
-    <li><a href="#metadata">Step 5 — Metadata &amp; canonical</a></li>
-    <li><a href="#sitemap">Step 6 — Sitemap &amp; robots</a></li>
-    <li><a href="#images">Step 7 — Images</a></li>
-    <li><a href="#launch">Step 8 — Launch &amp; verify</a></li>
+    <li><a href="#export">Step 1: Export your content</a></li>
+    <li><a href="#collections">Step 2: Set up content collections</a></li>
+    <li><a href="#urls">Step 3: Keep your URLs</a></li>
+    <li><a href="#redirects">Step 4: 301 anything that moves</a></li>
+    <li><a href="#metadata">Step 5: Metadata &amp; canonical</a></li>
+    <li><a href="#sitemap">Step 6: Sitemap &amp; robots</a></li>
+    <li><a href="#images">Step 7: Images</a></li>
+    <li><a href="#launch">Step 8: Launch &amp; verify</a></li>
   </ol>
 </nav>
 <article class="main">
 
 <p>Astro earns its hype for content sites: it ships almost no JavaScript by default, builds to static HTML that ranks and loads fast, and models your content as typed collections you query like a database. For a blog, docs site, or marketing site coming off WordPress, it&rsquo;s a natural fit.</p>
-<p>The migration itself has two halves. The first is mechanical — get your content into Astro&rsquo;s content collections. The second is the one that decides whether your organic traffic survives — preserving every URL, redirect, and meta tag Google already trusts. This guide covers both, in the order you should actually do them.</p>
+<p>The migration itself has two halves. The first is mechanical, get your content into Astro&rsquo;s content collections. The second is the one that decides whether your organic traffic survives, preserving every URL, redirect, and meta tag Google already trusts. This guide covers both, in the order you should actually do them.</p>
 
-<h2 id="export">Step 1 — Export your content to Markdown</h2>
-<p>Astro&rsquo;s content collections read Markdown and MDX files, so the first job is getting your WordPress content out as clean Markdown — with the rendered body, YAML front matter, and the metadata you&rsquo;ll need for URLs and SEO. This is the step that quietly breaks migrations: WordPress&rsquo;s own export gives you raw builder shortcodes, not rendered content.</p>
+<h2 id="export">Step 1: Export your content to Markdown</h2>
+<p>Astro&rsquo;s content collections read Markdown and MDX files, so the first job is getting your WordPress content out as clean Markdown, with the rendered body, YAML front matter, and the metadata you&rsquo;ll need for URLs and SEO. This is the step that breaks migrations: WordPress&rsquo;s own export gives you raw builder shortcodes, not rendered content.</p>
 
 <div class="mgk">
   <div class="row">
     <span class="mk"><svg viewBox="0 0 48 48" fill="#fff" style="width:22px;height:22px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span>
     <h3>Start with a clean Markdown export</h3>
   </div>
-  <p>Migratik renders every page (Elementor, WPBakery, Divi, Bricks, Oxygen, or Gutenberg), converts it to clean Markdown, and writes one file per item with full front matter — title, permalink, description, dates, and SEO fields. Point Astro&rsquo;s loader straight at the result. It&rsquo;s read-only and safe on a live site.</p>
+  <p>Migratik renders every page (Elementor, WPBakery, Divi, Bricks, Oxygen, or Gutenberg), converts it to clean Markdown, and writes one file per item with full front matter, title, permalink, description, dates, and SEO fields. Point Astro&rsquo;s loader straight at the result. It&rsquo;s read-only and safe on a live site.</p>
   <div class="btns">
     <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
     <a class="btn btn-line" href="./export-wordpress-to-markdown.html">Markdown export guide</a>
   </div>
 </div>
 
-<p>Drop the exported folder into <code>src/content/</code> — for example <code>src/content/blog/</code> — and you&rsquo;re ready to define a collection.</p>
+<p>Drop the exported folder into <code>src/content/</code> (for example <code>src/content/blog/</code>) and you&rsquo;re ready to define a collection.</p>
 
-<h2 id="collections">Step 2 — Set up content collections</h2>
+<h2 id="collections">Step 2: Set up content collections</h2>
 <p>Astro 5 reads content through the <strong>Content Layer</strong>: you define a collection with a <code>glob</code> loader pointed at your files and a schema (built with Zod) that matches your front matter. Create <code>src/content.config.ts</code>:</p>
 <pre><code><span class="cmt">// src/content.config.ts</span>
 <span class="kw">import</span> { defineCollection } <span class="kw">from</span> <span class="str">'astro:content'</span>;
@@ -243,7 +243,7 @@
 <span class="kw">export const</span> collections = { blog };</code></pre>
 <p>The schema is your safety net: if an exported file is missing a field, the build fails loudly instead of shipping a broken page. That&rsquo;s exactly what you want during a migration.</p>
 
-<h2 id="urls">Step 3 — Keep your URLs</h2>
+<h2 id="urls">Step 3: Keep your URLs</h2>
 <p>The golden rule of any migration: <strong>if a page ranks, its URL should not change.</strong> Astro&rsquo;s file-based routing makes this straightforward. Create a dynamic route and generate one page per entry with <code>getStaticPaths()</code>, using each post&rsquo;s existing slug so the paths match WordPress exactly:</p>
 <pre><code><span class="cmt">// src/pages/blog/[...slug].astro</span>
 <span class="at">---</span>
@@ -261,10 +261,10 @@
 <span class="kw">const</span> { Content } = <span class="kw">await</span> <span class="fn">render</span>(post);
 <span class="at">---</span>
 &lt;article&gt;&lt;Content /&gt;&lt;/article&gt;</code></pre>
-<p>One thing to settle early: <strong>trailing slashes</strong>. WordPress serves <code>/blog/post/</code>; Astro&rsquo;s default is no slash. Pick one and set <code>trailingSlash</code> in <code>astro.config.mjs</code> so it matches your old URLs — and keep your canonical tags consistent with the choice.</p>
+<p>One thing to settle early: <strong>trailing slashes</strong>. WordPress serves <code>/blog/post/</code>; Astro&rsquo;s default is no slash. Pick one and set <code>trailingSlash</code> in <code>astro.config.mjs</code> so it matches your old URLs, and keep your canonical tags consistent with the choice.</p>
 
-<h2 id="redirects">Step 4 — 301 anything that moves</h2>
-<p>For URLs that genuinely change, you need real <strong>301 redirects</strong> so the old page&rsquo;s ranking authority transfers. Astro lets you declare redirects in config:</p>
+<h2 id="redirects">Step 4: 301 anything that moves</h2>
+<p>For URLs that change, you need real <strong>301 redirects</strong> so the old page&rsquo;s ranking authority transfers. Astro lets you declare redirects in config:</p>
 <pre><code><span class="cmt">// astro.config.mjs</span>
 <span class="kw">export default</span> <span class="fn">defineConfig</span>({
   site: <span class="str">'https://yoursite.com'</span>,
@@ -275,11 +275,11 @@
 });</code></pre>
 <div class="callout warn">
   <div class="k">Static vs real 301</div>
-  <p>On a purely static build, Astro implements these as HTML <code>meta refresh</code> pages — fine for users, but not a true HTTP 301. To emit real 301s, either add an SSR adapter, or (simplest) declare the redirects at your host: a <code>_redirects</code> file on Netlify, <code>vercel.json</code> on Vercel, or the Cloudflare Pages rules. Because your Markdown front matter holds every old <code>permalink</code>, generating that redirect list is mechanical.</p>
+  <p>On a purely static build, Astro implements these as HTML <code>meta refresh</code> pages, fine for users, but not a true HTTP 301. To emit real 301s, either add an SSR adapter, or (simplest) declare the redirects at your host: a <code>_redirects</code> file on Netlify, <code>vercel.json</code> on Vercel, or the Cloudflare Pages rules. Because your Markdown front matter holds every old <code>permalink</code>, generating that redirect list is mechanical.</p>
 </div>
 
-<h2 id="metadata">Step 5 — Carry over metadata &amp; canonical</h2>
-<p>Port your titles and descriptions <strong>verbatim</strong> from the front matter — this is what earns the click in search results, and it&rsquo;s already in your exported files. Build a small <code>&lt;head&gt;</code> from each page&rsquo;s data, and set an explicit canonical from your live site URL:</p>
+<h2 id="metadata">Step 5: Carry over metadata &amp; canonical</h2>
+<p>Port your titles and descriptions <strong>verbatim</strong> from the front matter, this is what earns the click in search results, and it&rsquo;s already in your exported files. Build a small <code>&lt;head&gt;</code> from each page&rsquo;s data, and set an explicit canonical from your live site URL:</p>
 <pre><code><span class="cmt">// in your layout's &lt;head&gt;</span>
 <span class="at">---</span>
 <span class="kw">const</span> { title, description } = Astro.props;
@@ -289,9 +289,9 @@
 &lt;meta name=<span class="str">"description"</span> content={description} /&gt;
 &lt;link rel=<span class="str">"canonical"</span> href={canonical} /&gt;
 &lt;meta property=<span class="str">"og:title"</span> content={title} /&gt;</code></pre>
-<p>If your WordPress posts carried Article or FAQ structured data, reproduce the same JSON-LD in your Astro layout — losing it can shrink your rich results in search.</p>
+<p>If your WordPress posts carried Article or FAQ structured data, reproduce the same JSON-LD in your Astro layout, losing it can shrink your rich results in search.</p>
 
-<h2 id="sitemap">Step 6 — Sitemap &amp; robots</h2>
+<h2 id="sitemap">Step 6: Sitemap &amp; robots</h2>
 <p>Astro generates a sitemap for you through an official integration. Add it and set your <code>site</code> URL:</p>
 <pre><code><span class="cmt">// astro.config.mjs</span>
 <span class="kw">import</span> sitemap <span class="kw">from</span> <span class="str">'@astrojs/sitemap'</span>;
@@ -310,16 +310,16 @@ Sitemap: https://yoursite.com/sitemap-index.xml</code></pre>
   <p>Make sure no staging config ships a site-wide <code>noindex</code> or a <code>Disallow: /</code>. If that reaches production, Google will deindex the whole site. Confirm production allows crawling before you point DNS.</p>
 </div>
 
-<h2 id="images">Step 7 — Images</h2>
-<p>Your exported Markdown references images by URL, and by default those still point at the old <code>/wp-content/uploads/</code> path — which dies the moment WordPress goes down. Bundle the images with your content and rewrite the URLs to local files (Migratik Pro&rsquo;s media bundle does this in one click), then place them under <code>src/</code> so Astro&rsquo;s built-in <code>&lt;Image /&gt;</code> component from <code>astro:assets</code> can optimize them — automatic sizing, modern formats, and lazy loading, all of which help Core Web Vitals.</p>
+<h2 id="images">Step 7: Images</h2>
+<p>Your exported Markdown references images by URL, and by default those still point at the old <code>/wp-content/uploads/</code> path, which dies the moment WordPress goes down. Bundle the images with your content and rewrite the URLs to local files (Migratik Pro&rsquo;s media bundle does this in one click), then place them under <code>src/</code> so Astro&rsquo;s built-in <code>&lt;Image /&gt;</code> component from <code>astro:assets</code> can optimize them, automatic sizing, modern formats, and lazy loading, all of which help Core Web Vitals.</p>
 
-<h2 id="launch">Step 8 — Launch, then verify</h2>
+<h2 id="launch">Step 8: Launch, then verify</h2>
 <p>Ship, then run this in the first 48 hours:</p>
 <ol>
   <li><strong>Submit the sitemap</strong> in Google Search Console and request indexing for your top pages.</li>
-  <li><strong>Spot-check redirects</strong> — hit old URLs and confirm a single 301 hop to the right page (real 301s if you used host-level redirects).</li>
-  <li><strong>Crawl the new site</strong> and diff the URL list against your export — anything missing is a gap.</li>
-  <li><strong>Verify metadata</strong> — titles, descriptions, canonicals, and JSON-LD present on live pages.</li>
+  <li><strong>Spot-check redirects</strong>: hit old URLs and confirm a single 301 hop to the right page (real 301s if you used host-level redirects).</li>
+  <li><strong>Crawl the new site</strong> and diff the URL list against your export, anything missing is a gap.</li>
+  <li><strong>Verify metadata</strong>: titles, descriptions, canonicals, and JSON-LD present on live pages.</li>
   <li><strong>Watch Coverage &amp; 404s</strong> in Search Console daily for two weeks.</li>
 </ol>
 
@@ -340,7 +340,7 @@ Sitemap: https://yoursite.com/sitemap-index.xml</code></pre>
 
 <div class="end-cta">
   <h2>Export once. Rank the same.</h2>
-  <p>Migratik turns your WordPress site into clean Markdown with front matter, metadata, and bundled images — the perfect input for Astro content collections. Free to install, read-only, safe on a live site.</p>
+  <p>Migratik turns your WordPress site into clean Markdown with front matter, metadata, and bundled images, the perfect input for Astro content collections. Free to install, read-only, safe on a live site.</p>
   <div class="btns">
     <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
     <a class="btn btn-line" href="../index.html#pricing">See Migratik Pro</a>

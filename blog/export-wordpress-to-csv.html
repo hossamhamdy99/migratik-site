@@ -4,27 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How to Export WordPress to CSV (Content Audits, Spreadsheets & Bulk Edits)</title>
-<meta name="description" content="Export WordPress posts, pages, and custom post types to clean CSV — one row per item, with SEO fields and custom data — for content audits, spreadsheets, Airtable, or bulk edits.">
+<meta name="description" content="Export WordPress posts, pages, and custom post types to clean CSV (one row per item, with SEO fields and custom data) for content audits, spreadsheets, Airtable, or bulk edits.">
 <link rel="canonical" href="https://hossamhamdy99.github.io/migratik-site/blog/export-wordpress-to-csv.html">
 <link rel="icon" type="image/png" href="../icon.png">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Migratik">
 <meta property="og:title" content="How to Export WordPress to CSV">
-<meta property="og:description" content="Get WordPress posts, pages & custom post types into clean CSV — one row per item, with SEO and custom fields — for audits, spreadsheets, and bulk edits.">
+<meta property="og:description" content="Get WordPress posts, pages & custom post types into clean CSV (one row per item, with SEO and custom fields) for audits, spreadsheets, and bulk edits.">
 <meta property="og:url" content="https://hossamhamdy99.github.io/migratik-site/blog/export-wordpress-to-csv.html">
 <meta property="og:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Export WordPress to CSV">
-<meta name="twitter:description" content="Clean CSV out of WordPress — one table per content type, with SEO and custom fields — for audits, spreadsheets, and bulk edits.">
+<meta name="twitter:description" content="Clean CSV out of WordPress (one table per content type, with SEO and custom fields) for audits, spreadsheets, and bulk edits.">
 <meta name="twitter:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "How to Export WordPress to CSV (for Content Audits, Spreadsheets & Bulk Edits)",
-  "description": "Export WordPress posts, pages, and custom post types to clean CSV — one row per item, with SEO fields and custom data — for content audits, spreadsheets, Airtable, or bulk edits.",
+  "description": "Export WordPress posts, pages, and custom post types to clean CSV (one row per item, with SEO fields and custom data) for content audits, spreadsheets, Airtable, or bulk edits.",
   "image": "https://hossamhamdy99.github.io/migratik-site/og-image.png",
   "author": {
     "@type": "Person",
@@ -216,7 +216,7 @@
       <span>11 min read</span><span class="dot"></span>
       <span>Updated July 2026</span>
     </div>
-    <p class="lede">A spreadsheet is still the fastest way to see your whole site at once &mdash; every post, its SEO title, its word count, its last update &mdash; in rows you can sort, filter, and hand to anyone. Here&rsquo;s how to get clean CSV out of WordPress, and what to do with it once you have it.</p>
+    <p class="lede">A spreadsheet is still the fastest way to see your whole site at once (every post, its SEO title, its word count, its last update) in rows you can sort, filter, and hand to anyone. Here&rsquo;s how to get clean CSV out of WordPress, and what to do with it once you have it.</p>
     </div>
   </div>
 </header>
@@ -237,22 +237,22 @@
 </nav>
 <article class="main">
 
-<p>For all the dashboards WordPress gives you, there&rsquo;s one view it can&rsquo;t: your entire site as a table. Every post in one place, sortable by date, filterable by word count, with the SEO title and meta description in columns next to it. That view lives in a spreadsheet &mdash; and getting there means exporting to CSV.</p>
-<p>CSV is the universal spreadsheet format: Excel, Google Sheets, Airtable, Notion, and every database on earth read it. This guide covers how to get clean CSV out of WordPress (it has no built-in option), what a good export looks like, and the three things people actually use it for &mdash; content audits, bulk edits, and moving structured content into other systems.</p>
+<p>For all the dashboards WordPress gives you, there&rsquo;s one view it can&rsquo;t: your entire site as a table. Every post in one place, sortable by date, filterable by word count, with the SEO title and meta description in columns next to it. That view lives in a spreadsheet, and getting there means exporting to CSV.</p>
+<p>CSV is the universal spreadsheet format: Excel, Google Sheets, Airtable, Notion, and every database on earth read it. This guide covers how to get clean CSV out of WordPress (it has no built-in option), what a good export looks like, and the three things people actually use it for, content audits, bulk edits, and moving structured content into other systems.</p>
 
 <h2 id="why">Why export WordPress to CSV</h2>
 <p>Markdown and WXR are for <em>migrating</em>. CSV is for <em>seeing and manipulating</em> your content. It&rsquo;s the format you reach for when the job isn&rsquo;t &ldquo;move the site&rdquo; but &ldquo;understand it,&rdquo; &ldquo;edit it in bulk,&rdquo; or &ldquo;hand it to someone who doesn&rsquo;t use WordPress.&rdquo; One row per item, columns you choose, opens anywhere.</p>
 
 <h2 id="uses">What a CSV export unlocks</h2>
 <ul>
-  <li><strong>Content audits</strong> &mdash; see every page&rsquo;s word count, last-modified date, and missing metadata at a glance, so you know what to prune, refresh, or merge.</li>
-  <li><strong>Bulk editing</strong> &mdash; rewrite titles or meta descriptions across hundreds of posts in a spreadsheet, then push the changes back.</li>
-  <li><strong>Client &amp; team reporting</strong> &mdash; a content inventory anyone can read, no WordPress login required.</li>
-  <li><strong>Migrating structured content</strong> &mdash; directories, staff profiles, listings, or products drop cleanly into Airtable, a headless CMS, or a custom app as rows.</li>
+  <li><strong>Content audits</strong>: see every page&rsquo;s word count, last-modified date, and missing metadata at a glance, so you know what to prune, refresh, or merge.</li>
+  <li><strong>Bulk editing</strong>: rewrite titles or meta descriptions across hundreds of posts in a spreadsheet, then push the changes back.</li>
+  <li><strong>Client &amp; team reporting</strong>: a content inventory anyone can read, no WordPress login required.</li>
+  <li><strong>Migrating structured content</strong>: directories, staff profiles, listings, or products drop cleanly into Airtable, a headless CMS, or a custom app as rows.</li>
 </ul>
 
 <h2 id="structure">What a good CSV export looks like</h2>
-<p>The single most important decision is <strong>one table per content type</strong>. Posts, pages, and each custom post type have different fields &mdash; a &ldquo;services&rdquo; CPT has a price and duration; a &ldquo;staff&rdquo; CPT has a title and photo. Flatten them all into one giant CSV and you get a mess of half-empty columns. Give each type its own file and every column means something.</p>
+<p>The single most important decision is <strong>one table per content type</strong>. Posts, pages, and each custom post type have different fields, a &ldquo;services&rdquo; CPT has a price and duration; a &ldquo;staff&rdquo; CPT has a title and photo. Flatten them all into one giant CSV and you get a mess of half-empty columns. Give each type its own file and every column means something.</p>
 <p>A clean per-type export carries the fields that make the sheet useful:</p>
 <pre><code>id,title,slug,status,date,modified,seo_title,meta_description,word_count
 128,"Corneal Cross-Linking",corneal-cross-linking,publish,2024-03-12,2025-01-08,"Corneal Cross-Linking | Cairo Eye","A minimally invasive treatment…",612
@@ -265,7 +265,7 @@
   <li><strong>A dedicated plugin.</strong> Tools like WP All Export are powerful but built for complex mapping and can be overkill (and paid) for a straightforward dump; simpler free exporters often only handle standard posts, not custom post types or fields.</li>
   <li><strong>A few lines of code</strong>, if you&rsquo;re comfortable with PHP and only need a quick one-off:</li>
 </ul>
-<pre><code><span class="cmt">// quick CSV of published posts — run once via WP-CLI, then remove</span>
+<pre><code><span class="cmt">// quick CSV of published posts (run once via WP-CLI, then remove)</span>
 <span class="kw">$rows</span> = <span class="fn">get_posts</span>([<span class="str">'post_type'</span> =&gt; <span class="str">'post'</span>, <span class="str">'numberposts'</span> =&gt; -1]);
 <span class="kw">$out</span> = <span class="fn">fopen</span>(<span class="str">'posts.csv'</span>, <span class="str">'w'</span>);
 <span class="fn">fputcsv</span>(<span class="kw">$out</span>, [<span class="str">'id'</span>, <span class="str">'title'</span>, <span class="str">'url'</span>, <span class="str">'date'</span>, <span class="str">'status'</span>]);
@@ -275,7 +275,7 @@
 <span class="fn">fclose</span>(<span class="kw">$out</span>);</code></pre>
 <p>That handles standard posts. The moment you need custom post types, resolved ACF fields, SEO meta, and correct UTF-8 for non-English content, the script grows fast.</p>
 <ul>
-  <li><strong>An exporter that does per-type CSV in one click</strong>, with SEO and custom fields already resolved into columns &mdash; the least effort, and the safest with non-Latin content.</li>
+  <li><strong>An exporter that does per-type CSV in one click</strong>, with SEO and custom fields already resolved into columns, the least effort, and the safest with non-Latin content.</li>
 </ul>
 
 <div class="mgk">
@@ -283,7 +283,7 @@
     <span class="mk"><svg viewBox="0 0 48 48" fill="#fff" style="width:22px;height:22px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span>
     <h3>Migratik exports one clean CSV per content type</h3>
   </div>
-  <p>Migratik reads every content type separately and writes a tidy CSV for each &mdash; posts, pages, and every custom post type &mdash; with SEO fields and resolved ACF/JetEngine/Pods values already in columns, UTF-8 safe for any language. Builder-agnostic and read-only. Free to install; CSV, Markdown, WXR, and media bundling are Pro.</p>
+  <p>Migratik reads every content type separately and writes a tidy CSV for each (posts, pages, and every custom post type) with SEO fields and resolved ACF/JetEngine/Pods values already in columns, UTF-8 safe for any language. Builder-agnostic and read-only. Free to install; CSV, Markdown, WXR, and media bundling are Pro.</p>
   <div class="btns">
     <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
     <a class="btn btn-line" href="../index.html#formats">See the formats</a>
@@ -293,44 +293,44 @@
 <h2 id="audit">Run a content audit in the sheet</h2>
 <p>Once your content is in a spreadsheet, an audit is just sorting and filtering. What to look for:</p>
 <ul>
-  <li><strong>Thin content</strong> &mdash; sort by <code>word_count</code> ascending to surface pages too short to rank.</li>
-  <li><strong>Stale content</strong> &mdash; sort by <code>modified</code> to find what hasn&rsquo;t been touched in years and may need a refresh.</li>
-  <li><strong>Missing metadata</strong> &mdash; filter for empty <code>meta_description</code> or <code>seo_title</code> cells.</li>
-  <li><strong>Duplicate or cannibalizing titles</strong> &mdash; conditional-format duplicates in the title column.</li>
-  <li><strong>Orphans and redirects</strong> &mdash; cross-reference against your sitemap or analytics to find pages with no traffic.</li>
+  <li><strong>Thin content</strong>: sort by <code>word_count</code> ascending to surface pages too short to rank.</li>
+  <li><strong>Stale content</strong>: sort by <code>modified</code> to find what hasn&rsquo;t been touched in years and may need a refresh.</li>
+  <li><strong>Missing metadata</strong>: filter for empty <code>meta_description</code> or <code>seo_title</code> cells.</li>
+  <li><strong>Duplicate or cannibalizing titles</strong>: conditional-format duplicates in the title column.</li>
+  <li><strong>Orphans and redirects</strong>: cross-reference against your sitemap or analytics to find pages with no traffic.</li>
 </ul>
-<p>The output of an audit is a plan: keep, update, merge, or redirect &mdash; decided in minutes instead of clicking through the dashboard page by page.</p>
+<p>The output of an audit is a plan: keep, update, merge, or redirect, decided in minutes instead of clicking through the dashboard page by page.</p>
 
 <h2 id="reimport">Edit in the sheet, then bring it back</h2>
-<p>CSV is a round trip. For bulk changes &mdash; rewriting a hundred meta descriptions, retagging posts &mdash; edit the cells in your spreadsheet, export back to CSV, and re-import with a mapping tool (WP All Import and similar). Two rules keep it safe: <strong>match rows by post ID</strong> so you update existing items instead of creating duplicates, and <strong>back up the database first</strong>, because a bulk import is a bulk change.</p>
+<p>CSV is a round trip. For bulk changes (rewriting a hundred meta descriptions, retagging posts) edit the cells in your spreadsheet, export back to CSV, and re-import with a mapping tool (WP All Import and similar). Two rules keep it safe: <strong>match rows by post ID</strong> so you update existing items instead of creating duplicates, and <strong>back up the database first</strong>, because a bulk import is a bulk change.</p>
 
 <h2 id="other">Into Airtable, Sheets &amp; other systems</h2>
-<p>Because CSV is universal, a per-type export maps cleanly into other tools. Each content-type CSV becomes a table in <strong>Airtable</strong> &mdash; ideal for turning a WordPress directory or catalog into a relational base. <strong>Google Sheets</strong> and <strong>Notion</strong> import CSV directly for reporting and collaboration. And if you&rsquo;re moving structured records into a custom app or a <a class="inline" href="./wordpress-to-headless-cms.html">headless CMS</a>, CSV (or JSON) is the handoff format.</p>
+<p>Because CSV is universal, a per-type export maps cleanly into other tools. Each content-type CSV becomes a table in <strong>Airtable</strong>: ideal for turning a WordPress directory or catalog into a relational base. <strong>Google Sheets</strong> and <strong>Notion</strong> import CSV directly for reporting and collaboration. And if you&rsquo;re moving structured records into a custom app or a <a class="inline" href="./wordpress-to-headless-cms.html">headless CMS</a>, CSV (or JSON) is the handoff format.</p>
 
 <hr>
 
 <h2 id="pitfalls">Pitfalls to avoid</h2>
 <ul>
-  <li><strong>Encoding breakage</strong> &mdash; non-Latin content (Arabic, accented characters, emoji) turns to garbage without proper UTF-8. Insist on UTF-8 output and open with the right encoding in your spreadsheet.</li>
-  <li><strong>One giant table</strong> &mdash; flattening every post type into a single CSV buries real columns under empty ones. Export per type.</li>
-  <li><strong>Raw HTML in cells</strong> &mdash; rendered content is full of markup. Decide up front whether you want raw HTML, plain text, or just the metadata, so the sheet stays readable.</li>
-  <li><strong>Dropped custom fields</strong> &mdash; a basic export gives you title and date and nothing else. If your CPTs carry their real content in custom fields, make sure those become columns.</li>
+  <li><strong>Encoding breakage</strong>: non-Latin content (Arabic, accented characters, emoji) turns to garbage without proper UTF-8. Insist on UTF-8 output and open with the right encoding in your spreadsheet.</li>
+  <li><strong>One giant table</strong>: flattening every post type into a single CSV buries real columns under empty ones. Export per type.</li>
+  <li><strong>Raw HTML in cells</strong>: rendered content is full of markup. Decide up front whether you want raw HTML, plain text, or just the metadata, so the sheet stays readable.</li>
+  <li><strong>Dropped custom fields</strong>: a basic export gives you title and date and nothing else. If your CPTs carry their real content in custom fields, make sure those become columns.</li>
 </ul>
-<p>Get a per-type, UTF-8, field-resolved export and the spreadsheet does the rest &mdash; audits, bulk edits, and handoffs all become a matter of sorting rows.</p>
+<p>Get a per-type, UTF-8, field-resolved export and the spreadsheet does the rest, audits, bulk edits, and handoffs all become a matter of sorting rows.</p>
 
 <h2 id="faq">Frequently asked questions</h2>
 <h3>Does WordPress have a built-in CSV export?</h3>
-<p>No. WordPress&rsquo;s native export produces a <strong>WXR</strong> file (XML), not CSV. To get CSV you need a plugin or a small script that queries your content and writes comma-separated rows &mdash; ideally one table per content type.</p>
+<p>No. WordPress&rsquo;s native export produces a <strong>WXR</strong> file (XML), not CSV. To get CSV you need a plugin or a small script that queries your content and writes comma-separated rows, ideally one table per content type.</p>
 <h3>How do I export WordPress posts to a spreadsheet?</h3>
 <p>Export your posts to CSV (one row per post; columns for title, URL, date, SEO fields), then open the file in Excel, Google Sheets, or Airtable. A per-content-type export keeps posts, pages, and custom post types in clean separate tables.</p>
 <h3>Can I bulk edit WordPress content in a spreadsheet?</h3>
-<p>Yes &mdash; export to CSV, edit in your spreadsheet, then re-import with a mapping tool. Match rows by <strong>post ID</strong> so you update existing items instead of creating duplicates, and back up the site first.</p>
+<p>Yes, export to CSV, edit in your spreadsheet, then re-import with a mapping tool. Match rows by <strong>post ID</strong> so you update existing items instead of creating duplicates, and back up the site first.</p>
 <h3>How do I export custom post types and ACF fields to CSV?</h3>
 <p>Use an exporter that reads each content type separately and resolves custom fields into columns. Custom post types have different fields than posts, so a good export gives each type its own CSV with its own columns.</p>
 
 <div class="end-cta">
   <h2>Turn your whole site into clean spreadsheets</h2>
-  <p>Migratik exports one tidy CSV per content type &mdash; posts, pages, and every custom post type &mdash; with SEO and custom fields already in columns, UTF-8 safe. Perfect for content audits, bulk edits, and Airtable. Free to install, read-only, safe on a live site.</p>
+  <p>Migratik exports one tidy CSV per content type (posts, pages, and every custom post type) with SEO and custom fields already in columns, UTF-8 safe. Perfect for content audits, bulk edits, and Airtable. Free to install, read-only, safe on a live site.</p>
   <div class="btns">
     <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
     <a class="btn btn-line" href="../index.html#pricing">See Migratik Pro</a>

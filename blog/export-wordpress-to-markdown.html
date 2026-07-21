@@ -4,27 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How to Export a WordPress Site to Markdown (Astro, Hugo, 11ty & Next.js)</title>
-<meta name="description" content="Export your whole WordPress site to clean Markdown or MDX — rendered content, YAML front matter, SEO metadata and images intact — ready for Astro, Hugo, 11ty, Next.js, or an AI pipeline.">
+<meta name="description" content="Export your whole WordPress site to clean Markdown or MDX (rendered content, YAML front matter, SEO metadata and images intact) ready for Astro, Hugo, 11ty, Next.js, or an AI pipeline.">
 <link rel="canonical" href="https://hossamhamdy99.github.io/migratik-site/blog/export-wordpress-to-markdown.html">
 <link rel="icon" type="image/png" href="../icon.png">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Migratik">
 <meta property="og:title" content="How to Export a WordPress Site to Markdown">
-<meta property="og:description" content="Turn an entire WordPress site into clean Markdown/MDX with front matter and metadata intact — ready for any static site generator or AI pipeline.">
+<meta property="og:description" content="Turn an entire WordPress site into clean Markdown/MDX with front matter and metadata intact, ready for any static site generator or AI pipeline.">
 <meta property="og:url" content="https://hossamhamdy99.github.io/migratik-site/blog/export-wordpress-to-markdown.html">
 <meta property="og:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Export a WordPress Site to Markdown">
-<meta name="twitter:description" content="Clean Markdown/MDX export with front matter, metadata & images — for Astro, Hugo, 11ty, Next.js, or AI.">
+<meta name="twitter:description" content="Clean Markdown/MDX export with front matter, metadata & images, for Astro, Hugo, 11ty, Next.js, or AI.">
 <meta name="twitter:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "How to Export a WordPress Site to Markdown (for Astro, Hugo, 11ty & Next.js)",
-  "description": "Export your whole WordPress site to clean Markdown or MDX — rendered content, YAML front matter, SEO metadata and images intact.",
+  "description": "Export your whole WordPress site to clean Markdown or MDX, rendered content, YAML front matter, SEO metadata and images intact.",
   "image": "https://hossamhamdy99.github.io/migratik-site/og-image.png",
   "author": { "@type": "Person", "name": "Hossam Hamdy" },
   "publisher": {
@@ -182,7 +182,7 @@
       <span>11 min read</span><span class="dot"></span>
       <span>Updated July 2026</span>
     </div>
-    <p class="lede">Markdown is the most portable, future-proof format your content can live in — plain text, version-controllable, and readable by every static site generator and AI pipeline on earth. Here&rsquo;s how to get an entire WordPress site out as clean Markdown or MDX &mdash; the first step to convert WordPress to a static site &mdash; with the front matter and metadata that make it actually usable.</p>
+    <p class="lede">Markdown is the most portable, future-proof format your content can live in, plain text, version-controllable, and readable by every static site generator and AI pipeline on earth. Here&rsquo;s how to get an entire WordPress site out as clean Markdown or MDX (the first step to convert WordPress to a static site) with the front matter and metadata that make it actually usable.</p>
     </div>
   </div>
 </header>
@@ -202,25 +202,25 @@
 </nav>
 <article class="main">
 
-<p>There&rsquo;s a reason developers keep pulling content <em>out</em> of WordPress and into Markdown: a folder of <code>.md</code> files is the closest thing content has to a universal format. It drops into <strong>Astro, Hugo, 11ty, Jekyll, Gatsby, and Next.js</strong> with zero translation, it lives happily in Git, it diffs cleanly in code review, and it&rsquo;s the ideal input for feeding your content into an LLM or a RAG pipeline. No database, no lock-in, no builder shortcodes — just text.</p>
+<p>There&rsquo;s a reason developers keep pulling content <em>out</em> of WordPress and into Markdown: a folder of <code>.md</code> files is the closest thing content has to a universal format. It drops into <strong>Astro, Hugo, 11ty, Jekyll, Gatsby, and Next.js</strong> with zero translation, it lives happily in Git, it diffs cleanly in code review, and it&rsquo;s the ideal input for feeding your content into an LLM or a RAG pipeline. No database, no lock-in, no builder shortcodes, just text.</p>
 <p>The catch is that getting <em>clean</em> Markdown out of WordPress is harder than it looks. This guide covers what a real export needs, what the front matter should contain, when to choose MDX over Markdown, and how to drop the result into whatever you&rsquo;re building.</p>
 
 <h2 id="why">Why Markdown wins</h2>
 <p>Moving your content to Markdown buys you things WordPress can&rsquo;t:</p>
 <ul>
-  <li><strong>Portability</strong> — the same files work in any static site generator, and in the next one you switch to.</li>
-  <li><strong>Version control</strong> — content lives in Git alongside code; every edit is tracked and reviewable.</li>
-  <li><strong>Speed</strong> — static Markdown builds to plain HTML with no database queries at request time.</li>
-  <li><strong>AI-ready</strong> — clean Markdown is the preferred input for embeddings, RAG, and LLM fine-tuning. Raw WordPress HTML is not.</li>
-  <li><strong>Longevity</strong> — plain text outlives every CMS. You&rsquo;ll still be able to read these files in twenty years.</li>
+  <li><strong>Portability</strong>: the same files work in any static site generator, and in the next one you switch to.</li>
+  <li><strong>Version control</strong>: content lives in Git alongside code; every edit is tracked and reviewable.</li>
+  <li><strong>Speed</strong>: static Markdown builds to plain HTML with no database queries at request time.</li>
+  <li><strong>AI-ready</strong>: clean Markdown is the preferred input for embeddings, RAG, and LLM fine-tuning. Raw WordPress HTML is not.</li>
+  <li><strong>Longevity</strong>: plain text outlives every CMS. You&rsquo;ll still be able to read these files in twenty years.</li>
 </ul>
 
 <h2 id="hard">Why a clean export is actually hard</h2>
-<p>WordPress&rsquo;s own tools don&rsquo;t give you usable Markdown. The built-in WXR export hands you an XML dump of <em>raw</em> post content — and if your pages are built with Elementor, WPBakery, Divi, Bricks, or Oxygen, that raw content is a soup of shortcodes that only render inside WordPress. Convert that to Markdown and you get pages full of <code>[vc_row]</code> and empty <code>&lt;div&gt;</code>s.</p>
+<p>WordPress&rsquo;s own tools don&rsquo;t give you usable Markdown. The built-in WXR export hands you an XML dump of <em>raw</em> post content, and if your pages are built with Elementor, WPBakery, Divi, Bricks, or Oxygen, that raw content is a soup of shortcodes that only render inside WordPress. Convert that to Markdown and you get pages full of <code>[vc_row]</code> and empty <code>&lt;div&gt;</code>s.</p>
 <p>A usable Markdown export has to do four things WordPress won&rsquo;t:</p>
 <ul>
-  <li><strong>Render the page first</strong>, running the builder, then convert the resulting HTML to Markdown — so a heading is <code>##</code>, a link is <code>[text](url)</code>, and nothing is left as a shortcode.</li>
-  <li><strong>Attach front matter</strong> to every file — title, description, dates, slug, and SEO fields — so your SSG has something to work with.</li>
+  <li><strong>Render the page first</strong>, running the builder, then convert the resulting HTML to Markdown, so a heading is <code>##</code>, a link is <code>[text](url)</code>, and nothing is left as a shortcode.</li>
+  <li><strong>Attach front matter</strong> to every file (title, description, dates, slug, and SEO fields) so your SSG has something to work with.</li>
   <li><strong>Keep the metadata</strong> most exporters drop: the theme-rendered <code>&lt;title&gt;</code>, the permalink (for redirects), and your Yoast / Rank Math SEO fields.</li>
   <li><strong>Produce one file per item</strong>, named and foldered sensibly, ready to drop straight into a content directory.</li>
 </ul>
@@ -230,7 +230,7 @@
     <span class="mk"><svg viewBox="0 0 48 48" fill="#fff" style="width:22px;height:22px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span>
     <h3>Migratik does exactly this</h3>
   </div>
-  <p>Migratik renders every page with the right builder, converts the result to clean Markdown (or MDX), and writes one file per item with full YAML front matter — title, <code>document_title</code>, permalink, SEO meta, dates, and taxonomies. It&rsquo;s builder-agnostic and read-only, so your live site is untouched. Free to install; Markdown, MDX, and one-click media bundling are Pro.</p>
+  <p>Migratik renders every page with the right builder, converts the result to clean Markdown (or MDX), and writes one file per item with full YAML front matter, title, <code>document_title</code>, permalink, SEO meta, dates, and taxonomies. It&rsquo;s builder-agnostic and read-only, so your live site is untouched. Free to install; Markdown, MDX, and one-click media bundling are Pro.</p>
   <div class="btns">
     <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
     <a class="btn btn-line" href="../index.html#formats">See the formats</a>
@@ -238,7 +238,7 @@
 </div>
 
 <h2 id="frontmatter">The front matter that matters</h2>
-<p>Front matter is the YAML block at the top of each Markdown file — it&rsquo;s how your SSG knows a page&rsquo;s title, date, and URL. A weak export gives you a title and nothing else; a good one carries everything you need to rebuild the page <em>and</em> preserve its SEO. Here&rsquo;s what a clean exported file looks like:</p>
+<p>Front matter is the YAML block at the top of each Markdown file, it&rsquo;s how your SSG knows a page&rsquo;s title, date, and URL. A weak export gives you a title and nothing else; a good one carries everything you need to rebuild the page <em>and</em> preserve its SEO. Here&rsquo;s what a clean exported file looks like:</p>
 <pre><code><span class="at">---</span>
 <span class="kw">title:</span> <span class="str">"Corneal Cross-Linking"</span>
 <span class="kw">description:</span> <span class="str">"A minimally invasive treatment that strengthens the cornea."</span>
@@ -256,11 +256,11 @@ Corneal cross-linking is a procedure that uses riboflavin and UV light
 to strengthen the collagen fibers in the cornea&hellip;</code></pre>
 <p>Two fields do the heavy lifting when you care about search rankings. The <code>permalink</code> is your map for building 301 redirects from the old WordPress URLs, and the <code>description</code> plus <code>canonical</code> let your new site reproduce the exact search snippet Google already indexed. Don&rsquo;t settle for an export that throws them away.</p>
 
-<h2 id="mdx">Markdown or MDX — which should you export?</h2>
-<p>Plain <strong>Markdown (.md)</strong> is the right default. It&rsquo;s universal, every SSG reads it, and it stays simple. Choose <strong>MDX (.mdx)</strong> only if your target framework lets you embed components inside content — Astro, Next.js, and Docusaurus do — and you plan to replace some blocks with interactive components (a callout, a chart, an embed).</p>
+<h2 id="mdx">Markdown or MDX, which should you export?</h2>
+<p>Plain <strong>Markdown (.md)</strong> is the right default. It&rsquo;s universal, every SSG reads it, and it stays simple. Choose <strong>MDX (.mdx)</strong> only if your target framework lets you embed components inside content, Astro, Next.js, and Docusaurus do, and you plan to replace some blocks with interactive components (a callout, a chart, an embed).</p>
 <div class="callout">
   <div class="k">A subtle MDX gotcha</div>
-  <p>MDX treats <code>{</code> and <code>&lt;</code> as code, so any stray curly brace or angle bracket in your prose will make an MDX build fail — even though the identical Markdown is fine. A proper export escapes those characters in <code>.mdx</code> output (while leaving real code blocks untouched), so your files compile anywhere. Migratik does this automatically; if you convert by hand, watch for it.</p>
+  <p>MDX treats <code>{</code> and <code>&lt;</code> as code, so any stray curly brace or angle bracket in your prose will make an MDX build fail, even though the identical Markdown is fine. A proper export escapes those characters in <code>.mdx</code> output (while leaving real code blocks untouched), so your files compile anywhere. Migratik does this automatically; if you convert by hand, watch for it.</p>
 </div>
 
 <h2 id="ssg">Drop it into your static site generator</h2>
@@ -287,23 +287,23 @@ to strengthen the collagen fibers in the cornea&hellip;</code></pre>
 <p>Then render with <code>getCollection()</code> and Astro&rsquo;s <code>&lt;Content /&gt;</code> component. Full walkthrough in our <a class="inline" href="./migrate-wordpress-to-astro-without-losing-seo.html">WordPress&nbsp;&rarr;&nbsp;Astro guide</a>.</p>
 
 <h3>Hugo &amp; 11ty</h3>
-<p>These are even simpler: drop the files into <code>content/</code> (Hugo) or your input folder (11ty) and they&rsquo;re picked up on the next build. Both read the same YAML front matter shown above — map <code>date</code> and <code>slug</code> to their conventions and you&rsquo;re done.</p>
+<p>These are even simpler: drop the files into <code>content/</code> (Hugo) or your input folder (11ty) and they&rsquo;re picked up on the next build. Both read the same YAML front matter shown above, map <code>date</code> and <code>slug</code> to their conventions and you&rsquo;re done.</p>
 
 <h3>Next.js</h3>
 <p>Next has no built-in Markdown loader, so read the files with a library like <code>gray-matter</code> to parse the front matter and <code>next-mdx-remote</code> or <code>remark</code> to render the body. If Next.js is your destination and rankings matter, follow the SEO-safe path in our <a class="inline" href="./migrate-wordpress-to-nextjs-without-losing-seo.html">WordPress&nbsp;&rarr;&nbsp;Next.js guide</a>.</p>
 
 <h2 id="images">Handling images</h2>
-<p>Markdown references images by URL — <code>![alt](src)</code> — so by default your exported files still point at <code>/wp-content/uploads/</code> on the old server. The moment you take WordPress down, every image 404s. You have two options: keep the old media host alive, or bundle the images with your content and rewrite the URLs to local paths. Bundling is the clean answer — it makes your export fully self-contained. Migratik Pro&rsquo;s one-click media bundle downloads every referenced image, mirrors the folder structure, and rewrites the Markdown URLs to the local copies, so you can serve them through your SSG&rsquo;s image pipeline.</p>
+<p>Markdown references images by URL, <code>![alt](src)</code>, so by default your exported files still point at <code>/wp-content/uploads/</code> on the old server. The moment you take WordPress down, every image 404s. You have two options: keep the old media host alive, or bundle the images with your content and rewrite the URLs to local paths. Bundling is the clean answer, it makes your export fully self-contained. Migratik Pro&rsquo;s one-click media bundle downloads every referenced image, mirrors the folder structure, and rewrites the Markdown URLs to the local copies, so you can serve them through your SSG&rsquo;s image pipeline.</p>
 
 <hr>
 
 <h2 id="pitfalls">Common pitfalls (and how to avoid them)</h2>
 <ul>
-  <li><strong>Shortcode soup</strong> — exporting raw content instead of rendered HTML leaves builder shortcodes in your Markdown. Always render first.</li>
-  <li><strong>Bare front matter</strong> — a title-only export forces you to rebuild metadata by hand. Insist on descriptions, dates, slugs, and SEO fields.</li>
-  <li><strong>Broken MDX builds</strong> — unescaped <code>{</code> or <code>&lt;</code> in prose. Escape them (or export Markdown, not MDX).</li>
-  <li><strong>Dead image links</strong> — URLs still pointing at the old uploads folder. Bundle and rewrite.</li>
-  <li><strong>Lost redirects</strong> — no permalink in the front matter means no way to map old URLs to new ones. Keep the permalink.</li>
+  <li><strong>Shortcode soup</strong>: exporting raw content instead of rendered HTML leaves builder shortcodes in your Markdown. Always render first.</li>
+  <li><strong>Bare front matter</strong>: a title-only export forces you to rebuild metadata by hand. Insist on descriptions, dates, slugs, and SEO fields.</li>
+  <li><strong>Broken MDX builds</strong>: unescaped <code>{</code> or <code>&lt;</code> in prose. Escape them (or export Markdown, not MDX).</li>
+  <li><strong>Dead image links</strong>: URLs still pointing at the old uploads folder. Bundle and rewrite.</li>
+  <li><strong>Lost redirects</strong>: no permalink in the front matter means no way to map old URLs to new ones. Keep the permalink.</li>
 </ul>
 <p>Every one of these is a data-capture problem, not a conversion problem. Get a complete, rendered export with rich front matter and the rest is easy.</p>
 
@@ -319,7 +319,7 @@ to strengthen the collagen fibers in the cornea&hellip;</code></pre>
 
 <div class="end-cta">
   <h2>Get your content out as clean Markdown</h2>
-  <p>Migratik exports your whole WordPress site to Markdown or MDX — rendered content, full front matter, SEO metadata, and bundled images — ready for any static site generator or AI pipeline. Free to install, read-only, safe on a live site.</p>
+  <p>Migratik exports your whole WordPress site to Markdown or MDX (rendered content, full front matter, SEO metadata, and bundled images) ready for any static site generator or AI pipeline. Free to install, read-only, safe on a live site.</p>
   <div class="btns">
     <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
     <a class="btn btn-line" href="../index.html#pricing">See Migratik Pro</a>

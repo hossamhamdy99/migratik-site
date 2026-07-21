@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How to Move WordPress to a Headless CMS (Sanity, Contentful & Strapi)</title>
-<meta name="description" content="Migrate your WordPress content into a headless CMS like Sanity, Contentful, or Strapi — with structured fields, media, and SEO metadata — without losing your content model or rankings.">
+<meta name="description" content="Migrate your WordPress content into a headless CMS like Sanity, Contentful, or Strapi (with structured fields, media, and SEO metadata) without losing your content model or rankings.">
 <link rel="canonical" href="https://hossamhamdy99.github.io/migratik-site/blog/wordpress-to-headless-cms.html">
 <link rel="icon" type="image/png" href="../icon.png">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Migratik">
 <meta property="og:title" content="How to Move WordPress to a Headless CMS">
-<meta property="og:description" content="Migrate WordPress content into Sanity, Contentful, or Strapi — structured fields, media, and SEO intact. Map your model, export, transform, import.">
+<meta property="og:description" content="Migrate WordPress content into Sanity, Contentful, or Strapi, structured fields, media, and SEO intact. Map your model, export, transform, import.">
 <meta property="og:url" content="https://hossamhamdy99.github.io/migratik-site/blog/wordpress-to-headless-cms.html">
 <meta property="og:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -24,7 +24,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "How to Move WordPress to a Headless CMS (Sanity, Contentful & Strapi)",
-  "description": "A practical guide to migrating WordPress content into a headless CMS like Sanity, Contentful, or Strapi — structured fields, media, and SEO metadata intact.",
+  "description": "A practical guide to migrating WordPress content into a headless CMS like Sanity, Contentful, or Strapi, structured fields, media, and SEO metadata intact.",
   "image": "https://hossamhamdy99.github.io/migratik-site/og-image.png",
   "author": {
     "@type": "Person",
@@ -216,7 +216,7 @@
       <span>12 min read</span><span class="dot"></span>
       <span>Updated July 2026</span>
     </div>
-    <p class="lede">Moving off WordPress to a headless CMS &mdash; Sanity, Contentful, Strapi &mdash; gives your content an API and frees your front end to be anything. The hard part isn&rsquo;t the front end; it&rsquo;s getting years of structured WordPress content into the new system&rsquo;s shape without losing it. Here&rsquo;s how.</p>
+    <p class="lede">Moving off WordPress to a headless CMS (Sanity, Contentful, Strapi) gives your content an API and frees your front end to be anything. The hard part isn&rsquo;t the front end; it&rsquo;s getting years of structured WordPress content into the new system&rsquo;s shape without losing it. Here&rsquo;s how.</p>
     </div>
   </div>
 </header>
@@ -237,22 +237,22 @@
 </nav>
 <article class="main">
 
-<p>A headless CMS splits content from presentation: your articles, pages, and custom records live in an API-first system &mdash; <strong>Sanity, Contentful, Strapi</strong> &mdash; and your front end (Next.js, Astro, Nuxt, a mobile app) pulls them over an API. You get speed, a clean content model, omnichannel delivery, and a much smaller attack surface than a WordPress install.</p>
-<p>The front end is the fun part, and it&rsquo;s well-trodden. The genuinely hard part of going headless is the <em>migration</em>: reshaping years of WordPress content &mdash; posts, custom post types, taxonomies, ACF fields &mdash; into the new CMS&rsquo;s schema without losing data or rankings. This guide is about that part.</p>
+<p>A headless CMS splits content from presentation: your articles, pages, and custom records live in an API-first system, <strong>Sanity, Contentful, Strapi</strong>: and your front end (Next.js, Astro, Nuxt, a mobile app) pulls them over an API. You get speed, a clean content model, omnichannel delivery, and a much smaller attack surface than a WordPress install.</p>
+<p>The front end is the fun part, and it&rsquo;s well-trodden. The hard part of going headless is the <em>migration</em>: reshaping years of WordPress content (posts, custom post types, taxonomies, ACF fields) into the new CMS&rsquo;s schema without losing data or rankings. This guide is about that part.</p>
 
 <h2 id="why">Why go headless</h2>
-<p>Teams move WordPress to a headless CMS for a handful of durable reasons: a <strong>structured content model</strong> instead of a soup of HTML, an <strong>API</strong> that feeds a website and an app and a kiosk from one source, <strong>performance</strong> from a static or edge-rendered front end, and <strong>security</strong> from not exposing wp-admin to the world. If those are why you&rsquo;re here, the migration is worth doing carefully &mdash; because a headless CMS only pays off if your content lands in it cleanly structured.</p>
+<p>Teams move WordPress to a headless CMS for a handful of durable reasons: a <strong>structured content model</strong> instead of a soup of HTML, an <strong>API</strong> that feeds a website and an app and a kiosk from one source, <strong>performance</strong> from a static or edge-rendered front end, and <strong>security</strong> from not exposing wp-admin to the world. If those are why you&rsquo;re here, the migration is worth doing carefully, because a headless CMS only pays off if your content lands in it cleanly structured.</p>
 
-<h2 id="vs">Headless CMS vs headless WordPress &mdash; pick your path</h2>
+<h2 id="vs">Headless CMS vs headless WordPress, pick your path</h2>
 <p>&ldquo;Going headless&rdquo; means two different things, and they involve very different amounts of migration:</p>
 <ul>
-  <li><strong>Headless WordPress</strong> &mdash; keep WordPress as the backend and serve content through <strong>WPGraphQL</strong> or the REST API to a separate front end. Almost no migration: your content stays put. You keep WordPress&rsquo;s editing experience, but also its hosting and maintenance.</li>
-  <li><strong>A dedicated headless CMS</strong> &mdash; replace WordPress entirely with Sanity, Contentful, or Strapi. A real migration, but a clean break: no more WordPress to maintain, and a content model you design.</li>
+  <li><strong>Headless WordPress</strong>: keep WordPress as the backend and serve content through <strong>WPGraphQL</strong> or the REST API to a separate front end. Almost no migration: your content stays put. You keep WordPress&rsquo;s editing experience, but also its hosting and maintenance.</li>
+  <li><strong>A dedicated headless CMS</strong>: replace WordPress entirely with Sanity, Contentful, or Strapi. A real migration, but a clean break: no more WordPress to maintain, and a content model you design.</li>
 </ul>
-<p>If you just want a faster front end and are happy keeping WordPress, headless WordPress is the lighter route. If you want <em>off</em> WordPress, you&rsquo;re doing a content migration &mdash; read on.</p>
+<p>If you just want a faster front end and are happy keeping WordPress, headless WordPress is the lighter route. If you want <em>off</em> WordPress, you&rsquo;re doing a content migration, read on.</p>
 
 <h2 id="model">Map your content model first</h2>
-<p>This is the step that makes or breaks the project, and it happens on paper before you export anything. WordPress organizes content as <strong>post types</strong> (posts, pages, your CPTs), <strong>taxonomies</strong> (categories, tags, custom ones), and <strong>custom fields</strong> (ACF/JetEngine/Pods). Your headless CMS organizes it as schemas &mdash; Sanity <em>document types</em>, Contentful <em>content types</em>, Strapi <em>collection types</em>.</p>
+<p>This is the step that makes or breaks the project, and it happens on paper before you export anything. WordPress organizes content as <strong>post types</strong> (posts, pages, your CPTs), <strong>taxonomies</strong> (categories, tags, custom ones), and <strong>custom fields</strong> (ACF/JetEngine/Pods). Your headless CMS organizes it as schemas, Sanity <em>document types</em>, Contentful <em>content types</em>, Strapi <em>collection types</em>.</p>
 <p>Map them one to one:</p>
 <ul>
   <li>Each WordPress post type &rarr; a schema/content type in the CMS.</li>
@@ -263,7 +263,7 @@
 <p>Get this mapping right and the rest is scripting. Skip it and you&rsquo;ll be re-typing content by hand.</p>
 
 <h2 id="export">Get your content out of WordPress</h2>
-<p>You need <strong>structured data</strong>, not a wall of HTML. That means an export where each item is an object with its fields separated out &mdash; title, slug, permalink, SEO, custom fields, and the body &mdash; so a script can map field to field. JSON is the natural format:</p>
+<p>You need <strong>structured data</strong>, not a wall of HTML. That means an export where each item is an object with its fields separated out (title, slug, permalink, SEO, custom fields, and the body) so a script can map field to field. JSON is the natural format:</p>
 <pre><code><span class="at">{</span>
   <span class="kw">"type"</span>: <span class="str">"services"</span>,
   <span class="kw">"title"</span>: <span class="str">"Corneal Cross-Linking"</span>,
@@ -273,14 +273,14 @@
   <span class="kw">"fields"</span>: <span class="at">{</span> <span class="kw">"duration_minutes"</span>: <span class="fn">30</span>, <span class="kw">"recovery"</span>: <span class="str">"1–2 days"</span> <span class="at">}</span>,
   <span class="kw">"content_html"</span>: <span class="str">"&lt;h2&gt;What is it?&lt;/h2&gt;&lt;p&gt;…&lt;/p&gt;"</span>
 <span class="at">}</span></code></pre>
-<p>Two things matter here. First, the body must be <strong>rendered</strong> &mdash; if your pages use a builder, a raw export gives you shortcodes, not content. Second, custom fields should be <strong>resolved</strong>: an image field should be a real media object (URL, alt, dimensions), not a bare attachment ID the new CMS can&rsquo;t interpret.</p>
+<p>Two things matter here. First, the body must be <strong>rendered</strong>: if your pages use a builder, a raw export gives you shortcodes, not content. Second, custom fields should be <strong>resolved</strong>: an image field should be a real media object (URL, alt, dimensions), not a bare attachment ID the new CMS can&rsquo;t interpret.</p>
 
 <div class="mgk">
   <div class="row">
     <span class="mk"><svg viewBox="0 0 48 48" fill="#fff" style="width:22px;height:22px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span>
     <h3>Migratik is the clean input a headless import needs</h3>
   </div>
-  <p>Migratik exports your whole site as structured JSON &mdash; every post type as an object with its fields separated, rendered content, resolved ACF/JetEngine/Pods values (image fields as real media objects), SEO meta, and permalinks for redirects. It&rsquo;s builder-agnostic and read-only. Free to install; the media bundle that brings your images along is Pro.</p>
+  <p>Migratik exports your whole site as structured JSON, every post type as an object with its fields separated, rendered content, resolved ACF/JetEngine/Pods values (image fields as real media objects), SEO meta, and permalinks for redirects. It&rsquo;s builder-agnostic and read-only. Free to install; the media bundle that brings your images along is Pro.</p>
   <div class="btns">
     <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
     <a class="btn btn-line" href="../index.html#formats">See the formats</a>
@@ -288,17 +288,17 @@
 </div>
 
 <h2 id="transform">Transform to the CMS&rsquo;s shape</h2>
-<p>With structured JSON in hand, a transform script maps each exported item onto a CMS document. The one conversion you can&rsquo;t skip is <strong>rich text</strong>: Sanity wants <em>Portable Text</em>, Contentful wants its <em>rich-text JSON</em>, and Strapi takes HTML or Markdown. Your exported <code>content_html</code> has to be converted into the target&rsquo;s format &mdash; there are libraries for each (for example, HTML-to-Portable-Text for Sanity). Everything else &mdash; scalar fields, references, media &mdash; is straightforward key-to-key mapping.</p>
+<p>With structured JSON in hand, a transform script maps each exported item onto a CMS document. The one conversion you can&rsquo;t skip is <strong>rich text</strong>: Sanity wants <em>Portable Text</em>, Contentful wants its <em>rich-text JSON</em>, and Strapi takes HTML or Markdown. Your exported <code>content_html</code> has to be converted into the target&rsquo;s format, there are libraries for each (for example, HTML-to-Portable-Text for Sanity). Everything else (scalar fields, references, media) is straightforward key-to-key mapping.</p>
 
 <h2 id="import">Import into Sanity, Contentful, or Strapi</h2>
 <p>Each CMS gives you an import path:</p>
 <ul>
-  <li><strong>Sanity</strong> &mdash; create documents through <code>@sanity/client</code>, or bulk-load an NDJSON file with the Sanity CLI.</li>
-  <li><strong>Contentful</strong> &mdash; use the <code>contentful-import</code> tool with a structured import file, or the Management API.</li>
-  <li><strong>Strapi</strong> &mdash; post to the REST API, or seed through a script against its content types.</li>
+  <li><strong>Sanity</strong>: create documents through <code>@sanity/client</code>, or bulk-load an NDJSON file with the Sanity CLI.</li>
+  <li><strong>Contentful</strong>: use the <code>contentful-import</code> tool with a structured import file, or the Management API.</li>
+  <li><strong>Strapi</strong>: post to the REST API, or seed through a script against its content types.</li>
 </ul>
 <p>A minimal Sanity import loop looks like this:</p>
-<pre><code><span class="cmt">// import.mjs — one document per exported item</span>
+<pre><code><span class="cmt">// import.mjs: one document per exported item</span>
 <span class="kw">import</span> { createClient } <span class="kw">from</span> <span class="str">'@sanity/client'</span>;
 <span class="kw">import</span> data <span class="kw">from</span> <span class="str">'./migratik-export.json'</span> <span class="kw">with</span> { type: <span class="str">'json'</span> };
 
@@ -318,12 +318,12 @@
 <p>Run it against a dev dataset first, check a few documents in the studio, then run it for real.</p>
 
 <h2 id="media">Move the media</h2>
-<p>Images referenced by URL still point at <code>/wp-content/uploads/</code> until you move them. In a headless CMS, media become first-class <strong>assets</strong> &mdash; Sanity assets, Contentful uploads, Strapi media &mdash; so your import needs to upload each file and relink the reference. Trying to pull images one-by-one from the live WordPress mid-import is fragile; a <strong>media bundle</strong> exported alongside the content (every file packaged, URLs rewritten) makes the upload step reliable and repeatable.</p>
+<p>Images referenced by URL still point at <code>/wp-content/uploads/</code> until you move them. In a headless CMS, media become first-class <strong>assets</strong>: Sanity assets, Contentful uploads, Strapi media, so your import needs to upload each file and relink the reference. Trying to pull images one-by-one from the live WordPress mid-import is fragile; a <strong>media bundle</strong> exported alongside the content (every file packaged, URLs rewritten) makes the upload step reliable and repeatable.</p>
 
 <hr>
 
 <h2 id="seo">Keep your SEO through the move</h2>
-<p>Going headless doesn&rsquo;t change the SEO rules &mdash; only your front end serves pages, so the front end has to carry them. Keep your URLs, <strong>301-redirect</strong> anything that changes, and reproduce each page&rsquo;s <strong>title, meta description, and canonical</strong> from the exported metadata. That&rsquo;s why the export must include SEO fields and the old permalinks. For the front-end side of doing this without losing rankings, our <a class="inline" href="./migrate-wordpress-to-nextjs-without-losing-seo.html">Next.js</a> and <a class="inline" href="./migrate-wordpress-to-astro-without-losing-seo.html">Astro</a> guides walk through redirects, metadata, and sitemaps step by step.</p>
+<p>Going headless doesn&rsquo;t change the SEO rules, only your front end serves pages, so the front end has to carry them. Keep your URLs, <strong>301-redirect</strong> anything that changes, and reproduce each page&rsquo;s <strong>title, meta description, and canonical</strong> from the exported metadata. That&rsquo;s why the export must include SEO fields and the old permalinks. For the front-end side of doing this without losing rankings, our <a class="inline" href="./migrate-wordpress-to-nextjs-without-losing-seo.html">Next.js</a> and <a class="inline" href="./migrate-wordpress-to-astro-without-losing-seo.html">Astro</a> guides walk through redirects, metadata, and sitemaps step by step.</p>
 <p>Do the model mapping thoughtfully and start from a clean structured export, and a headless migration stops being a data-entry marathon and becomes what it should be: a transform script you run once.</p>
 
 <h2 id="faq">Frequently asked questions</h2>
@@ -338,7 +338,7 @@
 
 <div class="end-cta">
   <h2>Export the structured content a headless CMS needs</h2>
-  <p>Migratik turns your whole WordPress site into clean structured JSON &mdash; rendered content, resolved custom fields, media, and SEO &mdash; the exact input a Sanity, Contentful, or Strapi import script wants. Free to install, read-only, safe on a live site.</p>
+  <p>Migratik turns your whole WordPress site into clean structured JSON (rendered content, resolved custom fields, media, and SEO) the exact input a Sanity, Contentful, or Strapi import script wants. Free to install, read-only, safe on a live site.</p>
   <div class="btns">
     <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
     <a class="btn btn-line" href="../index.html#pricing">See Migratik Pro</a>
