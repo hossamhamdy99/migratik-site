@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Migrate WordPress to Another WordPress Site (New Host or Domain)</title>
+<meta name="description" content="Move a WordPress site to a new host, domain, or clean install without losing content, custom fields, media, or SEO. A practical, ranking-safe WordPress-to-WordPress migration guide.">
+<link rel="canonical" href="https://hossamhamdy99.github.io/migratik-site/blog/migrate-wordpress-to-wordpress.html">
+<link rel="icon" type="image/png" href="../icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Migratik">
+<meta property="og:title" content="How to Migrate WordPress to Another WordPress Site">
+<meta property="og:description" content="Move WordPress to a new host or domain without losing content, custom fields, media, or rankings — the full order of operations.">
+<meta property="og:url" content="https://hossamhamdy99.github.io/migratik-site/blog/migrate-wordpress-to-wordpress.html">
+<meta property="og:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Migrate WordPress to Another WordPress Site">
+<meta name="twitter:description" content="A ranking-safe WordPress-to-WordPress migration: content, custom fields, media & SEO, all intact.">
+<meta name="twitter:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Migrate WordPress to Another WordPress Site (New Host or Domain)",
+  "description": "A practical, ranking-safe guide to moving a WordPress site to a new host, domain, or clean install without losing content, custom fields, media, or SEO.",
+  "image": "https://hossamhamdy99.github.io/migratik-site/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Hossam Hamdy"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Migratik",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hossamhamdy99.github.io/migratik-site/icon.png"
+    }
+  },
+  "mainEntityOfPage": "https://hossamhamdy99.github.io/migratik-site/blog/migrate-wordpress-to-wordpress.html",
+  "datePublished": "2026-07-21",
+  "dateModified": "2026-07-21"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best way to migrate WordPress to a new host?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a same-site host move, a full-site clone with a tool like Duplicator or All-in-One WP Migration is simplest, because it copies the database and files as-is. For moving content into a new or differently built install, use a WXR export and import so you bring only content and leave old plugin and theme bloat behind."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does WordPress's WXR export include images and custom fields?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WXR references image URLs and can tell the importer to side-load them, but large or externally hosted libraries often fail. Custom fields from ACF, JetEngine, or Pods are stored as postmeta and only come across if the exporter includes them, which many do not. Check before you rely on it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will migrating WordPress hurt my SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not if you keep your permalink structure and 301-redirect anything that changes, especially on a domain change, and carry over your SEO metadata. Rankings drop when URLs change without redirects or when titles and meta descriptions are lost in the move."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I move custom post types between WordPress sites?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Register the same custom post types and taxonomies on the destination first, using the same plugin such as CPT UI, ACF, or JetEngine, then import a WXR that includes them. If the types do not exist on the destination, the importer discards those items."
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --ink:#0f1222; --ink-2:#2a2f45; --muted:#5b6178; --line:#e7e9f2;
+    --bg:#ffffff; --bg-2:#f7f8fc; --brand:#5b4bff; --brand-2:#8b5cff;
+    --brand-ink:#3b2fd6; --accent:#12c9a6; --warn:#ff9f43;
+    --radius:16px; --shadow:0 12px 40px rgba(24,20,80,.10); --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;padding:14px 24px;
+    border-radius:999px;border:1px solid transparent;cursor:pointer;transition:.18s;white-space:nowrap}
+  .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 8px 24px rgba(91,75,255,.35)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(91,75,255,.45)}
+  .btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--brand);color:var(--brand-ink)}
+  nav:not(.toc){position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .logo .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#fff}
+  .nav-links{display:flex;gap:28px;align-items:center;font-size:15px;color:var(--muted);font-weight:600}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-toggle{display:none}
+  .burger{display:none}
+  @media(max-width:720px){
+    .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:6px 24px 14px;box-shadow:0 14px 26px rgba(24,20,80,.12)}
+    .nav-links a{padding:13px 2px;border-top:1px solid var(--line);font-size:16px}
+    .nav-toggle:checked ~ .nav-links{display:flex}
+    .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:40px;cursor:pointer;padding:9px 10px;margin-left:auto}
+    .burger span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:.2s}
+    .nav-toggle:checked ~ .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-toggle:checked ~ .burger span:nth-child(2){opacity:0}
+    .nav-toggle:checked ~ .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-cta{display:none}
+  }
+  .layout{max-width:760px;margin:0 auto;padding:0 24px}
+  .toc-spacer{display:none}
+  @media(min-width:1080px){
+    .layout{max-width:1060px;display:grid;grid-template-columns:236px minmax(0,1fr);column-gap:48px;align-items:start}
+    .toc-spacer{display:block}
+    .layout > .toc.side{position:sticky;top:88px;margin:0}
+    .layout > .toc.side ol{columns:1}
+    .layout > .main{min-width:0}
+  }
+  .article{max-width:760px;margin:0 auto;padding:0 24px}
+  .hd{padding:56px 0 8px;background:radial-gradient(1000px 420px at 80% -20%,rgba(139,92,255,.14),transparent 60%),var(--bg)}
+  .crumb{font-size:13.5px;color:var(--muted);font-weight:600;margin-bottom:18px}
+  .crumb a{color:var(--brand-ink)}
+  .eyebrow{font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-ink)}
+  h1{font-size:clamp(30px,4.6vw,46px);font-weight:850;line-height:1.12;letter-spacing:-.02em;margin:14px 0 0;max-width:20ch}
+  .meta{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14.5px;margin:22px 0 6px;flex-wrap:wrap}
+  .dot{width:4px;height:4px;border-radius:50%;background:var(--line)}
+  .lede{font-size:20px;color:var(--ink-2);line-height:1.55;margin:26px 0 8px}
+  article{font-size:17.5px;color:var(--ink-2);line-height:1.72}
+  article h2{font-size:clamp(23px,3vw,30px);font-weight:820;color:var(--ink);letter-spacing:-.015em;margin:52px 0 4px;line-height:1.2;scroll-margin-top:84px}
+  article h3{font-size:20px;font-weight:750;color:var(--ink);margin:34px 0 2px}
+  article p{margin:16px 0}
+  article strong{color:var(--ink);font-weight:700}
+  article a.inline{color:var(--brand-ink);font-weight:600;border-bottom:1px solid rgba(91,75,255,.3)}
+  article a.inline:hover{border-color:var(--brand)}
+  article ul,article ol{margin:16px 0;padding-left:24px}
+  article li{margin:9px 0}
+  article ul li::marker{color:var(--brand)}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  .toc{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px;margin:30px 0}
+  .toc .t{font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+  .toc li{margin:7px 0;font-size:15px;font-weight:600}
+  .toc a{color:var(--ink-2)}
+  .toc a:hover{color:var(--brand-ink)}
+  @media(max-width:640px){.toc ol{columns:1}}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:rgba(91,75,255,.08);color:var(--brand-ink);padding:2px 6px;border-radius:6px}
+  pre{background:#141433;color:#e8e6ff;border-radius:14px;padding:20px 22px;overflow-x:auto;margin:22px 0;font-size:14.5px;line-height:1.6;box-shadow:var(--shadow)}
+  pre code{background:none;color:inherit;padding:0;font-size:14.5px}
+  .cmt{color:#8f8bc9}.kw{color:#a68bff}.str{color:#7ee0c2}.fn{color:#ffd580}.at{color:#ff9f9f}
+  blockquote{margin:24px 0;padding:4px 22px;border-left:3px solid var(--brand);color:var(--ink-2);background:linear-gradient(90deg,rgba(91,75,255,.05),transparent);border-radius:0 10px 10px 0}
+  blockquote p{margin:12px 0;font-size:17px}
+  .callout{border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:26px 0;background:#fff;box-shadow:0 2px 10px rgba(20,16,60,.04)}
+  .callout .k{font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-ink);margin-bottom:8px}
+  .callout.warn{border-color:rgba(255,159,67,.4);background:rgba(255,159,67,.06)}
+  .callout.warn .k{color:#c9760f}
+  .mgk{background:linear-gradient(135deg,#141433,#241a4d);color:#fff;border-radius:22px;padding:34px 34px;margin:40px 0;box-shadow:var(--shadow)}
+  .mgk .row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .mgk .mk{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center}
+  .mgk h3{color:#fff;font-size:22px;font-weight:820;margin:0}
+  .mgk p{color:#c9c6f0;font-size:16px;margin:0 0 20px}
+  .mgk .btns{display:flex;gap:12px;flex-wrap:wrap}
+  .mgk .btn-primary{background:#fff;color:var(--brand-ink)}
+  .mgk .btn-line{background:transparent;border:1px solid rgba(255,255,255,.28);color:#fff}
+  .mgk .btn-line:hover{border-color:#fff}
+  .end-cta{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;text-align:center;border-radius:24px;padding:52px 30px;margin:56px 0 10px}
+  .end-cta h2{color:#fff;font-size:clamp(24px,3.2vw,34px);font-weight:850;margin:0}
+  .end-cta p{color:#e9e6ff;max-width:52ch;margin:14px auto 26px;font-size:17.5px}
+  .end-cta .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .end-cta .btn-primary{background:#fff;color:var(--brand-ink)}
+  .end-cta .btn-line{background:transparent;border:1px solid rgba(255,255,255,.55);color:#fff}
+  footer{padding:40px 0;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:60px}
+  .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .foot-in .logo{font-size:16px}.foot-in .mark{width:24px;height:24px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="../index.html"><span class="mark"><svg viewBox="0 0 48 48" fill="#fff" style="width:17px;height:17px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span> Migratik</a>
+    <input type="checkbox" id="navtoggle" class="nav-toggle" aria-label="Toggle menu">
+    <label for="navtoggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <div class="nav-links">
+      <a href="../index.html#how">How it works</a>
+      <a href="../index.html#formats">Formats</a>
+      <a href="./index.html">Blog</a>
+      <a href="../index.html#pricing">Pricing</a>
+    </div>
+    <a href="../index.html#pricing" class="btn btn-primary nav-cta" style="padding:10px 20px;font-size:15px">Get Migratik Pro</a>
+  </div>
+</nav>
+
+<header class="hd">
+  <div class="layout">
+    <div class="toc-spacer" aria-hidden="true"></div>
+    <div class="main">
+    <div class="crumb"><a href="./index.html">Blog</a> &nbsp;/&nbsp; Migration</div>
+    <span class="eyebrow">WordPress → WordPress</span>
+    <h1>How to Migrate WordPress to Another WordPress Site</h1>
+    <div class="meta">
+      <span>By Hossam Hamdy</span><span class="dot"></span>
+      <span>12 min read</span><span class="dot"></span>
+      <span>Updated July 2026</span>
+    </div>
+    <p class="lede">Whether you&rsquo;re switching hosts, changing domains, or rebuilding on a clean install, moving WordPress to WordPress should be boring &mdash; everything arrives, nothing breaks. Here&rsquo;s the order of operations that keeps your content, custom fields, media, and rankings intact.</p>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="toc side">
+  <div class="t">What&rsquo;s inside</div>
+  <ol>
+    <li><a href="#why">When you need this</a></li>
+    <li><a href="#ways">Three ways to move</a></li>
+    <li><a href="#wxr">What WXR carries</a></li>
+    <li><a href="#prep">Prepare the destination</a></li>
+    <li><a href="#importing">Run the import</a></li>
+    <li><a href="#media">Bring the media</a></li>
+    <li><a href="#seo">Preserve URLs &amp; SEO</a></li>
+    <li><a href="#verify">Verify nothing&rsquo;s lost</a></li>
+  </ol>
+</nav>
+<article class="main">
+
+<p>Moving a WordPress site to another WordPress install is one of the most common jobs on the platform &mdash; and one of the easiest to get quietly wrong. You switch hosts, change domains, promote a staging build, or merge two sites, and somewhere along the way the custom fields don&rsquo;t arrive, the images 404, or the rankings slip because URLs changed with no redirects.</p>
+<p>It doesn&rsquo;t have to be that way. A WordPress&nbsp;&rarr;&nbsp;WordPress migration can be boring in the best sense: everything arrives, nothing breaks. This guide walks the order of operations that protects your content, custom post types, media, and SEO &mdash; and shows you when to clone the whole site versus move just the content.</p>
+
+<h2 id="why">When you actually need a WP-to-WP migration</h2>
+<p>&ldquo;Migrating WordPress&rdquo; covers a few very different jobs, and the right method depends on which one you&rsquo;re doing:</p>
+<ul>
+  <li><strong>New host, same site</strong> &mdash; you&rsquo;re changing hosting but keeping the exact site, theme, plugins, and database.</li>
+  <li><strong>New domain</strong> &mdash; the content stays but the URLs change, so redirects become the whole game.</li>
+  <li><strong>Clean rebuild</strong> &mdash; you want the <em>content</em> on a fresh install with a new theme or builder, and you deliberately want to leave the old plugin baggage behind.</li>
+  <li><strong>Merging or splitting sites</strong> &mdash; pulling posts and custom post types out of one site and into another.</li>
+</ul>
+<p>The first is a clone job. The rest are content-migration jobs &mdash; and that&rsquo;s where WordPress&rsquo;s own tools start to let you down.</p>
+
+<h2 id="ways">Three ways to move &mdash; and their trade-offs</h2>
+<h3>1. Full-site clone (whole database + files)</h3>
+<p>Tools like <strong>Duplicator</strong> or <strong>All-in-One WP Migration</strong> package your entire database and <code>wp-content</code> into an archive you restore on the new host. This is the right choice for &ldquo;same site, new host&rdquo; &mdash; it brings <em>everything</em>, including theme, plugins, users, and settings. The downsides: it also brings every bit of accumulated bloat, it&rsquo;s all-or-nothing (no picking which content moves), and big sites hit upload or memory limits mid-restore.</p>
+<h3>2. WXR content export/import (WordPress&rsquo;s native format)</h3>
+<p>WordPress&rsquo;s built-in exporter produces a <strong>WXR</strong> file &mdash; an XML document the destination&rsquo;s importer reads. This is the right tool for moving <em>content</em> into a different or clean install: posts, pages, custom post types, and taxonomies come across without dragging the old theme and plugin stack with them. It&rsquo;s selective and portable &mdash; but, as we&rsquo;ll see, stock WXR quietly drops several things you probably care about.</p>
+<h3>3. Manual copy or raw SQL</h3>
+<p>Copy-pasting posts or hand-editing the database directly is how migrations go wrong. You lose relationships between posts, authors, and taxonomies; you miss custom fields entirely; and one bad <code>UPDATE</code> can take the site down. Unless you&rsquo;re moving three pages, don&rsquo;t.</p>
+
+<h2 id="wxr">What WXR carries &mdash; and what it drops</h2>
+<p>WXR (WordPress eXtended RSS) is the format behind <em>Tools &rarr; Export</em>. The native importer reads it and recreates posts, pages, custom post types, taxonomies, comments, and authors. That sounds complete, but a stock WXR export has real gaps:</p>
+<ul>
+  <li><strong>Builder content comes out raw.</strong> If your pages are built with Elementor, WPBakery, Divi, Bricks, or Oxygen, the exported <code>content:encoded</code> is a block of shortcodes and builder markup &mdash; not the rendered page. Import it into an install without that exact builder and you get an empty page.</li>
+  <li><strong>Media is referenced, not included.</strong> WXR stores image URLs. The importer can try to download them, but for large or externally-hosted libraries that step routinely fails or times out.</li>
+  <li><strong>Custom fields are hit-or-miss.</strong> ACF / JetEngine / Pods values live in <code>postmeta</code>, and only travel if the export includes them.</li>
+  <li><strong>SEO meta may not survive.</strong> Yoast and Rank Math store their data as postmeta too &mdash; same story.</li>
+</ul>
+<p>Here&rsquo;s the shape of a single WXR item, so you can see where the important data actually lives:</p>
+<pre><code><span class="at">&lt;item&gt;</span>
+  <span class="at">&lt;title&gt;</span>Corneal Cross-Linking<span class="at">&lt;/title&gt;</span>
+  <span class="at">&lt;link&gt;</span>https://old-site.com/services/corneal-cross-linking/<span class="at">&lt;/link&gt;</span>
+  <span class="at">&lt;wp:post_type&gt;</span>services<span class="at">&lt;/wp:post_type&gt;</span>
+  <span class="at">&lt;content:encoded&gt;</span><span class="cmt">&lt;![CDATA[ rendered HTML here — not shortcodes ]]&gt;</span><span class="at">&lt;/content:encoded&gt;</span>
+  <span class="at">&lt;wp:postmeta&gt;</span>
+    <span class="at">&lt;wp:meta_key&gt;</span>_yoast_wpseo_metadesc<span class="at">&lt;/wp:meta_key&gt;</span>
+    <span class="at">&lt;wp:meta_value&gt;</span><span class="cmt">&lt;![CDATA[ A minimally invasive treatment… ]]&gt;</span><span class="at">&lt;/wp:meta_value&gt;</span>
+  <span class="at">&lt;/wp:postmeta&gt;</span>
+<span class="at">&lt;/item&gt;</span></code></pre>
+<p>The lesson: whether a WP-to-WP move keeps your custom fields, SEO, and builder content comes down entirely to <em>how the WXR was generated</em>. A file that rendered each page first and included the postmeta imports cleanly; a raw dump doesn&rsquo;t.</p>
+
+<div class="mgk">
+  <div class="row">
+    <span class="mk"><svg viewBox="0 0 48 48" fill="#fff" style="width:22px;height:22px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span>
+    <h3>Migratik generates a WXR that doesn&rsquo;t drop things</h3>
+  </div>
+  <p>Migratik renders every item with the right builder before exporting, and produces a WXR that includes your custom fields and SEO meta &mdash; plus a one-click media bundle so the images travel with the content instead of being left on the old server. It&rsquo;s builder-agnostic and read-only, so the source site is never touched. Free to install; WXR, CSV, and media bundling are Pro.</p>
+  <div class="btns">
+    <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
+    <a class="btn btn-line" href="../index.html#formats">See the formats</a>
+  </div>
+</div>
+
+<h2 id="prep">Prepare the destination first</h2>
+<div class="callout warn">
+  <div class="k">Do this before you import</div>
+  <p>Register your custom post types and taxonomies on the destination <strong>first</strong> &mdash; with the same plugin and same slugs (CPT UI, ACF, JetEngine, Pods). The WordPress importer will silently skip any item whose post type doesn&rsquo;t exist yet, and you won&rsquo;t get an error &mdash; just missing content.</p>
+</div>
+<p>A clean destination checklist:</p>
+<ul>
+  <li><strong>Match the permalink structure</strong> under <em>Settings &rarr; Permalinks</em>, so URLs line up (critical for SEO &mdash; more below).</li>
+  <li><strong>Install the page builder</strong> if you&rsquo;re keeping builder-made layouts, or plan to import rendered content if you&rsquo;re not.</li>
+  <li><strong>Recreate custom post types &amp; taxonomies</strong> with identical slugs.</li>
+  <li><strong>Install your SEO plugin</strong> (Yoast / Rank Math) so the imported meta has somewhere to land.</li>
+</ul>
+
+<h2 id="importing">Run the import cleanly</h2>
+<p>With the destination ready, the import itself is straightforward:</p>
+<ol>
+  <li>On the destination, go to <em>Tools &rarr; Import &rarr; WordPress</em> and install the importer if prompted.</li>
+  <li>Upload your WXR file.</li>
+  <li><strong>Map authors</strong> &mdash; assign old authors to existing users or create new ones.</li>
+  <li>Tick <strong>&ldquo;Download and import file attachments&rdquo;</strong> if you&rsquo;re relying on the importer for media (see the next section for why you might not).</li>
+  <li>If your export is large, <strong>split it</strong> into smaller WXR files &mdash; the importer chokes on very big uploads.</li>
+</ol>
+
+<h2 id="media">Bring the media across</h2>
+<p>The importer&rsquo;s &ldquo;download attachments&rdquo; step is the flakiest part of a WP-to-WP move. It re-fetches every image from the old site one by one, and on large libraries or slow hosts it stalls, times out, or silently misses files &mdash; leaving you with broken images you discover weeks later. The reliable alternative is a <strong>media bundle</strong>: package every referenced file <em>with</em> the export and rewrite the URLs to the bundled copies, so nothing depends on the old server still being alive. That&rsquo;s exactly what Migratik Pro&rsquo;s one-click bundle does, splitting large libraries into parts automatically.</p>
+
+<h2 id="seo">Preserve your URLs and SEO</h2>
+<p>SEO survives a migration when two things hold: <strong>the URLs stay the same</strong>, and <strong>the metadata comes with them</strong>.</p>
+<ul>
+  <li><strong>Keep the permalink structure identical.</strong> If a URL must change &mdash; a new domain, a restructured path &mdash; add a <strong>301 redirect</strong> from old to new. On a domain move, redirect at the server or DNS level for the whole site, then fine-tune per-URL.</li>
+  <li><strong>Carry over titles and meta descriptions.</strong> These are what Google shows in results; losing them resets the snippet Google already trusts. Make sure your SEO postmeta is in the export.</li>
+  <li><strong>Re-submit your sitemap</strong> in Google Search Console after the move, and spot-check a few key URLs with the URL Inspection tool.</li>
+</ul>
+<p>Moving off WordPress entirely instead of to another WordPress? The redirect-and-metadata playbook is the same &mdash; see our <a class="inline" href="./migrate-wordpress-to-nextjs-without-losing-seo.html">WordPress&nbsp;&rarr;&nbsp;Next.js</a> and <a class="inline" href="./wordpress-to-headless-cms.html">headless CMS</a> guides.</p>
+
+<hr>
+
+<h2 id="verify">Verify nothing was lost</h2>
+<p>Before you point DNS at the new site or delete the old one, confirm the move actually landed:</p>
+<ul>
+  <li><strong>Compare counts</strong> per content type &mdash; posts, pages, and each custom post type should match the source.</li>
+  <li><strong>Spot-check custom post types and fields</strong> &mdash; open a few items and confirm ACF/JetEngine values are present, not blank.</li>
+  <li><strong>Check images resolve</strong> &mdash; load a media-heavy page and watch for 404s in the network tab.</li>
+  <li><strong>Crawl for broken links</strong> with a tool like Screaming Frog to catch anything the import mangled.</li>
+  <li><strong>Confirm redirects</strong> if the domain changed &mdash; test a handful of old URLs and make sure they 301 to the right place.</li>
+</ul>
+<p>Every one of these failure modes traces back to the export, not the import. Start from a complete, rendered WXR with custom fields, SEO meta, and bundled media, and the destination side is the easy part.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<h3>What&rsquo;s the best way to migrate WordPress to a new host?</h3>
+<p>For a <em>same-site</em> host move, a full-site clone with a tool like Duplicator or All-in-One WP Migration is simplest &mdash; it copies the database and files as-is. For moving content into a <em>new or differently built</em> install, use a WXR export and import so you bring only content and leave old plugin and theme bloat behind.</p>
+<h3>Does WordPress&rsquo;s WXR export include images and custom fields?</h3>
+<p>WXR references image URLs and can tell the importer to side-load them, but large or externally hosted libraries often fail. Custom fields from ACF, JetEngine, or Pods live in <code>postmeta</code> and only come across if the exporter includes them &mdash; many don&rsquo;t. Check before you rely on it.</p>
+<h3>Will migrating WordPress hurt my SEO?</h3>
+<p>Not if you keep your permalink structure and 301-redirect anything that changes (especially on a domain change), and carry over your SEO metadata. Rankings drop when URLs change without redirects or when titles and meta descriptions are lost in the move.</p>
+<h3>How do I move custom post types between WordPress sites?</h3>
+<p>Register the same custom post types and taxonomies on the destination <em>first</em> (via the same plugin &mdash; CPT UI, ACF, JetEngine), then import a WXR that includes them. If the types don&rsquo;t exist on the destination, the importer discards those items.</p>
+
+<div class="end-cta">
+  <h2>Move WordPress without leaving anything behind</h2>
+  <p>Migratik exports a WXR that renders your builder content and keeps the custom fields, SEO meta, and media a stock export drops &mdash; so a WordPress-to-WordPress move arrives complete. Free to install, read-only, safe on a live site.</p>
+  <div class="btns">
+    <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
+    <a class="btn btn-line" href="../index.html#pricing">See Migratik Pro</a>
+  </div>
+</div>
+
+</article>
+</div>
+
+<footer>
+  <div class="wrap foot-in">
+    <a class="logo" href="../index.html"><span class="mark"><svg viewBox="0 0 48 48" fill="#fff" style="width:14px;height:14px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span> Migratik</a>
+    <div>© 2026 Migratik · Built by Hossam Hamdy · A builder-agnostic WordPress migration exporter.</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Export WordPress to CSV (Content Audits, Spreadsheets & Bulk Edits)</title>
+<meta name="description" content="Export WordPress posts, pages, and custom post types to clean CSV — one row per item, with SEO fields and custom data — for content audits, spreadsheets, Airtable, or bulk edits.">
+<link rel="canonical" href="https://hossamhamdy99.github.io/migratik-site/blog/export-wordpress-to-csv.html">
+<link rel="icon" type="image/png" href="../icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Migratik">
+<meta property="og:title" content="How to Export WordPress to CSV">
+<meta property="og:description" content="Get WordPress posts, pages & custom post types into clean CSV — one row per item, with SEO and custom fields — for audits, spreadsheets, and bulk edits.">
+<meta property="og:url" content="https://hossamhamdy99.github.io/migratik-site/blog/export-wordpress-to-csv.html">
+<meta property="og:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Export WordPress to CSV">
+<meta name="twitter:description" content="Clean CSV out of WordPress — one table per content type, with SEO and custom fields — for audits, spreadsheets, and bulk edits.">
+<meta name="twitter:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Export WordPress to CSV (for Content Audits, Spreadsheets & Bulk Edits)",
+  "description": "Export WordPress posts, pages, and custom post types to clean CSV — one row per item, with SEO fields and custom data — for content audits, spreadsheets, Airtable, or bulk edits.",
+  "image": "https://hossamhamdy99.github.io/migratik-site/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Hossam Hamdy"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Migratik",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hossamhamdy99.github.io/migratik-site/icon.png"
+    }
+  },
+  "mainEntityOfPage": "https://hossamhamdy99.github.io/migratik-site/blog/export-wordpress-to-csv.html",
+  "datePublished": "2026-07-21",
+  "dateModified": "2026-07-21"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does WordPress have a built-in CSV export?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. WordPress's native export produces a WXR file in XML, not CSV. To get CSV you need a plugin or a small script that queries your content and writes comma-separated rows, ideally one table per content type."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I export WordPress posts to a spreadsheet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Export your posts to CSV, with one row per post and columns for title, URL, date, and SEO fields, then open the file in Excel, Google Sheets, or Airtable. A per-content-type export keeps posts, pages, and custom post types in clean separate tables."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I bulk edit WordPress content in a spreadsheet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Export to CSV, edit in your spreadsheet, then re-import with a mapping tool. Match rows by post ID so you update existing items instead of creating duplicates, and back up the site first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I export custom post types and ACF fields to CSV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use an exporter that reads each content type separately and resolves custom fields into columns. Custom post types have different fields than posts, so a good export gives each type its own CSV with its own columns."
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --ink:#0f1222; --ink-2:#2a2f45; --muted:#5b6178; --line:#e7e9f2;
+    --bg:#ffffff; --bg-2:#f7f8fc; --brand:#5b4bff; --brand-2:#8b5cff;
+    --brand-ink:#3b2fd6; --accent:#12c9a6; --warn:#ff9f43;
+    --radius:16px; --shadow:0 12px 40px rgba(24,20,80,.10); --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;padding:14px 24px;
+    border-radius:999px;border:1px solid transparent;cursor:pointer;transition:.18s;white-space:nowrap}
+  .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 8px 24px rgba(91,75,255,.35)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(91,75,255,.45)}
+  .btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--brand);color:var(--brand-ink)}
+  nav:not(.toc){position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .logo .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#fff}
+  .nav-links{display:flex;gap:28px;align-items:center;font-size:15px;color:var(--muted);font-weight:600}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-toggle{display:none}
+  .burger{display:none}
+  @media(max-width:720px){
+    .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:6px 24px 14px;box-shadow:0 14px 26px rgba(24,20,80,.12)}
+    .nav-links a{padding:13px 2px;border-top:1px solid var(--line);font-size:16px}
+    .nav-toggle:checked ~ .nav-links{display:flex}
+    .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:40px;cursor:pointer;padding:9px 10px;margin-left:auto}
+    .burger span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:.2s}
+    .nav-toggle:checked ~ .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-toggle:checked ~ .burger span:nth-child(2){opacity:0}
+    .nav-toggle:checked ~ .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-cta{display:none}
+  }
+  .layout{max-width:760px;margin:0 auto;padding:0 24px}
+  .toc-spacer{display:none}
+  @media(min-width:1080px){
+    .layout{max-width:1060px;display:grid;grid-template-columns:236px minmax(0,1fr);column-gap:48px;align-items:start}
+    .toc-spacer{display:block}
+    .layout > .toc.side{position:sticky;top:88px;margin:0}
+    .layout > .toc.side ol{columns:1}
+    .layout > .main{min-width:0}
+  }
+  .article{max-width:760px;margin:0 auto;padding:0 24px}
+  .hd{padding:56px 0 8px;background:radial-gradient(1000px 420px at 80% -20%,rgba(139,92,255,.14),transparent 60%),var(--bg)}
+  .crumb{font-size:13.5px;color:var(--muted);font-weight:600;margin-bottom:18px}
+  .crumb a{color:var(--brand-ink)}
+  .eyebrow{font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-ink)}
+  h1{font-size:clamp(30px,4.6vw,46px);font-weight:850;line-height:1.12;letter-spacing:-.02em;margin:14px 0 0;max-width:20ch}
+  .meta{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14.5px;margin:22px 0 6px;flex-wrap:wrap}
+  .dot{width:4px;height:4px;border-radius:50%;background:var(--line)}
+  .lede{font-size:20px;color:var(--ink-2);line-height:1.55;margin:26px 0 8px}
+  article{font-size:17.5px;color:var(--ink-2);line-height:1.72}
+  article h2{font-size:clamp(23px,3vw,30px);font-weight:820;color:var(--ink);letter-spacing:-.015em;margin:52px 0 4px;line-height:1.2;scroll-margin-top:84px}
+  article h3{font-size:20px;font-weight:750;color:var(--ink);margin:34px 0 2px}
+  article p{margin:16px 0}
+  article strong{color:var(--ink);font-weight:700}
+  article a.inline{color:var(--brand-ink);font-weight:600;border-bottom:1px solid rgba(91,75,255,.3)}
+  article a.inline:hover{border-color:var(--brand)}
+  article ul,article ol{margin:16px 0;padding-left:24px}
+  article li{margin:9px 0}
+  article ul li::marker{color:var(--brand)}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  .toc{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px;margin:30px 0}
+  .toc .t{font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+  .toc li{margin:7px 0;font-size:15px;font-weight:600}
+  .toc a{color:var(--ink-2)}
+  .toc a:hover{color:var(--brand-ink)}
+  @media(max-width:640px){.toc ol{columns:1}}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:rgba(91,75,255,.08);color:var(--brand-ink);padding:2px 6px;border-radius:6px}
+  pre{background:#141433;color:#e8e6ff;border-radius:14px;padding:20px 22px;overflow-x:auto;margin:22px 0;font-size:14.5px;line-height:1.6;box-shadow:var(--shadow)}
+  pre code{background:none;color:inherit;padding:0;font-size:14.5px}
+  .cmt{color:#8f8bc9}.kw{color:#a68bff}.str{color:#7ee0c2}.fn{color:#ffd580}.at{color:#ff9f9f}
+  blockquote{margin:24px 0;padding:4px 22px;border-left:3px solid var(--brand);color:var(--ink-2);background:linear-gradient(90deg,rgba(91,75,255,.05),transparent);border-radius:0 10px 10px 0}
+  blockquote p{margin:12px 0;font-size:17px}
+  .callout{border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:26px 0;background:#fff;box-shadow:0 2px 10px rgba(20,16,60,.04)}
+  .callout .k{font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-ink);margin-bottom:8px}
+  .callout.warn{border-color:rgba(255,159,67,.4);background:rgba(255,159,67,.06)}
+  .callout.warn .k{color:#c9760f}
+  .mgk{background:linear-gradient(135deg,#141433,#241a4d);color:#fff;border-radius:22px;padding:34px 34px;margin:40px 0;box-shadow:var(--shadow)}
+  .mgk .row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .mgk .mk{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center}
+  .mgk h3{color:#fff;font-size:22px;font-weight:820;margin:0}
+  .mgk p{color:#c9c6f0;font-size:16px;margin:0 0 20px}
+  .mgk .btns{display:flex;gap:12px;flex-wrap:wrap}
+  .mgk .btn-primary{background:#fff;color:var(--brand-ink)}
+  .mgk .btn-line{background:transparent;border:1px solid rgba(255,255,255,.28);color:#fff}
+  .mgk .btn-line:hover{border-color:#fff}
+  .end-cta{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;text-align:center;border-radius:24px;padding:52px 30px;margin:56px 0 10px}
+  .end-cta h2{color:#fff;font-size:clamp(24px,3.2vw,34px);font-weight:850;margin:0}
+  .end-cta p{color:#e9e6ff;max-width:52ch;margin:14px auto 26px;font-size:17.5px}
+  .end-cta .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .end-cta .btn-primary{background:#fff;color:var(--brand-ink)}
+  .end-cta .btn-line{background:transparent;border:1px solid rgba(255,255,255,.55);color:#fff}
+  footer{padding:40px 0;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:60px}
+  .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .foot-in .logo{font-size:16px}.foot-in .mark{width:24px;height:24px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="../index.html"><span class="mark"><svg viewBox="0 0 48 48" fill="#fff" style="width:17px;height:17px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span> Migratik</a>
+    <input type="checkbox" id="navtoggle" class="nav-toggle" aria-label="Toggle menu">
+    <label for="navtoggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <div class="nav-links">
+      <a href="../index.html#how">How it works</a>
+      <a href="../index.html#formats">Formats</a>
+      <a href="./index.html">Blog</a>
+      <a href="../index.html#pricing">Pricing</a>
+    </div>
+    <a href="../index.html#pricing" class="btn btn-primary nav-cta" style="padding:10px 20px;font-size:15px">Get Migratik Pro</a>
+  </div>
+</nav>
+
+<header class="hd">
+  <div class="layout">
+    <div class="toc-spacer" aria-hidden="true"></div>
+    <div class="main">
+    <div class="crumb"><a href="./index.html">Blog</a> &nbsp;/&nbsp; Formats</div>
+    <span class="eyebrow">WordPress → CSV</span>
+    <h1>How to Export a WordPress Site to CSV</h1>
+    <div class="meta">
+      <span>By Hossam Hamdy</span><span class="dot"></span>
+      <span>11 min read</span><span class="dot"></span>
+      <span>Updated July 2026</span>
+    </div>
+    <p class="lede">A spreadsheet is still the fastest way to see your whole site at once &mdash; every post, its SEO title, its word count, its last update &mdash; in rows you can sort, filter, and hand to anyone. Here&rsquo;s how to get clean CSV out of WordPress, and what to do with it once you have it.</p>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="toc side">
+  <div class="t">What&rsquo;s inside</div>
+  <ol>
+    <li><a href="#why">Why export to CSV</a></li>
+    <li><a href="#uses">What it unlocks</a></li>
+    <li><a href="#structure">What good CSV looks like</a></li>
+    <li><a href="#how">How to export</a></li>
+    <li><a href="#audit">Run a content audit</a></li>
+    <li><a href="#reimport">Edit and re-import</a></li>
+    <li><a href="#other">Into Airtable &amp; Sheets</a></li>
+    <li><a href="#pitfalls">Pitfalls</a></li>
+  </ol>
+</nav>
+<article class="main">
+
+<p>For all the dashboards WordPress gives you, there&rsquo;s one view it can&rsquo;t: your entire site as a table. Every post in one place, sortable by date, filterable by word count, with the SEO title and meta description in columns next to it. That view lives in a spreadsheet &mdash; and getting there means exporting to CSV.</p>
+<p>CSV is the universal spreadsheet format: Excel, Google Sheets, Airtable, Notion, and every database on earth read it. This guide covers how to get clean CSV out of WordPress (it has no built-in option), what a good export looks like, and the three things people actually use it for &mdash; content audits, bulk edits, and moving structured content into other systems.</p>
+
+<h2 id="why">Why export WordPress to CSV</h2>
+<p>Markdown and WXR are for <em>migrating</em>. CSV is for <em>seeing and manipulating</em> your content. It&rsquo;s the format you reach for when the job isn&rsquo;t &ldquo;move the site&rdquo; but &ldquo;understand it,&rdquo; &ldquo;edit it in bulk,&rdquo; or &ldquo;hand it to someone who doesn&rsquo;t use WordPress.&rdquo; One row per item, columns you choose, opens anywhere.</p>
+
+<h2 id="uses">What a CSV export unlocks</h2>
+<ul>
+  <li><strong>Content audits</strong> &mdash; see every page&rsquo;s word count, last-modified date, and missing metadata at a glance, so you know what to prune, refresh, or merge.</li>
+  <li><strong>Bulk editing</strong> &mdash; rewrite titles or meta descriptions across hundreds of posts in a spreadsheet, then push the changes back.</li>
+  <li><strong>Client &amp; team reporting</strong> &mdash; a content inventory anyone can read, no WordPress login required.</li>
+  <li><strong>Migrating structured content</strong> &mdash; directories, staff profiles, listings, or products drop cleanly into Airtable, a headless CMS, or a custom app as rows.</li>
+</ul>
+
+<h2 id="structure">What a good CSV export looks like</h2>
+<p>The single most important decision is <strong>one table per content type</strong>. Posts, pages, and each custom post type have different fields &mdash; a &ldquo;services&rdquo; CPT has a price and duration; a &ldquo;staff&rdquo; CPT has a title and photo. Flatten them all into one giant CSV and you get a mess of half-empty columns. Give each type its own file and every column means something.</p>
+<p>A clean per-type export carries the fields that make the sheet useful:</p>
+<pre><code>id,title,slug,status,date,modified,seo_title,meta_description,word_count
+128,"Corneal Cross-Linking",corneal-cross-linking,publish,2024-03-12,2025-01-08,"Corneal Cross-Linking | Cairo Eye","A minimally invasive treatment…",612
+131,"LASIK Surgery",lasik-surgery,publish,2024-04-01,2025-02-20,"LASIK Eye Surgery in Cairo","See clearly without glasses…",840</code></pre>
+<p>Note what&rsquo;s in there beyond the basics: the <code>seo_title</code> and <code>meta_description</code> (so an audit can flag what&rsquo;s missing) and <code>word_count</code> and <code>modified</code> (so you can spot thin and stale content instantly).</p>
+
+<h2 id="how">How to export WordPress to CSV</h2>
+<p>WordPress ships no CSV export, so you have three routes:</p>
+<ul>
+  <li><strong>A dedicated plugin.</strong> Tools like WP All Export are powerful but built for complex mapping and can be overkill (and paid) for a straightforward dump; simpler free exporters often only handle standard posts, not custom post types or fields.</li>
+  <li><strong>A few lines of code</strong>, if you&rsquo;re comfortable with PHP and only need a quick one-off:</li>
+</ul>
+<pre><code><span class="cmt">// quick CSV of published posts — run once via WP-CLI, then remove</span>
+<span class="kw">$rows</span> = <span class="fn">get_posts</span>([<span class="str">'post_type'</span> =&gt; <span class="str">'post'</span>, <span class="str">'numberposts'</span> =&gt; -1]);
+<span class="kw">$out</span> = <span class="fn">fopen</span>(<span class="str">'posts.csv'</span>, <span class="str">'w'</span>);
+<span class="fn">fputcsv</span>(<span class="kw">$out</span>, [<span class="str">'id'</span>, <span class="str">'title'</span>, <span class="str">'url'</span>, <span class="str">'date'</span>, <span class="str">'status'</span>]);
+<span class="kw">foreach</span> (<span class="kw">$rows</span> <span class="kw">as</span> <span class="kw">$p</span>) {
+  <span class="fn">fputcsv</span>(<span class="kw">$out</span>, [<span class="kw">$p</span>-&gt;ID, <span class="fn">get_the_title</span>(<span class="kw">$p</span>), <span class="fn">get_permalink</span>(<span class="kw">$p</span>), <span class="kw">$p</span>-&gt;post_date, <span class="kw">$p</span>-&gt;post_status]);
+}
+<span class="fn">fclose</span>(<span class="kw">$out</span>);</code></pre>
+<p>That handles standard posts. The moment you need custom post types, resolved ACF fields, SEO meta, and correct UTF-8 for non-English content, the script grows fast.</p>
+<ul>
+  <li><strong>An exporter that does per-type CSV in one click</strong>, with SEO and custom fields already resolved into columns &mdash; the least effort, and the safest with non-Latin content.</li>
+</ul>
+
+<div class="mgk">
+  <div class="row">
+    <span class="mk"><svg viewBox="0 0 48 48" fill="#fff" style="width:22px;height:22px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span>
+    <h3>Migratik exports one clean CSV per content type</h3>
+  </div>
+  <p>Migratik reads every content type separately and writes a tidy CSV for each &mdash; posts, pages, and every custom post type &mdash; with SEO fields and resolved ACF/JetEngine/Pods values already in columns, UTF-8 safe for any language. Builder-agnostic and read-only. Free to install; CSV, Markdown, WXR, and media bundling are Pro.</p>
+  <div class="btns">
+    <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
+    <a class="btn btn-line" href="../index.html#formats">See the formats</a>
+  </div>
+</div>
+
+<h2 id="audit">Run a content audit in the sheet</h2>
+<p>Once your content is in a spreadsheet, an audit is just sorting and filtering. What to look for:</p>
+<ul>
+  <li><strong>Thin content</strong> &mdash; sort by <code>word_count</code> ascending to surface pages too short to rank.</li>
+  <li><strong>Stale content</strong> &mdash; sort by <code>modified</code> to find what hasn&rsquo;t been touched in years and may need a refresh.</li>
+  <li><strong>Missing metadata</strong> &mdash; filter for empty <code>meta_description</code> or <code>seo_title</code> cells.</li>
+  <li><strong>Duplicate or cannibalizing titles</strong> &mdash; conditional-format duplicates in the title column.</li>
+  <li><strong>Orphans and redirects</strong> &mdash; cross-reference against your sitemap or analytics to find pages with no traffic.</li>
+</ul>
+<p>The output of an audit is a plan: keep, update, merge, or redirect &mdash; decided in minutes instead of clicking through the dashboard page by page.</p>
+
+<h2 id="reimport">Edit in the sheet, then bring it back</h2>
+<p>CSV is a round trip. For bulk changes &mdash; rewriting a hundred meta descriptions, retagging posts &mdash; edit the cells in your spreadsheet, export back to CSV, and re-import with a mapping tool (WP All Import and similar). Two rules keep it safe: <strong>match rows by post ID</strong> so you update existing items instead of creating duplicates, and <strong>back up the database first</strong>, because a bulk import is a bulk change.</p>
+
+<h2 id="other">Into Airtable, Sheets &amp; other systems</h2>
+<p>Because CSV is universal, a per-type export maps cleanly into other tools. Each content-type CSV becomes a table in <strong>Airtable</strong> &mdash; ideal for turning a WordPress directory or catalog into a relational base. <strong>Google Sheets</strong> and <strong>Notion</strong> import CSV directly for reporting and collaboration. And if you&rsquo;re moving structured records into a custom app or a <a class="inline" href="./wordpress-to-headless-cms.html">headless CMS</a>, CSV (or JSON) is the handoff format.</p>
+
+<hr>
+
+<h2 id="pitfalls">Pitfalls to avoid</h2>
+<ul>
+  <li><strong>Encoding breakage</strong> &mdash; non-Latin content (Arabic, accented characters, emoji) turns to garbage without proper UTF-8. Insist on UTF-8 output and open with the right encoding in your spreadsheet.</li>
+  <li><strong>One giant table</strong> &mdash; flattening every post type into a single CSV buries real columns under empty ones. Export per type.</li>
+  <li><strong>Raw HTML in cells</strong> &mdash; rendered content is full of markup. Decide up front whether you want raw HTML, plain text, or just the metadata, so the sheet stays readable.</li>
+  <li><strong>Dropped custom fields</strong> &mdash; a basic export gives you title and date and nothing else. If your CPTs carry their real content in custom fields, make sure those become columns.</li>
+</ul>
+<p>Get a per-type, UTF-8, field-resolved export and the spreadsheet does the rest &mdash; audits, bulk edits, and handoffs all become a matter of sorting rows.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<h3>Does WordPress have a built-in CSV export?</h3>
+<p>No. WordPress&rsquo;s native export produces a <strong>WXR</strong> file (XML), not CSV. To get CSV you need a plugin or a small script that queries your content and writes comma-separated rows &mdash; ideally one table per content type.</p>
+<h3>How do I export WordPress posts to a spreadsheet?</h3>
+<p>Export your posts to CSV (one row per post; columns for title, URL, date, SEO fields), then open the file in Excel, Google Sheets, or Airtable. A per-content-type export keeps posts, pages, and custom post types in clean separate tables.</p>
+<h3>Can I bulk edit WordPress content in a spreadsheet?</h3>
+<p>Yes &mdash; export to CSV, edit in your spreadsheet, then re-import with a mapping tool. Match rows by <strong>post ID</strong> so you update existing items instead of creating duplicates, and back up the site first.</p>
+<h3>How do I export custom post types and ACF fields to CSV?</h3>
+<p>Use an exporter that reads each content type separately and resolves custom fields into columns. Custom post types have different fields than posts, so a good export gives each type its own CSV with its own columns.</p>
+
+<div class="end-cta">
+  <h2>Turn your whole site into clean spreadsheets</h2>
+  <p>Migratik exports one tidy CSV per content type &mdash; posts, pages, and every custom post type &mdash; with SEO and custom fields already in columns, UTF-8 safe. Perfect for content audits, bulk edits, and Airtable. Free to install, read-only, safe on a live site.</p>
+  <div class="btns">
+    <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
+    <a class="btn btn-line" href="../index.html#pricing">See Migratik Pro</a>
+  </div>
+</div>
+
+</article>
+</div>
+
+<footer>
+  <div class="wrap foot-in">
+    <a class="logo" href="../index.html"><span class="mark"><svg viewBox="0 0 48 48" fill="#fff" style="width:14px;height:14px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span> Migratik</a>
+    <div>© 2026 Migratik · Built by Hossam Hamdy · A builder-agnostic WordPress migration exporter.</div>
+  </div>
+</footer>
+
+</body>
+</html>
