@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Migratik Blog — WordPress migration, headless & SEO guides</title>
+<meta name="description" content="Practical guides on migrating WordPress — to Next.js, headless CMS, and beyond — without losing your SEO, content, or media.">
+<link rel="canonical" href="https://hossamhamdy99.github.io/migratik-site/blog/">
+<link rel="icon" type="image/png" href="../icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Migratik">
+<meta property="og:title" content="Migratik Blog — WordPress migration & SEO guides">
+<meta property="og:description" content="Practical guides on migrating WordPress without losing your SEO, content, or media.">
+<meta property="og:url" content="https://hossamhamdy99.github.io/migratik-site/blog/">
+<meta property="og:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
+<style>
+  :root{
+    --ink:#0f1222; --ink-2:#2a2f45; --muted:#5b6178; --line:#e7e9f2;
+    --bg:#ffffff; --bg-2:#f7f8fc; --brand:#5b4bff; --brand-2:#8b5cff;
+    --brand-ink:#3b2fd6; --accent:#12c9a6; --radius:16px;
+    --shadow:0 12px 40px rgba(24,20,80,.10); --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:10px 20px;
+    border-radius:999px;border:1px solid transparent;cursor:pointer;transition:.18s}
+  .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 8px 24px rgba(91,75,255,.35)}
+  .btn-primary:hover{transform:translateY(-2px)}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .logo .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center}
+  .nav-links{display:flex;gap:28px;align-items:center;font-size:15px;color:var(--muted);font-weight:600}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  .hd{padding:72px 0 20px;background:radial-gradient(1000px 420px at 80% -20%,rgba(139,92,255,.14),transparent 60%),var(--bg)}
+  .eyebrow{font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-ink)}
+  h1{font-size:clamp(32px,4.6vw,48px);font-weight:850;line-height:1.12;letter-spacing:-.02em;margin:12px 0 0}
+  .hd p{font-size:19px;color:var(--muted);max-width:56ch;margin:18px 0 0}
+
+  section{padding:44px 0 76px}
+  .posts{display:grid;gap:22px;grid-template-columns:1fr}
+  .post{display:block;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 32px;
+    transition:.18s;box-shadow:0 2px 10px rgba(20,16,60,.03)}
+  .post:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:var(--shadow)}
+  .post .tag{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-ink)}
+  .post h2{font-size:clamp(21px,2.6vw,27px);font-weight:820;letter-spacing:-.015em;margin:10px 0 0;line-height:1.2}
+  .post p{color:var(--muted);font-size:16px;margin:12px 0 0;max-width:64ch}
+  .post .meta{color:var(--muted);font-size:14px;margin-top:16px;display:flex;gap:10px;align-items:center}
+  .post .dot{width:4px;height:4px;border-radius:50%;background:var(--line)}
+  .post .more{color:var(--brand-ink);font-weight:700;font-size:15px;margin-top:16px;display:inline-block}
+
+  .soon{margin-top:26px;border:1px dashed var(--line);border-radius:var(--radius);padding:26px 32px;color:var(--muted);font-size:15.5px;background:var(--bg-2)}
+  .soon b{color:var(--ink-2)}
+
+  footer{padding:40px 0;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+  .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .foot-in .logo{font-size:16px}.foot-in .mark{width:24px;height:24px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="../index.html"><span class="mark"><svg viewBox="0 0 48 48" fill="#fff" style="width:17px;height:17px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span> Migratik</a>
+    <div class="nav-links">
+      <a href="../index.html#how">How it works</a>
+      <a href="../index.html#formats">Formats</a>
+      <a href="./index.html">Blog</a>
+      <a href="../index.html#pricing">Pricing</a>
+    </div>
+    <a href="../index.html#pricing" class="btn btn-primary">Get Migratik Pro</a>
+  </div>
+</nav>
+
+<header class="hd">
+  <div class="wrap">
+    <span class="eyebrow">Migratik Blog</span>
+    <h1>Migrations, done without regrets</h1>
+    <p>Practical, no-fluff guides on moving WordPress anywhere — Next.js, headless, flat files — while keeping the SEO, content, and media you already earned.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="posts">
+
+      <a class="post" href="./migrate-wordpress-to-nextjs-without-losing-seo.html">
+        <span class="tag">WordPress → Next.js</span>
+        <h2>How to Migrate WordPress to Next.js Without Losing Your SEO</h2>
+        <p>The exact order-of-operations playbook to go headless without wiping out your rankings — permalinks, 301 redirects, metadata, sitemaps, and images, with App Router code you can copy.</p>
+        <div class="meta"><span>13 min read</span><span class="dot"></span><span>Updated July 2026</span></div>
+        <span class="more">Read the guide →</span>
+      </a>
+
+    </div>
+
+    <div class="soon"><b>More guides on the way.</b> Headless WordPress with a CMS, migrating to Astro, and turning your content into Markdown for static sites — all coming soon.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <a class="logo" href="../index.html"><span class="mark"><svg viewBox="0 0 48 48" fill="#fff" style="width:14px;height:14px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span> Migratik</a>
+    <div>© 2026 Migratik · Built by Hossam Hamdy · A builder-agnostic WordPress migration exporter.</div>
+  </div>
+</footer>
+
+</body>
+</html>

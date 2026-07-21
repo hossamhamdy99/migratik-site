@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Migrate WordPress to Next.js Without Losing Your SEO (2026 Guide)</title>
+<meta name="description" content="A practical, step-by-step guide to moving a WordPress site to Next.js while keeping every ranking — permalinks, 301 redirects, metadata, sitemaps, images, and content intact.">
+<link rel="canonical" href="https://hossamhamdy99.github.io/migratik-site/blog/migrate-wordpress-to-nextjs-without-losing-seo.html">
+<link rel="icon" type="image/png" href="../icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Migratik">
+<meta property="og:title" content="How to Migrate WordPress to Next.js Without Losing Your SEO">
+<meta property="og:description" content="Keep every ranking when you go headless: permalinks, 301 redirects, metadata, sitemaps, images, and content — done in the right order.">
+<meta property="og:url" content="https://hossamhamdy99.github.io/migratik-site/blog/migrate-wordpress-to-nextjs-without-losing-seo.html">
+<meta property="og:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Migrate WordPress to Next.js Without Losing Your SEO">
+<meta name="twitter:description" content="A step-by-step, ranking-safe migration guide: permalinks, 301s, metadata, sitemaps, images, and content.">
+<meta name="twitter:image" content="https://hossamhamdy99.github.io/migratik-site/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Migrate WordPress to Next.js Without Losing Your SEO",
+  "description": "A practical, step-by-step guide to moving a WordPress site to Next.js while keeping every ranking — permalinks, 301 redirects, metadata, sitemaps, images, and content intact.",
+  "image": "https://hossamhamdy99.github.io/migratik-site/og-image.png",
+  "author": { "@type": "Person", "name": "Hossam Hamdy" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Migratik",
+    "logo": { "@type": "ImageObject", "url": "https://hossamhamdy99.github.io/migratik-site/icon.png" }
+  },
+  "mainEntityOfPage": "https://hossamhamdy99.github.io/migratik-site/blog/migrate-wordpress-to-nextjs-without-losing-seo.html",
+  "datePublished": "2026-07-21",
+  "dateModified": "2026-07-21"
+}
+</script>
+<style>
+  :root{
+    --ink:#0f1222; --ink-2:#2a2f45; --muted:#5b6178; --line:#e7e9f2;
+    --bg:#ffffff; --bg-2:#f7f8fc; --brand:#5b4bff; --brand-2:#8b5cff;
+    --brand-ink:#3b2fd6; --accent:#12c9a6; --warn:#ff9f43;
+    --radius:16px; --shadow:0 12px 40px rgba(24,20,80,.10); --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;padding:14px 24px;
+    border-radius:999px;border:1px solid transparent;cursor:pointer;transition:.18s;white-space:nowrap}
+  .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 8px 24px rgba(91,75,255,.35)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(91,75,255,.45)}
+  .btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--brand);color:var(--brand-ink)}
+
+  /* Nav (matches landing) */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .logo .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    display:grid;place-items:center;color:#fff}
+  .nav-links{display:flex;gap:28px;align-items:center;font-size:15px;color:var(--muted);font-weight:600}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  /* Article */
+  .article{max-width:760px;margin:0 auto;padding:0 24px}
+  .hd{padding:56px 0 8px;background:
+     radial-gradient(1000px 420px at 80% -20%,rgba(139,92,255,.14),transparent 60%),var(--bg)}
+  .crumb{font-size:13.5px;color:var(--muted);font-weight:600;margin-bottom:18px}
+  .crumb a{color:var(--brand-ink)}
+  .eyebrow{font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-ink)}
+  h1{font-size:clamp(30px,4.6vw,46px);font-weight:850;line-height:1.12;letter-spacing:-.02em;margin:14px 0 0;max-width:20ch}
+  .meta{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14.5px;margin:22px 0 6px;flex-wrap:wrap}
+  .dot{width:4px;height:4px;border-radius:50%;background:var(--line)}
+  .lede{font-size:20px;color:var(--ink-2);line-height:1.55;margin:26px 0 8px}
+
+  article{font-size:17.5px;color:var(--ink-2);line-height:1.72}
+  article h2{font-size:clamp(23px,3vw,30px);font-weight:820;color:var(--ink);letter-spacing:-.015em;
+    margin:52px 0 4px;line-height:1.2;scroll-margin-top:84px}
+  article h3{font-size:20px;font-weight:750;color:var(--ink);margin:34px 0 2px}
+  article p{margin:16px 0}
+  article strong{color:var(--ink);font-weight:700}
+  article a.inline{color:var(--brand-ink);font-weight:600;border-bottom:1px solid rgba(91,75,255,.3)}
+  article a.inline:hover{border-color:var(--brand)}
+  article ul,article ol{margin:16px 0;padding-left:24px}
+  article li{margin:9px 0}
+  article ul li::marker{color:var(--brand)}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+
+  .toc{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px;margin:30px 0}
+  .toc .t{font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+  .toc li{margin:7px 0;font-size:15px;font-weight:600}
+  .toc a{color:var(--ink-2)}
+  .toc a:hover{color:var(--brand-ink)}
+  @media(max-width:640px){.toc ol{columns:1}}
+
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.9em;
+    background:rgba(91,75,255,.08);color:var(--brand-ink);padding:2px 6px;border-radius:6px}
+  pre{background:#141433;color:#e8e6ff;border-radius:14px;padding:20px 22px;overflow-x:auto;margin:22px 0;
+    font-size:14.5px;line-height:1.6;box-shadow:var(--shadow)}
+  pre code{background:none;color:inherit;padding:0;font-size:14.5px}
+  .cmt{color:#8f8bc9}
+  .kw{color:#a68bff}.str{color:#7ee0c2}.fn{color:#ffd580}
+
+  blockquote{margin:24px 0;padding:4px 22px;border-left:3px solid var(--brand);color:var(--ink-2);
+    background:linear-gradient(90deg,rgba(91,75,255,.05),transparent);border-radius:0 10px 10px 0}
+  blockquote p{margin:12px 0;font-size:17px}
+
+  .callout{border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:26px 0;background:#fff;
+    box-shadow:0 2px 10px rgba(20,16,60,.04)}
+  .callout .k{font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-ink);margin-bottom:8px}
+  .callout.warn{border-color:rgba(255,159,67,.4);background:rgba(255,159,67,.06)}
+  .callout.warn .k{color:#c9760f}
+
+  /* Migratik CTA card */
+  .mgk{background:linear-gradient(135deg,#141433,#241a4d);color:#fff;border-radius:22px;padding:34px 34px;margin:40px 0;
+    box-shadow:var(--shadow)}
+  .mgk .row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .mgk .mk{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    display:grid;place-items:center}
+  .mgk h3{color:#fff;font-size:22px;font-weight:820;margin:0}
+  .mgk p{color:#c9c6f0;font-size:16px;margin:0 0 20px}
+  .mgk .btns{display:flex;gap:12px;flex-wrap:wrap}
+  .mgk .btn-primary{background:#fff;color:var(--brand-ink)}
+  .mgk .btn-line{background:transparent;border:1px solid rgba(255,255,255,.28);color:#fff}
+  .mgk .btn-line:hover{border-color:#fff}
+
+  .end-cta{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;text-align:center;
+    border-radius:24px;padding:52px 30px;margin:56px 0 10px}
+  .end-cta h2{color:#fff;font-size:clamp(24px,3.2vw,34px);font-weight:850;margin:0}
+  .end-cta p{color:#e9e6ff;max-width:52ch;margin:14px auto 26px;font-size:17.5px}
+  .end-cta .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .end-cta .btn-primary{background:#fff;color:var(--brand-ink)}
+  .end-cta .btn-line{background:transparent;border:1px solid rgba(255,255,255,.55);color:#fff}
+
+  footer{padding:40px 0;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:60px}
+  .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .foot-in .logo{font-size:16px}.foot-in .mark{width:24px;height:24px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="../index.html"><span class="mark"><svg viewBox="0 0 48 48" fill="#fff" style="width:17px;height:17px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span> Migratik</a>
+    <div class="nav-links">
+      <a href="../index.html#how">How it works</a>
+      <a href="../index.html#formats">Formats</a>
+      <a href="./index.html">Blog</a>
+      <a href="../index.html#pricing">Pricing</a>
+    </div>
+    <a href="../index.html#pricing" class="btn btn-primary" style="padding:10px 20px;font-size:15px">Get Migratik Pro</a>
+  </div>
+</nav>
+
+<header class="hd">
+  <div class="article">
+    <div class="crumb"><a href="./index.html">Blog</a> &nbsp;/&nbsp; Migration</div>
+    <span class="eyebrow">WordPress → Next.js</span>
+    <h1>How to Migrate WordPress to Next.js Without Losing Your SEO</h1>
+    <div class="meta">
+      <span>By Hossam Hamdy</span><span class="dot"></span>
+      <span>13 min read</span><span class="dot"></span>
+      <span>Updated July 2026</span>
+    </div>
+    <p class="lede">Going headless can make your site dramatically faster — but a careless migration can wipe out years of rankings overnight. It doesn&rsquo;t have to. Here&rsquo;s the exact, order-of-operations playbook to move a WordPress site to Next.js while keeping every URL, redirect, meta tag, and image that Google already trusts.</p>
+  </div>
+</header>
+
+<div class="article">
+<article>
+
+<p>Most &ldquo;WordPress to Next.js&rdquo; tutorials show you how to fetch posts from the WP REST API and render them in the App Router. That&rsquo;s the easy 20%. The 80% that actually decides whether your organic traffic survives is everything <em>around</em> the content: your URLs, your redirects, your metadata, your sitemap, and your images. Get those wrong and you&rsquo;ll watch impressions fall off a cliff two weeks after launch — right when everyone assumes the migration &ldquo;went fine.&rdquo;</p>
+
+<p>This guide is the checklist I wish every team ran <strong>before</strong> flipping DNS. It&rsquo;s framework-accurate for the Next.js App Router, and it works whether your new backend is headless WordPress, a headless CMS, or flat files.</p>
+
+<div class="toc">
+  <div class="t">What&rsquo;s inside</div>
+  <ol>
+    <li><a href="#rule">The one rule that saves rankings</a></li>
+    <li><a href="#inventory">Step 1 — Inventory everything first</a></li>
+    <li><a href="#urls">Step 2 — Keep your URL structure</a></li>
+    <li><a href="#redirects">Step 3 — 301 anything that moves</a></li>
+    <li><a href="#metadata">Step 4 — Carry over your metadata</a></li>
+    <li><a href="#sitemap">Step 5 — Rebuild sitemap &amp; robots</a></li>
+    <li><a href="#media">Step 6 — Don&rsquo;t lose your images</a></li>
+    <li><a href="#launch">Step 7 — Launch &amp; verify</a></li>
+    <li><a href="#mistakes">Mistakes that tank rankings</a></li>
+  </ol>
+</div>
+
+<h2 id="rule">The one rule that saves rankings</h2>
+<p>Every decision in a migration comes back to a single principle:</p>
+<blockquote><p><strong>Nothing about how Google already sees your pages should change — except the parts you deliberately improve.</strong></p></blockquote>
+<p>Google ranks specific URLs based on their content, their metadata, and the links pointing to them. A migration is dangerous precisely because it&rsquo;s tempting to change all three at once: new URLs, a &ldquo;cleaner&rdquo; content structure, redesigned templates. Do that and you&rsquo;ve thrown away the signals every ranking is built on. The safe path is boring on purpose: same URLs, same content, same meta — just a faster, modern frontend underneath.</p>
+
+<h2 id="inventory">Step 1 — Inventory everything <em>before</em> you touch anything</h2>
+<p>You cannot preserve what you haven&rsquo;t captured. Before writing a line of Next.js, you need a complete, structured snapshot of the live site: every published URL, its rendered content, its SEO metadata, its images, and its internal links. This inventory becomes the source of truth for your redirect map, your <code>generateMetadata</code>, and your sitemap.</p>
+<p>This is the step most guides wave away with &ldquo;export your content from WordPress.&rdquo; In reality it&rsquo;s where migrations quietly break — because the default WordPress export (WXR) gives you raw post content, not the <em>rendered</em> HTML your page builder actually outputs, and it drops most of the SEO fields you need. If your site runs Elementor, WPBakery, Divi, Bricks, or Oxygen, a raw export is close to useless: the shortcodes never render.</p>
+
+<div class="mgk">
+  <div class="row">
+    <span class="mk"><svg viewBox="0 0 48 48" fill="#fff" style="width:22px;height:22px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span>
+    <h3>This is exactly what Migratik was built for</h3>
+  </div>
+  <p>Migratik packs an entire WordPress site into one clean JSON file — the fully <em>rendered</em> <code>content_html</code> (builder shortcodes executed), the theme-rendered <code>document_title</code>, the <code>permalink</code> of every item, SEO meta from Yoast / Rank Math / AIOSEO, featured &amp; in-content images, internal links, taxonomies, and custom fields. It&rsquo;s builder-agnostic and read-only, so it changes nothing on your live site. That single file is the inventory this entire guide runs on.</p>
+  <div class="btns">
+    <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
+    <a class="btn btn-line" href="../index.html#how">See how it works</a>
+  </div>
+</div>
+
+<p>However you capture it, make sure your inventory contains, for every URL:</p>
+<ul>
+  <li><strong>The permalink</strong> — the live, canonical URL. This drives your redirect map.</li>
+  <li><strong>The rendered HTML</strong> — what visitors actually see, builders executed.</li>
+  <li><strong>The document title &amp; meta description</strong> — the exact <code>&lt;title&gt;</code> and description Google indexed.</li>
+  <li><strong>Canonical, Open Graph, and structured data</strong> — anything that shaped the search snippet.</li>
+  <li><strong>Every image URL</strong> — featured and in-content, with alt text.</li>
+  <li><strong>Internal links</strong> — so you can verify none 404 after launch.</li>
+</ul>
+
+<h2 id="urls">Step 2 — Keep your URL structure</h2>
+<p>The single highest-leverage decision you&rsquo;ll make: <strong>keep your existing permalink structure</strong>. If a post lives at <code>/blog/corneal-cross-linking/</code> today, it should live at the same path on Next.js. Same slug, same trailing-slash convention, same casing. When URLs don&rsquo;t change, the vast majority of your ranking signal transfers for free.</p>
+<p>In the App Router, mirror your WordPress paths with the file-system router and dynamic segments:</p>
+<pre><code><span class="cmt">// app/blog/[slug]/page.tsx  →  /blog/corneal-cross-linking</span>
+<span class="kw">export async function</span> <span class="fn">generateStaticParams</span>() {
+  <span class="kw">const</span> items = <span class="kw">await</span> <span class="fn">getAllContent</span>();  <span class="cmt">// from your inventory JSON</span>
+  <span class="kw">return</span> items.<span class="fn">map</span>((it) =&gt; ({ slug: it.slug }));
+}</code></pre>
+<p>One detail that silently causes duplicate-content problems: <strong>trailing slashes</strong>. WordPress serves <code>/blog/post/</code> (with a slash); Next.js defaults to no slash. Pick one and enforce it site-wide with <code>trailingSlash</code> in your config, and make sure your redirects and canonical tags agree with the choice.</p>
+<pre><code><span class="cmt">// next.config.js</span>
+<span class="kw">module</span>.exports = { trailingSlash: <span class="kw">true</span> };  <span class="cmt">// match WordPress's default</span></code></pre>
+
+<h2 id="redirects">Step 3 — 301 anything that moves</h2>
+<p>Some URLs will change — maybe you&rsquo;re dropping <code>/category/</code> bases or consolidating thin pages. Every one of those <strong>must</strong> return a <strong>301 (permanent) redirect</strong> to its new home. A 301 passes the old URL&rsquo;s ranking authority to the new one; a 302 (temporary) or a soft 404 throws it away.</p>
+<p>Because your inventory already holds every old permalink, generating the redirect map is mechanical. For a handful of redirects, put them in <code>next.config.js</code>:</p>
+<pre><code><span class="cmt">// next.config.js</span>
+<span class="kw">module</span>.exports = {
+  <span class="kw">async</span> <span class="fn">redirects</span>() {
+    <span class="kw">return</span> [
+      {
+        source: <span class="str">'/category/:slug'</span>,
+        destination: <span class="str">'/topics/:slug'</span>,
+        permanent: <span class="kw">true</span>,   <span class="cmt">// emits a 301</span>
+      },
+      { source: <span class="str">'/old-about-us'</span>, destination: <span class="str">'/about'</span>, permanent: <span class="kw">true</span> },
+    ];
+  },
+};</code></pre>
+<p>For hundreds or thousands of one-off redirects, don&rsquo;t hand-write them — generate the list from your inventory and match them in <code>middleware.ts</code> against a lookup map, or use your host&rsquo;s redirect layer (Vercel, Netlify, Cloudflare). The key is that <code>permanent: true</code> emits an HTTP 301.</p>
+<div class="callout warn">
+  <div class="k">Watch out</div>
+  <p>Never chain redirects (old &rarr; interim &rarr; final) and never redirect everything to the homepage. A redirect to an irrelevant page is treated by Google as a soft 404 and loses the ranking entirely. Map each old URL to its <em>true</em> equivalent.</p>
+</div>
+
+<h2 id="metadata">Step 4 — Carry over your metadata, exactly</h2>
+<p>Your <code>&lt;title&gt;</code> and meta description are what earn the click in search results. Port them <strong>verbatim</strong> from the inventory — don&rsquo;t &ldquo;rewrite while you&rsquo;re at it.&rdquo; The Next.js App Router exposes the Metadata API for precisely this, and <code>generateMetadata</code> lets you populate it per-page from your captured data:</p>
+<pre><code><span class="cmt">// app/blog/[slug]/page.tsx</span>
+<span class="kw">import type</span> { Metadata } <span class="kw">from</span> <span class="str">'next'</span>;
+
+<span class="kw">export async function</span> <span class="fn">generateMetadata</span>(
+  { params }: { params: { slug: <span class="kw">string</span> } }
+): <span class="fn">Promise</span>&lt;Metadata&gt; {
+  <span class="kw">const</span> item = <span class="kw">await</span> <span class="fn">getItem</span>(params.slug);
+  <span class="kw">return</span> {
+    title: item.document_title,      <span class="cmt">// exact indexed &lt;title&gt;</span>
+    description: item.seo.description,
+    alternates: { canonical: item.permalink },
+    openGraph: {
+      title: item.document_title,
+      description: item.seo.description,
+      images: [item.featured_image?.url].<span class="fn">filter</span>(<span class="fn">Boolean</span>),
+    },
+  };
+}</code></pre>
+<p>Two things people forget here: set an explicit <strong>canonical</strong> for every page (with your trailing-slash convention), and carry over your <strong>structured data</strong> (JSON-LD). If your posts had Article or FAQ schema on WordPress, render the same JSON-LD in Next.js — losing it can shrink your rich results.</p>
+
+<h2 id="sitemap">Step 5 — Rebuild your sitemap and robots</h2>
+<p>A fresh site needs a fresh XML sitemap listing every live URL, so Search Console can re-discover your pages fast. The App Router generates one from a single file — again, straight from your inventory:</p>
+<pre><code><span class="cmt">// app/sitemap.ts</span>
+<span class="kw">import type</span> { MetadataRoute } <span class="kw">from</span> <span class="str">'next'</span>;
+
+<span class="kw">export default async function</span> <span class="fn">sitemap</span>(): <span class="fn">Promise</span>&lt;MetadataRoute.Sitemap&gt; {
+  <span class="kw">const</span> items = <span class="kw">await</span> <span class="fn">getAllContent</span>();
+  <span class="kw">return</span> items.<span class="fn">map</span>((it) =&gt; ({
+    url: it.permalink,
+    lastModified: it.modified,
+  }));
+}</code></pre>
+<pre><code><span class="cmt">// app/robots.ts</span>
+<span class="kw">import type</span> { MetadataRoute } <span class="kw">from</span> <span class="str">'next'</span>;
+
+<span class="kw">export default function</span> <span class="fn">robots</span>(): MetadataRoute.Robots {
+  <span class="kw">return</span> {
+    rules: { userAgent: <span class="str">'*'</span>, allow: <span class="str">'/'</span> },
+    sitemap: <span class="str">'https://yoursite.com/sitemap.xml'</span>,
+  };
+}</code></pre>
+<div class="callout warn">
+  <div class="k">The classic launch-day disaster</div>
+  <p>A staging site almost always ships with <code>Disallow: /</code> or a site-wide <code>noindex</code>. If that config reaches production, Google will <em>deindex your entire site</em>. Before launch, confirm production returns <code>index,follow</code> and an <code>allow: /</code> robots rule.</p>
+</div>
+
+<h2 id="media">Step 6 — Don&rsquo;t lose your images</h2>
+<p>Images carry ranking weight through image search, alt text, and Core Web Vitals. Two traps: broken image URLs after you move hosts, and dropped alt text. Your inventory should already include every image URL and its alt attribute — bundle the actual files, rewrite the URLs to their new home, and keep the alt text attached to each image.</p>
+<p>If you&rsquo;re moving off the WordPress uploads directory entirely, <strong>Migratik Pro&rsquo;s one-click media bundle</strong> does this in a single step: it downloads every referenced image, mirrors the folder structure, and rewrites the URLs in your content to the bundled copies — so nothing 404s when the old <code>/wp-content/uploads/</code> path disappears. Then serve them through <code>next/image</code> for automatic optimization.</p>
+
+<h2 id="launch">Step 7 — Launch, then verify like your traffic depends on it</h2>
+<p>It does. Ship, then work this checklist in the first 48 hours:</p>
+<ol>
+  <li><strong>Submit the new sitemap</strong> in Google Search Console and request indexing for your top pages.</li>
+  <li><strong>Spot-check 301s</strong>: hit a sample of old URLs and confirm each lands on the right page with a single 301 hop.</li>
+  <li><strong>Crawl the new site</strong> (Screaming Frog or similar) and diff the URL list against your inventory — anything missing is a gap.</li>
+  <li><strong>Verify metadata</strong> on live pages: titles, descriptions, canonicals, and JSON-LD all present.</li>
+  <li><strong>Watch Coverage &amp; 404s</strong> in Search Console daily for two weeks. A spike in &ldquo;Not found&rdquo; means a redirect you missed.</li>
+  <li><strong>Keep the old site reachable</strong> for a short window if you can, so nothing 404s while DNS and caches settle.</li>
+</ol>
+
+<hr>
+
+<h2 id="mistakes">The mistakes that actually tank rankings</h2>
+<p>Almost every post-migration traffic drop traces back to one of these:</p>
+<ul>
+  <li><strong>Changing URLs without 301s</strong> — the number-one killer. Every orphaned URL is a ranking deleted.</li>
+  <li><strong>Incomplete content migration</strong> — pages that render empty because a builder&rsquo;s shortcodes never executed in the export.</li>
+  <li><strong>Dropped metadata</strong> — new templates that forget titles, descriptions, or canonicals.</li>
+  <li><strong>Leftover <code>noindex</code> / <code>Disallow</code></strong> from staging reaching production.</li>
+  <li><strong>Broken images</strong> when the old uploads path disappears.</li>
+  <li><strong>Redirecting everything to the homepage</strong> instead of true equivalents.</li>
+</ul>
+<p>Notice the pattern: every one is a <em>preservation</em> failure, and every one is preventable with a complete inventory captured before you start. Get Step 1 right and the rest is mechanical.</p>
+
+<div class="end-cta">
+  <h2>Start with a clean inventory</h2>
+  <p>Migratik exports your whole WordPress site — rendered content, SEO metadata, permalinks, images, and links — into one file that powers your redirects, metadata, and sitemap. Free to install, read-only, and safe on a live site.</p>
+  <div class="btns">
+    <a class="btn btn-primary" href="https://wordpress.org/plugins/migratik/" target="_blank" rel="noopener">Install free on WordPress.org</a>
+    <a class="btn btn-line" href="../index.html#pricing">See Migratik Pro</a>
+  </div>
+</div>
+
+</article>
+</div>
+
+<footer>
+  <div class="wrap foot-in">
+    <a class="logo" href="../index.html"><span class="mark"><svg viewBox="0 0 48 48" fill="#fff" style="width:14px;height:14px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span> Migratik</a>
+    <div>© 2026 Migratik · Built by Hossam Hamdy · A builder-agnostic WordPress migration exporter.</div>
+  </div>
+</footer>
+
+</body>
+</html>
