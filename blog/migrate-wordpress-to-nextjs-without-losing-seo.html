@@ -77,7 +77,28 @@
     display:grid;place-items:center;color:#fff}
   .nav-links{display:flex;gap:28px;align-items:center;font-size:15px;color:var(--muted);font-weight:600}
   .nav-links a:hover{color:var(--ink)}
-  @media(max-width:720px){.nav-links{display:none}}
+  .nav-toggle{display:none}
+  .burger{display:none}
+  @media(max-width:720px){
+    .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:6px 24px 14px;box-shadow:0 14px 26px rgba(24,20,80,.12)}
+    .nav-links a{padding:13px 2px;border-top:1px solid var(--line);font-size:16px}
+    .nav-toggle:checked ~ .nav-links{display:flex}
+    .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:40px;cursor:pointer;padding:9px 10px;margin-left:auto}
+    .burger span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:.2s}
+    .nav-toggle:checked ~ .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-toggle:checked ~ .burger span:nth-child(2){opacity:0}
+    .nav-toggle:checked ~ .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-cta{display:none}
+  }
+  .layout{max-width:760px;margin:0 auto;padding:0 24px}
+  .toc-spacer{display:none}
+  @media(min-width:1080px){
+    .layout{max-width:1060px;display:grid;grid-template-columns:236px minmax(0,1fr);column-gap:48px;align-items:start}
+    .toc-spacer{display:block}
+    .layout > .toc.side{position:sticky;top:88px;margin:0}
+    .layout > .toc.side ol{columns:1}
+    .layout > .main{min-width:0}
+  }
 
   /* Article */
   .article{max-width:760px;margin:0 auto;padding:0 24px}
@@ -161,18 +182,22 @@
 <nav>
   <div class="wrap nav-in">
     <a class="logo" href="../index.html"><span class="mark"><svg viewBox="0 0 48 48" fill="#fff" style="width:17px;height:17px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span> Migratik</a>
+    <input type="checkbox" id="navtoggle" class="nav-toggle" aria-label="Toggle menu">
+    <label for="navtoggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
     <div class="nav-links">
       <a href="../index.html#how">How it works</a>
       <a href="../index.html#formats">Formats</a>
       <a href="./index.html">Blog</a>
       <a href="../index.html#pricing">Pricing</a>
     </div>
-    <a href="../index.html#pricing" class="btn btn-primary" style="padding:10px 20px;font-size:15px">Get Migratik Pro</a>
+    <a href="../index.html#pricing" class="btn btn-primary nav-cta" style="padding:10px 20px;font-size:15px">Get Migratik Pro</a>
   </div>
 </nav>
 
 <header class="hd">
-  <div class="article">
+  <div class="layout">
+    <div class="toc-spacer" aria-hidden="true"></div>
+    <div class="main">
     <div class="crumb"><a href="./index.html">Blog</a> &nbsp;/&nbsp; Migration</div>
     <span class="eyebrow">WordPress → Next.js</span>
     <h1>How to Migrate WordPress to Next.js Without Losing Your SEO</h1>
@@ -182,17 +207,12 @@
       <span>Updated July 2026</span>
     </div>
     <p class="lede">Going headless can make your site dramatically faster — but a careless migration can wipe out years of rankings overnight. It doesn&rsquo;t have to. Here&rsquo;s the exact, order-of-operations playbook to move a WordPress site to Next.js while keeping every URL, redirect, meta tag, and image that Google already trusts.</p>
+    </div>
   </div>
 </header>
 
-<div class="article">
-<article>
-
-<p>Most &ldquo;WordPress to Next.js&rdquo; tutorials show you how to fetch posts from the WP REST API and render them in the App Router. That&rsquo;s the easy 20%. The 80% that actually decides whether your organic traffic survives is everything <em>around</em> the content: your URLs, your redirects, your metadata, your sitemap, and your images. Get those wrong and you&rsquo;ll watch impressions fall off a cliff two weeks after launch — right when everyone assumes the migration &ldquo;went fine.&rdquo;</p>
-
-<p>This guide is the checklist I wish every team ran <strong>before</strong> flipping DNS. It&rsquo;s framework-accurate for the Next.js App Router, and it works whether your new backend is headless WordPress, a headless CMS, or flat files.</p>
-
-<div class="toc">
+<div class="layout">
+<nav class="toc side">
   <div class="t">What&rsquo;s inside</div>
   <ol>
     <li><a href="#rule">The one rule that saves rankings</a></li>
@@ -205,7 +225,12 @@
     <li><a href="#launch">Step 7 — Launch &amp; verify</a></li>
     <li><a href="#mistakes">Mistakes that tank rankings</a></li>
   </ol>
-</div>
+</nav>
+<article class="main">
+
+<p>Most &ldquo;WordPress to Next.js&rdquo; tutorials show you how to fetch posts from the WP REST API and render them in the App Router. That&rsquo;s the easy 20%. The 80% that actually decides whether your organic traffic survives is everything <em>around</em> the content: your URLs, your redirects, your metadata, your sitemap, and your images. Get those wrong and you&rsquo;ll watch impressions fall off a cliff two weeks after launch — right when everyone assumes the migration &ldquo;went fine.&rdquo;</p>
+
+<p>This guide is the checklist I wish every team ran <strong>before</strong> flipping DNS. It&rsquo;s framework-accurate for the Next.js App Router, and it works whether your new backend is headless WordPress, a headless CMS, or flat files.</p>
 
 <h2 id="rule">The one rule that saves rankings</h2>
 <p>Every decision in a migration comes back to a single principle:</p>

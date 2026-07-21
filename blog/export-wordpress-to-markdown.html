@@ -74,7 +74,28 @@
   .logo .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#fff}
   .nav-links{display:flex;gap:28px;align-items:center;font-size:15px;color:var(--muted);font-weight:600}
   .nav-links a:hover{color:var(--ink)}
-  @media(max-width:720px){.nav-links{display:none}}
+  .nav-toggle{display:none}
+  .burger{display:none}
+  @media(max-width:720px){
+    .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:6px 24px 14px;box-shadow:0 14px 26px rgba(24,20,80,.12)}
+    .nav-links a{padding:13px 2px;border-top:1px solid var(--line);font-size:16px}
+    .nav-toggle:checked ~ .nav-links{display:flex}
+    .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:40px;cursor:pointer;padding:9px 10px;margin-left:auto}
+    .burger span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:.2s}
+    .nav-toggle:checked ~ .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-toggle:checked ~ .burger span:nth-child(2){opacity:0}
+    .nav-toggle:checked ~ .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-cta{display:none}
+  }
+  .layout{max-width:760px;margin:0 auto;padding:0 24px}
+  .toc-spacer{display:none}
+  @media(min-width:1080px){
+    .layout{max-width:1060px;display:grid;grid-template-columns:236px minmax(0,1fr);column-gap:48px;align-items:start}
+    .toc-spacer{display:block}
+    .layout > .toc.side{position:sticky;top:88px;margin:0}
+    .layout > .toc.side ol{columns:1}
+    .layout > .main{min-width:0}
+  }
   .article{max-width:760px;margin:0 auto;padding:0 24px}
   .hd{padding:56px 0 8px;background:radial-gradient(1000px 420px at 80% -20%,rgba(139,92,255,.14),transparent 60%),var(--bg)}
   .crumb{font-size:13.5px;color:var(--muted);font-weight:600;margin-bottom:18px}
@@ -137,18 +158,22 @@
 <nav>
   <div class="wrap nav-in">
     <a class="logo" href="../index.html"><span class="mark"><svg viewBox="0 0 48 48" fill="#fff" style="width:17px;height:17px;display:block"><path d="M9 38V10h7.4L24 19.6 31.6 10H39v28h-6.2V19.4L24 30.4 15.2 19.4V38z"/><path d="M17.5 31.5h13L24 40.5z"/></svg></span> Migratik</a>
+    <input type="checkbox" id="navtoggle" class="nav-toggle" aria-label="Toggle menu">
+    <label for="navtoggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
     <div class="nav-links">
       <a href="../index.html#how">How it works</a>
       <a href="../index.html#formats">Formats</a>
       <a href="./index.html">Blog</a>
       <a href="../index.html#pricing">Pricing</a>
     </div>
-    <a href="../index.html#pricing" class="btn btn-primary" style="padding:10px 20px;font-size:15px">Get Migratik Pro</a>
+    <a href="../index.html#pricing" class="btn btn-primary nav-cta" style="padding:10px 20px;font-size:15px">Get Migratik Pro</a>
   </div>
 </nav>
 
 <header class="hd">
-  <div class="article">
+  <div class="layout">
+    <div class="toc-spacer" aria-hidden="true"></div>
+    <div class="main">
     <div class="crumb"><a href="./index.html">Blog</a> &nbsp;/&nbsp; Formats</div>
     <span class="eyebrow">WordPress → Markdown</span>
     <h1>How to Export a WordPress Site to Markdown</h1>
@@ -158,16 +183,12 @@
       <span>Updated July 2026</span>
     </div>
     <p class="lede">Markdown is the most portable, future-proof format your content can live in — plain text, version-controllable, and readable by every static site generator and AI pipeline on earth. Here&rsquo;s how to get an entire WordPress site out as clean Markdown or MDX &mdash; the first step to convert WordPress to a static site &mdash; with the front matter and metadata that make it actually usable.</p>
+    </div>
   </div>
 </header>
 
-<div class="article">
-<article>
-
-<p>There&rsquo;s a reason developers keep pulling content <em>out</em> of WordPress and into Markdown: a folder of <code>.md</code> files is the closest thing content has to a universal format. It drops into <strong>Astro, Hugo, 11ty, Jekyll, Gatsby, and Next.js</strong> with zero translation, it lives happily in Git, it diffs cleanly in code review, and it&rsquo;s the ideal input for feeding your content into an LLM or a RAG pipeline. No database, no lock-in, no builder shortcodes — just text.</p>
-<p>The catch is that getting <em>clean</em> Markdown out of WordPress is harder than it looks. This guide covers what a real export needs, what the front matter should contain, when to choose MDX over Markdown, and how to drop the result into whatever you&rsquo;re building.</p>
-
-<div class="toc">
+<div class="layout">
+<nav class="toc side">
   <div class="t">What&rsquo;s inside</div>
   <ol>
     <li><a href="#why">Why Markdown wins</a></li>
@@ -178,7 +199,11 @@
     <li><a href="#images">Handling images</a></li>
     <li><a href="#pitfalls">Common pitfalls</a></li>
   </ol>
-</div>
+</nav>
+<article class="main">
+
+<p>There&rsquo;s a reason developers keep pulling content <em>out</em> of WordPress and into Markdown: a folder of <code>.md</code> files is the closest thing content has to a universal format. It drops into <strong>Astro, Hugo, 11ty, Jekyll, Gatsby, and Next.js</strong> with zero translation, it lives happily in Git, it diffs cleanly in code review, and it&rsquo;s the ideal input for feeding your content into an LLM or a RAG pipeline. No database, no lock-in, no builder shortcodes — just text.</p>
+<p>The catch is that getting <em>clean</em> Markdown out of WordPress is harder than it looks. This guide covers what a real export needs, what the front matter should contain, when to choose MDX over Markdown, and how to drop the result into whatever you&rsquo;re building.</p>
 
 <h2 id="why">Why Markdown wins</h2>
 <p>Moving your content to Markdown buys you things WordPress can&rsquo;t:</p>
